@@ -26,7 +26,8 @@
         ptr:ptrMode="both"
         ptr:ptrScrollingWhileRefreshingEnabled="false" />
 
-    <com.tz.niceappdemo.control.RhythmLayout
+   
+    <com.tz.xiyoulibrary.activity.myfootprint.viewutils.control.RhythmLayout
         android:id="@+id/box_rhythm"
         android:layout_width="match_parent"
         android:layout_height="@dimen/rhythm_layout_height"
@@ -34,9 +35,10 @@
         android:scrollbars="none" >
 
         <LinearLayout
+            android:id="@+id/activity_myfoot_ll"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal" />
-    </com.tz.niceappdemo.control.RhythmLayout>
+    </com.tz.xiyoulibrary.activity.myfootprint.viewutils.control.RhythmLayout>
 
 </RelativeLayout>

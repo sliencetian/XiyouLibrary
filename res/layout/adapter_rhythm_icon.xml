@@ -10,7 +10,7 @@
         android:background="@drawable/home_icon_bg"
         android:padding="2dp" >
 
-        <com.tz.niceappdemo.widget.RoundedImageView
+        <com.tz.xiyoulibrary.activity.myfootprint.viewutils.widget.RoundedImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/image_icon"
             android:layout_width="44.0dip"
