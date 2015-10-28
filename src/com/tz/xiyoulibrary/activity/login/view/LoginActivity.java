@@ -50,6 +50,7 @@ public class LoginActivity extends Activity implements ILoginView {
 		mProgressDialog.setTitle("提示");
 		mProgressDialog.setMessage("正在登录,请稍候...");
 		
+		
 		init();
 		
 	}
