@@ -24,7 +24,7 @@ import com.tz.xiyoulibrary.activity.myfootprint.viewutils.utils.AnimatorUtils;
 import com.tz.xiyoulibrary.activity.myfootprint.viewutils.widget.ViewPagerScroller;
 import com.tz.xiyoulibrary.bean.BookBean;
 
-public class MainActivity extends FragmentActivity {
+public class MyFootActivity extends FragmentActivity {
 
 	/**
 	 * ¸ÖÇÙ²¼¾Ö

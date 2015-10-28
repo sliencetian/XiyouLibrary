@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <include
+        android:id="@+id/actionbar_activity_login"
+        layout="@layout/actionbar_two" />
+
+    <LinearLayout
+        android:id="@+id/ll_input_activity_login"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/actionbar_activity_login"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="17dp"
+        android:background="@drawable/et_back"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/et_username_activity_login"
+            android:layout_width="fill_parent"
+            android:layout_height="56dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="@string/username"
+            android:paddingLeft="13dp"
+            android:textSize="@dimen/text_size" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/Dark_grey"
+            android:contentDescription="@string/app_name" />
+
+        <EditText
+            android:id="@+id/et_password_activity_login"
+            android:layout_width="fill_parent"
+            android:layout_height="56dp"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:paddingLeft="13dp"
+            android:textSize="@dimen/text_size" />
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/cb_savepassword_activity_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/ll_input_activity_login"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/save_password" />
+
+    <Button
+        android:id="@+id/bt_login_activity_login"
+        android:layout_width="fill_parent"
+        android:layout_height="55dp"
+        android:layout_below="@id/cb_savepassword_activity_login"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/bt_selector"
+        android:text="@string/login_text"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size" />
+
+</RelativeLayout>

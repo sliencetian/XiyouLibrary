@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 主题颜色 -->
+    <color name="theme_color">#f55b56</color>
+    <color name="theme_color_deep">#f24441</color>
+    <!-- 浅灰色 -->
+    <color name="Light_grey">#eeeeee</color>
+    <!-- 深灰色 -->
+    <color name="Dark_grey">#a0a0a0</color>
+    <!-- 白色 -->
+    <color name="white">#ffffff</color>
+</resources>
