@@ -20,7 +20,6 @@ import com.tz.xiyoulibrary.activity.myfootprint.viewutils.bean.Card;
 import com.tz.xiyoulibrary.activity.myfootprint.viewutils.control.IRhythmItemListener;
 import com.tz.xiyoulibrary.activity.myfootprint.viewutils.control.RhythmAdapter;
 import com.tz.xiyoulibrary.activity.myfootprint.viewutils.control.RhythmLayout;
-import com.tz.xiyoulibrary.activity.myfootprint.viewutils.fragment.CardPagerAdapter;
 import com.tz.xiyoulibrary.activity.myfootprint.viewutils.utils.AnimatorUtils;
 import com.tz.xiyoulibrary.activity.myfootprint.viewutils.widget.ViewPagerScroller;
 import com.tz.xiyoulibrary.bean.BookBean;
@@ -50,7 +49,8 @@ public class MainActivity extends FragmentActivity {
 	/**
 	 * ViewPager的适配器
 	 */
-	private CardPagerAdapter mPagerAdapter;
+//	private CardPagerAdapter mPagerAdapter;
+	private BookPagerAdapter bookPagerAdapter;
 
 	/**
 	 * 最外层的View，为了设置背景颜色而使用
@@ -138,15 +138,8 @@ public class MainActivity extends FragmentActivity {
 			book.setTitle("第-" + i + "-本书");
 			mBookList.add(book);
 		}
-
-		// 设置ViewPager的适配器
-		// mPagerAdapter = new CardPagerAdapter(getSupportFragmentManager(),
-		// mCardList);
-		// mViewPager.setAdapter(mPagerAdapter);
-		BookPagerAdapter bookPagerAdapter = new BookPagerAdapter(
+		bookPagerAdapter = new BookPagerAdapter(
 				getSupportFragmentManager(), mBookList);
-		mPagerAdapter = new CardPagerAdapter(getSupportFragmentManager(),
-				mCardList);
 		mViewPager.setAdapter(bookPagerAdapter);
 
 		// 设置钢琴布局的适配器
