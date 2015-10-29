@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 @EFragment(R.layout.fragment_my)
 public class MyFragment extends Fragment {
 	
+	//自己更新
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
