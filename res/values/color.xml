@@ -9,4 +9,6 @@
     <color name="Dark_grey">#a0a0a0</color>
     <!-- 白色 -->
     <color name="white">#ffffff</color>
+    <!-- 黑色 -->
+    <color name="black">#000000</color>
 </resources>

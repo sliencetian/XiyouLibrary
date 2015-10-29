@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/actionbar_activity_main"
-        layout="@layout/actionbar_one" />
+        layout="@layout/actionbar" />
 
     <RelativeLayout
         android:layout_width="fill_parent"

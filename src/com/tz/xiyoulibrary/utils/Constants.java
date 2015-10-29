@@ -10,4 +10,6 @@ public class Constants {
 
 	// 登录
 	public static final String LOGIN = ROOT_URL + "user/login";
+	//获取用户信息
+	public static final String GET_USER_INFO = ROOT_URL + "user/info";
 }

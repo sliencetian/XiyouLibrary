@@ -12,5 +12,6 @@
     <dimen name="actionbar_title_text_size">20dp</dimen>
     <dimen name="text_size">17dp</dimen>
     <dimen name="radius_size">8dp</dimen>
+    <dimen name="right_arrow_size">22dp</dimen>
 
 </resources>

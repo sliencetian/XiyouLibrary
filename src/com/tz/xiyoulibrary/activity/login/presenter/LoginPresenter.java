@@ -18,8 +18,7 @@ public class LoginPresenter {
 	}
 
 	public void Login(RequestQueue queue) {
-		
-		mLoginModel.Login(queue, mLoginView.getUsername(), mLoginView.getPassword(),
+		mLoginModel.login(queue, mLoginView.getUsername(), mLoginView.getPassword(),
 				new CallBack<LoginModel>() {
 
 					@Override
@@ -40,6 +39,10 @@ public class LoginPresenter {
 						}
 					}
 				});
+	}
+	
+	public void getUserInfo(RequestQueue queue){
+		
 	}
 
 	public void setUsername(Context context) {

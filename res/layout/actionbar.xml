@@ -5,10 +5,11 @@
     android:background="@color/theme_color" >
 
     <RelativeLayout
-        android:id="@+id/rl_back_actionbar_tow"
+        android:id="@+id/rl_back_actionbar"
         android:layout_width="@dimen/actionbar_back"
         android:layout_height="fill_parent"
         android:background="@drawable/bt_selector"
+        android:visibility="invisible"
         android:orientation="horizontal" >
 
         <ImageView
@@ -21,12 +22,30 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/tv_title_actionbar_two"
+        android:id="@+id/tv_title_actionbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="@string/login_title"
+        android:text="@string/main_title"
         android:textColor="#fff"
         android:textSize="@dimen/actionbar_title_text_size" />
+
+    <RelativeLayout
+        android:id="@+id/rl_search_actionbar"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:visibility="invisible"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/iv_search_actionbar"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/img_search"
+            android:contentDescription="@string/app_name" />
+    </RelativeLayout>
 
 </RelativeLayout>
