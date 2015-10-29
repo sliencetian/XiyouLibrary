@@ -434,3 +434,6 @@
 17:04:05.553 [Worker-27] INFO  o.a.p.TimeStats:81 - Time measurements: [Whole Processing = 78 ms], [Extract Manifest = 16 ms], [Find R Classes = 16 ms], [Process Annotations = 16 ms], [Validate Annotations = 15 ms], [Generate Sources = 15 ms], [Extract Annotations = 0 ms], 
 17:04:05.569 [Worker-27] INFO  o.a.AndroidAnnotationProcessor:122 - Finish processing
 17:04:38.712 [Worker-36] INFO  o.a.AndroidAnnotationProcessor:84 - Initialize AndroidAnnotations 3.2 with options {phase=BUILD}
+17:13:28.101 [Worker-39] INFO  o.a.AndroidAnnotationProcessor:84 - Initialize AndroidAnnotations 3.2 with options {phase=BUILD}
+17:38:14.252 [Worker-50] INFO  o.a.AndroidAnnotationProcessor:84 - Initialize AndroidAnnotations 3.2 with options {phase=BUILD}
+17:40:34.457 [Worker-53] INFO  o.a.AndroidAnnotationProcessor:84 - Initialize AndroidAnnotations 3.2 with options {phase=BUILD}
