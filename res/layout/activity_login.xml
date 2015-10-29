@@ -64,7 +64,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="22dp"
-        android:background="@drawable/bt_selector"
+        android:background="@drawable/bt_radius_selector"
         android:text="@string/login_text"
         android:textColor="@color/white"
         android:textSize="@dimen/text_size" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">XiyouLibrary</string>
+    <string name="app_name">西邮图书馆</string>
     <string name="login_title">西邮图书馆登录</string>
     <string name="username">账 户</string>
     <string name="password">密 码</string>

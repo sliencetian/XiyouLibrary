@@ -1,15 +1,20 @@
 package com.tz.xiyoulibrary.activity.login.view;
 
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.tz.xiyoulibrary.R;
 import com.tz.xiyoulibrary.activity.login.presenter.LoginPresenter;
+import com.tz.xiyoulibrary.activity.main.MainActivity;
 import com.tz.xiyoulibrary.toastview.CustomToast;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.Button;
@@ -21,48 +26,54 @@ import android.widget.RelativeLayout;
 public class LoginActivity extends Activity implements ILoginView {
 
 	@ViewById(R.id.rl_back_actionbar_tow)
-	private RelativeLayout mRelativeLayoutBack;
+	RelativeLayout mRelativeLayoutBack;
 
 	@ViewById(R.id.et_username_activity_login)
-	private EditText mEditTextUserName;
+	EditText mEditTextUserName;
 
 	@ViewById(R.id.et_password_activity_login)
-	private EditText mEditTextPassWord;
+	EditText mEditTextPassWord;
 
 	@ViewById(R.id.bt_login_activity_login)
-	private Button mButtonLogin;
-	
+	Button mButtonLogin;
+
 	@ViewById(R.id.cb_savepassword_activity_login)
-	private CheckBox mCheckBoxSavePassword;
+	CheckBox mCheckBoxSavePassword;
 
 	private ProgressDialog mProgressDialog;
-	
+
 	private LoginPresenter loginPresenter;
+	private RequestQueue mQueue;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		
+
+		mQueue = Volley.newRequestQueue(LoginActivity.this);
 		loginPresenter = new LoginPresenter(this);
-		
 		mProgressDialog = new ProgressDialog(this);
 		mProgressDialog.setTitle("提示");
 		mProgressDialog.setMessage("正在登录,请稍候...");
-		
-		
-		init();
-		
+
 	}
 
-	private void init() {
-		loginPresenter.setUsername();
-		loginPresenter.setPassword();
+	@AfterViews
+	public void init() {
+		loginPresenter.setIsSavePass(LoginActivity.this);
+		loginPresenter.setUsername(this);
+		if (mCheckBoxSavePassword.isChecked())
+			loginPresenter.setPassword(this);
 	}
 
 	@Click(R.id.bt_login_activity_login)
 	public void login() {
+		loginPresenter.Login(mQueue);
+	}
 
+	@Click(R.id.rl_back_actionbar_tow)
+	public void back() {
+		finish();
 	}
 
 	@Override
@@ -101,9 +112,22 @@ public class LoginActivity extends Activity implements ILoginView {
 	}
 
 	@Override
-	public void saveUsernameAndPassword() {
-		// TODO Auto-generated method stub
-		
+	public void pushMainActivity() {
+		loginPresenter.saveIsSavePass(this);
+		loginPresenter.saveUsernameAndPassword(this);
+		startActivity(new Intent(this, MainActivity.class));
+		finish();
+	}
+
+	@Override
+	public boolean getIsSavePass() {
+		return mCheckBoxSavePassword.isChecked();
+	}
+
+	@Override
+	public void setIsSavePass(boolean isSavePass) {
+		System.out.println("isSavePass-->" + isSavePass);
+		mCheckBoxSavePassword.setChecked(isSavePass);
 	}
 
 }
