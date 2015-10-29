@@ -2,14 +2,17 @@ package com.tz.xiyoulibrary.activity.main;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
+
 import com.tz.xiyoulibrary.R;
 import com.tz.xiyoulibrary.fragment.home.HomeFragment;
-import com.tz.xiyoulibrary.fragment.my.MyFragment;
+import com.tz.xiyoulibrary.fragment.my.MyFragment_;
 import com.tz.xiyoulibrary.fragment.setting.SettingFragment;
 import com.tz.xiyoulibrary.toastview.CustomToast;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Build.VERSION;
@@ -41,7 +44,7 @@ public class MainActivity extends FragmentActivity {
 	 * Èý¸öFragmentÒ³Ãæ
 	 */
 	private HomeFragment homeFragment;
-	private MyFragment myFragment;
+	private MyFragment_ myFragment;
 	private SettingFragment settingFragment;
 
 	/**
@@ -80,7 +83,7 @@ public class MainActivity extends FragmentActivity {
 		mFragments = new ArrayList<Fragment>();
 
 		homeFragment = new HomeFragment();
-		myFragment = new MyFragment();
+		myFragment = new MyFragment_();
 		settingFragment = new SettingFragment();
 
 		mFragments.add(homeFragment);

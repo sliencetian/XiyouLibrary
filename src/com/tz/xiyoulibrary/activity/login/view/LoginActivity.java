@@ -48,6 +48,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		
 		mQueue = Volley.newRequestQueue(LoginActivity.this);
 		loginPresenter = new LoginPresenter(this);
 		mProgressDialog = new ProgressDialog(this);
