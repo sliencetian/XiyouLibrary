@@ -9,7 +9,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.tz.xiyoulibrary.R;
 import com.tz.xiyoulibrary.activity.login.presenter.LoginPresenter;
-import com.tz.xiyoulibrary.activity.main.MainActivity;
+import com.tz.xiyoulibrary.activity.main.MainActivity_;
 import com.tz.xiyoulibrary.toastview.CustomToast;
 
 import android.app.Activity;
@@ -115,7 +115,7 @@ public class LoginActivity extends Activity implements ILoginView {
 	public void pushMainActivity() {
 		loginPresenter.saveIsSavePass(this);
 		loginPresenter.saveUsernameAndPassword(this);
-		startActivity(new Intent(this, MainActivity.class));
+		startActivity(new Intent(this, MainActivity_.class));
 		finish();
 	}
 

@@ -9,12 +9,14 @@ import org.json.JSONObject;
 import android.content.Context;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.Request.Method;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.tz.xiyoulibrary.activity.callback.CallBack;
+import com.tz.xiyoulibrary.application.Application;
 import com.tz.xiyoulibrary.utils.ConfigFile;
 import com.tz.xiyoulibrary.utils.Constants;
 import com.tz.xiyoulibrary.utils.LogUtils;
@@ -30,20 +32,22 @@ public class LoginModel implements ILoginModel {
 		if (checkInput(username, password)) {
 			state = LOGIN_ING;
 			callBack.getModel(this);
-			JsonObjectRequest login = new JsonObjectRequest(Constants.LOGIN,
-					null, new Listener<JSONObject>() {
+			StringRequest request = new StringRequest(Method.POST,
+					Constants.LOGIN, new Listener<String>() {
 
 						@Override
-						public void onResponse(JSONObject response) {
-							LogUtils.d("LoginRequest", response.toString());
+						public void onResponse(String response) {
+							LogUtils.d("LoginResponse:", response);
 							try {
-								if (response.getBoolean("Result")) {
+								JSONObject o = new JSONObject(response);
+								if (o.getBoolean("Result")) {
 									state = LOGIN_SUCCESS;
-									msg = response.getString("Detail");
+									msg = o.getString("Detail");
+									Application.SESSION = msg;
 									callBack.getModel(LoginModel.this);
 								} else {
 									state = LOGIN_FAILURE;
-									if (response.getString("Detail").equals(
+									if (o.getString("Detail").equals(
 											"ACCOUNT_ERROR")) {
 										msg = "’À∫≈¥ÌŒÛ£¨√‹¬Î¥ÌŒÛªÚ’Àªß≤ª¥Ê‘⁄";
 									} else {
@@ -57,11 +61,13 @@ public class LoginModel implements ILoginModel {
 								msg = "µ«¬º ß∞‹";
 								callBack.getModel(LoginModel.this);
 							}
+
 						}
 					}, new Response.ErrorListener() {
 
 						@Override
 						public void onErrorResponse(VolleyError error) {
+							error.printStackTrace();
 							state = LOGIN_FAILURE;
 							msg = "Õ¯¬Á«Î«Û ß∞‹";
 							callBack.getModel(LoginModel.this);
@@ -76,7 +82,7 @@ public class LoginModel implements ILoginModel {
 					return map;
 				}
 			};
-			queue.add(login);
+			queue.add(request);
 		} else {
 			state = LOGIN_FAILURE;
 			callBack.getModel(this);
