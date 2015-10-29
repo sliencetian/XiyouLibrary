@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import com.tz.xiyoulibrary.R;
+import com.tz.xiyoulibrary.application.Application;
 import com.tz.xiyoulibrary.fragment.home.HomeFragment;
 import com.tz.xiyoulibrary.fragment.my.MyFragment_;
 import com.tz.xiyoulibrary.fragment.setting.SettingFragment;
@@ -24,15 +26,21 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
 @EActivity(R.layout.activity_main)
 public class MainActivity extends FragmentActivity {
 
+	// 顶部标题栏
+	@ViewById(R.id.tv_title_actionbar)
+	TextView mTextViewTitle;
 	/**
 	 * 主界面的ViewPage
 	 */
@@ -58,6 +66,9 @@ public class MainActivity extends FragmentActivity {
 	RadioButton rb_main_tab_menu3;
 	@ViewById(R.id.rg_menu_activity_main)
 	RadioGroup rg_main_menu;
+
+	@ViewById(R.id.rl_search_actionbar)
+	RelativeLayout mRelativeLayoutSearch;
 
 	@SuppressLint("InlinedApi")
 	@Override
@@ -93,6 +104,8 @@ public class MainActivity extends FragmentActivity {
 
 	@AfterViews
 	public void initWidgetAfter() {
+		// 设置首页查询可见
+		mRelativeLayoutSearch.setVisibility(View.VISIBLE);
 		// 初始化Fragment适配器
 		initViewPage();
 		// 初始化ViewPage
@@ -110,12 +123,15 @@ public class MainActivity extends FragmentActivity {
 				switch (id) {
 				case R.id.rb_main_tab_menu1:
 					vp_main_tab.setCurrentItem(0);
+					initActionBar(0);
 					break;
 				case R.id.rb_main_tab_menu2:
 					vp_main_tab.setCurrentItem(1);
+					initActionBar(1);
 					break;
 				case R.id.rb_main_tab_menu3:
 					vp_main_tab.setCurrentItem(2);
+					initActionBar(2);
 					break;
 				default:
 					break;
@@ -146,6 +162,7 @@ public class MainActivity extends FragmentActivity {
 
 			@Override
 			public void onPageSelected(int position) {
+				initActionBar(position);
 				switch (position) {
 				case 0:
 					rb_main_tab_menu1.setChecked(true);
@@ -169,6 +186,26 @@ public class MainActivity extends FragmentActivity {
 			public void onPageScrollStateChanged(int arg0) {
 			}
 		});
+	}
+
+	@Click(R.id.rl_search_actionbar)
+	public void search() {
+		CustomToast.showToast(this, "查询", 2000);
+	}
+
+	public void initActionBar(int currPage) {
+		if (currPage == 0) {
+			mTextViewTitle.setText(getResources()
+					.getString(R.string.main_title));
+			mRelativeLayoutSearch.setVisibility(View.VISIBLE);
+		} else if (currPage == 1) {
+			mTextViewTitle.setText(Application.user.getName());
+			mRelativeLayoutSearch.setVisibility(View.INVISIBLE);
+		} else {
+			mTextViewTitle.setText(getResources().getString(
+					R.string.setting_text));
+			mRelativeLayoutSearch.setVisibility(View.INVISIBLE);
+		}
 	}
 
 	private long exitTime = 0;

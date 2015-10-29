@@ -11,7 +11,10 @@ public interface ILoginModel {
 	static final int LOGIN_FAILURE = 3;//
 	static final int ACCOUNT_ERROR = 4;// ’À∫≈¥ÌŒÛ£¨√‹¬Î¥ÌŒÛªÚ’Àªß≤ª¥Ê‘⁄
 
-	void Login(RequestQueue queue, String username, String password,
+	void login(RequestQueue queue, String username, String password,
+			CallBack<LoginModel> callBack);
+
+	void getUserInfo(RequestQueue queue, String session,
 			CallBack<LoginModel> callBack);
 
 	String getUsername(Context context);
@@ -20,10 +23,10 @@ public interface ILoginModel {
 
 	boolean getIsSavePass(Context context);
 
-	void setIsSavePass(Context context,boolean isSavePass);
+	void setIsSavePass(Context context, boolean isSavePass);
 
 	void saveUsernameAndPassword(Context context, String username,
 			String password);
-	
-	boolean checkInput(String username,String password);
+
+	boolean checkInput(String username, String password);
 }
