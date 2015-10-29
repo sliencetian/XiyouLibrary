@@ -1,9 +1,67 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-	<TextView 
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:text="@string/app_name"/>
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/theme_color"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true" >
+
+    <include
+        android:id="@+id/actionbar_activity_main"
+        layout="@layout/actionbar_one" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/actionbar_activity_main"
+        android:background="@color/white" >
+
+        <RadioGroup
+            android:id="@+id/rg_menu_activity_main"
+            android:layout_width="fill_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/theme_color"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="3" >
+
+            <RadioButton
+                android:id="@+id/rb_main_tab_menu1"
+                style="@style/rbt_bottom"
+                android:checked="true"
+                android:drawableTop="@drawable/radiobt_main_home"
+                android:gravity="center"
+                android:paddingTop="12dp"
+                android:text="@string/home_text"
+                android:textColor="@color/white" />
+
+            <RadioButton
+                android:id="@+id/rb_main_tab_menu2"
+                style="@style/rbt_bottom"
+                android:checked="false"
+                android:drawableTop="@drawable/radiobt_main_my"
+                android:gravity="center"
+                android:paddingTop="12dp"
+                android:text="@string/my_text"
+                android:textColor="@color/white" />
+
+            <RadioButton
+                android:id="@+id/rb_main_tab_menu3"
+                style="@style/rbt_bottom"
+                android:checked="false"
+                android:drawableTop="@drawable/radiobt_main_setting"
+                android:gravity="center"
+                android:paddingTop="12dp"
+                android:text="@string/setting_text"
+                android:textColor="@color/white" />
+        </RadioGroup>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_activity_main"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@id/rg_menu_activity_main" />
+    </RelativeLayout>
+
 </RelativeLayout>

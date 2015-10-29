@@ -4,26 +4,24 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.tz.xiyoulibrary.R;
+import com.tz.xiyoulibrary.activity.baseactivity.BaseActivity;
 import com.tz.xiyoulibrary.activity.login.presenter.LoginPresenter;
 import com.tz.xiyoulibrary.activity.main.MainActivity_;
 import com.tz.xiyoulibrary.toastview.CustomToast;
-
-import android.app.Activity;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 @EActivity(R.layout.activity_login)
-public class LoginActivity extends Activity implements ILoginView {
+public class LoginActivity extends BaseActivity implements ILoginView {
 
 	@ViewById(R.id.rl_back_actionbar_tow)
 	RelativeLayout mRelativeLayoutBack;
@@ -45,11 +43,11 @@ public class LoginActivity extends Activity implements ILoginView {
 	private LoginPresenter loginPresenter;
 	private RequestQueue mQueue;
 
+	@SuppressLint("InlinedApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-
+		
 		mQueue = Volley.newRequestQueue(LoginActivity.this);
 		loginPresenter = new LoginPresenter(this);
 		mProgressDialog = new ProgressDialog(this);
@@ -129,5 +127,4 @@ public class LoginActivity extends Activity implements ILoginView {
 		System.out.println("isSavePass-->" + isSavePass);
 		mCheckBoxSavePassword.setChecked(isSavePass);
 	}
-
 }

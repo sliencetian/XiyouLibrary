@@ -2,10 +2,16 @@
 <resources>
 
     <string name="app_name">西邮图书馆</string>
+    <!-- 登录 -->
     <string name="login_title">西邮图书馆登录</string>
     <string name="username">账 户</string>
     <string name="password">密 码</string>
     <string name="save_password">记住密码</string>
     <string name="login_text">登  录</string>
-		
+    <!-- MainActivity -->
+    <string name="main_title">西邮图书馆</string>
+    <string name="my_text">我的</string>
+    <string name="home_text">首页</string>
+    <string name="setting_text">设置</string>
+	
 </resources>
