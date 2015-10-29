@@ -14,6 +14,7 @@ public class ConfigFile {
 	private static final String CONFIG_FILE_NAME = "XiYou_Library";
 	private static final String UserName = "username";
 	private static final String PassWord = "password";
+	private static final String IsSavePassWord = "isSavePass";
 
 	public static void saveUsername(Context context, String username) {
 		initSp(context);
@@ -33,6 +34,16 @@ public class ConfigFile {
 	public static String getPassword(Context context) {
 		initSp(context);
 		return sp.getString(PassWord, "");
+	}
+
+	public static void saveIsSavePass(Context context, boolean isSavePass) {
+		initSp(context);
+		sp.edit().putBoolean(IsSavePassWord, isSavePass).commit();
+	}
+
+	public static boolean getIsSavePass(Context context) {
+		initSp(context);
+		return sp.getBoolean(IsSavePassWord, false);
 	}
 
 	private static void initSp(Context context) {

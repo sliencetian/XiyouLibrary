@@ -1,17 +1,29 @@
 package com.tz.xiyoulibrary.activity.login.model;
 
+import android.content.Context;
+
 import com.android.volley.RequestQueue;
 import com.tz.xiyoulibrary.activity.callback.CallBack;
 
 public interface ILoginModel {
-	static final int LOGIN_SUCCESS = 1;//
-	static final int LOGIN_FAILURE = 2;//
-	static final int ACCOUNT_ERROR = 3;// ’À∫≈¥ÌŒÛ£¨√‹¬Î¥ÌŒÛªÚ’Àªß≤ª¥Ê‘⁄
+	static final int LOGIN_ING = 1;//
+	static final int LOGIN_SUCCESS = 2;//
+	static final int LOGIN_FAILURE = 3;//
+	static final int ACCOUNT_ERROR = 4;// ’À∫≈¥ÌŒÛ£¨√‹¬Î¥ÌŒÛªÚ’Àªß≤ª¥Ê‘⁄
 
 	void Login(RequestQueue queue, String username, String password,
 			CallBack<LoginModel> callBack);
 
-	String getUsername();
+	String getUsername(Context context);
 
-	String getPassword();
+	String getPassword(Context context);
+
+	boolean getIsSavePass(Context context);
+
+	void setIsSavePass(Context context,boolean isSavePass);
+
+	void saveUsernameAndPassword(Context context, String username,
+			String password);
+	
+	boolean checkInput(String username,String password);
 }

@@ -6,78 +6,127 @@ import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
+
 import com.android.volley.AuthFailureError;
+import com.android.volley.Request.Method;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.tz.xiyoulibrary.activity.callback.CallBack;
+import com.tz.xiyoulibrary.application.Application;
+import com.tz.xiyoulibrary.utils.ConfigFile;
 import com.tz.xiyoulibrary.utils.Constants;
+import com.tz.xiyoulibrary.utils.LogUtils;
 
 public class LoginModel implements ILoginModel {
 
-	int state;
-	String msg;
+	public int state;
+	public String msg;
 
 	@Override
 	public void Login(RequestQueue queue, final String username,
 			final String password, final CallBack<LoginModel> callBack) {
-		JsonObjectRequest login = new JsonObjectRequest(Constants.LOGIN, null,
-				new Listener<JSONObject>() {
+		if (checkInput(username, password)) {
+			state = LOGIN_ING;
+			callBack.getModel(this);
+			StringRequest request = new StringRequest(Method.POST,
+					Constants.LOGIN, new Listener<String>() {
 
-					@Override
-					public void onResponse(JSONObject response) {
-						try {
-							if (response.getBoolean("Result")) {
-								state = LOGIN_FAILURE;
-								msg = response.getString("Detail");
-								callBack.getModel(LoginModel.this);
-							} else {
-								state = LOGIN_FAILURE;
-								if (response.getString("Detail").equals(
-										"ACCOUNT_ERROR")) {
-									msg = "’À∫≈¥ÌŒÛ£¨√‹¬Î¥ÌŒÛªÚ’Àªß≤ª¥Ê‘⁄";
+						@Override
+						public void onResponse(String response) {
+							LogUtils.d("LoginResponse:", response);
+							try {
+								JSONObject o = new JSONObject(response);
+								if (o.getBoolean("Result")) {
+									state = LOGIN_SUCCESS;
+									msg = o.getString("Detail");
+									Application.SESSION = msg;
+									callBack.getModel(LoginModel.this);
 								} else {
-									msg = "µ«¬º ß∞‹";
+									state = LOGIN_FAILURE;
+									if (o.getString("Detail").equals(
+											"ACCOUNT_ERROR")) {
+										msg = "’À∫≈¥ÌŒÛ£¨√‹¬Î¥ÌŒÛªÚ’Àªß≤ª¥Ê‘⁄";
+									} else {
+										msg = "µ«¬º ß∞‹";
+									}
+									callBack.getModel(LoginModel.this);
 								}
+							} catch (JSONException e) {
+								e.printStackTrace();
+								state = LOGIN_FAILURE;
+								msg = "µ«¬º ß∞‹";
 								callBack.getModel(LoginModel.this);
 							}
-						} catch (JSONException e) {
-							e.printStackTrace();
+
+						}
+					}, new Response.ErrorListener() {
+
+						@Override
+						public void onErrorResponse(VolleyError error) {
+							error.printStackTrace();
 							state = LOGIN_FAILURE;
-							msg = "µ«¬º ß∞‹";
+							msg = "Õ¯¬Á«Î«Û ß∞‹";
 							callBack.getModel(LoginModel.this);
 						}
-					}
-				}, new Response.ErrorListener() {
-
-					@Override
-					public void onErrorResponse(VolleyError error) {
-						state = LOGIN_FAILURE;
-						msg = "Õ¯¬Á«Î«Û ß∞‹";
-						callBack.getModel(LoginModel.this);
-					}
-				}) {
-			@Override
-			protected Map<String, String> getParams() throws AuthFailureError {
-				Map<String, String> map = new HashMap<String, String>();
-				map.put("username", username);
-				map.put("password", password);
-				return map;
-			}
-		};
-		queue.add(login);
+					}) {
+				@Override
+				protected Map<String, String> getParams()
+						throws AuthFailureError {
+					Map<String, String> map = new HashMap<String, String>();
+					map.put("username", username);
+					map.put("password", password);
+					return map;
+				}
+			};
+			queue.add(request);
+		} else {
+			state = LOGIN_FAILURE;
+			callBack.getModel(this);
+		}
 	}
 
 	@Override
-	public String getUsername() {
-		return null;
+	public String getUsername(Context context) {
+		return ConfigFile.getUsername(context);
 	}
 
 	@Override
-	public String getPassword() {
-		return null;
+	public String getPassword(Context context) {
+		return ConfigFile.getPassword(context);
+	}
+
+	@Override
+	public void saveUsernameAndPassword(Context context, String username,
+			String password) {
+		ConfigFile.savePassword(context, password);
+		ConfigFile.saveUsername(context, username);
+	}
+
+	@Override
+	public boolean getIsSavePass(Context context) {
+		return ConfigFile.getIsSavePass(context);
+	}
+
+	@Override
+	public void setIsSavePass(Context context, boolean isSavePass) {
+		ConfigFile.saveIsSavePass(context, isSavePass);
+	}
+
+	@Override
+	public boolean checkInput(String username, String password) {
+		if (username.equals("")) {
+			msg = "”√ªß√˚≤ªƒ‹Œ™ø’";
+			return false;
+		}
+		if (password.equals("")) {
+			msg = "√‹¬Î≤ªƒ‹Œ™ø’";
+			return false;
+		}
+		return true;
 	}
 
 }

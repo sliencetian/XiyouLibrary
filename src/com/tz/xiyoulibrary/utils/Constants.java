@@ -8,5 +8,6 @@ public class Constants {
 
 	private static final String ROOT_URL = "http://api.xiyoumobile.com/xiyoulibv2/";
 
+	// µÇÂ¼
 	public static final String LOGIN = ROOT_URL + "user/login";
 }
