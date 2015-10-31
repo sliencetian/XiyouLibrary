@@ -3,8 +3,13 @@
     android:id="@+id/main_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00aac6" >
+    android:background="@color/theme_color"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true" >
 
+    <include
+        android:id="@+id/actionbar_activity_myfoot"
+        layout="@layout/actionbar" />
     <!--
        侧拉时出现的圆圈图案执行旋转动画
        ptr:ptrAnimationStyle="rotate_and_anim"
@@ -21,13 +26,15 @@
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50.0dip"
+        android:layout_below="@id/actionbar_activity_myfoot"
+        android:layout_marginTop="10dip"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         ptr:ptrDrawable="@drawable/loading_1"
         ptr:ptrMode="both"
         ptr:ptrScrollingWhileRefreshingEnabled="false" />
 
-   
-    <com.tz.xiyoulibrary.activity.myfootprint.viewutils.control.RhythmLayout
+    <com.tz.xiyoulibrary.activity.mycollection.viewutils.control.RhythmLayout
         android:id="@+id/box_rhythm"
         android:layout_width="match_parent"
         android:layout_height="@dimen/rhythm_layout_height"
@@ -39,6 +46,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal" />
-    </com.tz.xiyoulibrary.activity.myfootprint.viewutils.control.RhythmLayout>
+    </com.tz.xiyoulibrary.activity.mycollection.viewutils.control.RhythmLayout>
 
 </RelativeLayout>

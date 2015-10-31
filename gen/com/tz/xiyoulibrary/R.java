@@ -371,34 +371,35 @@ containing a value of this type.
     public static final class id {
         public static final int actionbar_activity_login=0x7f060014;
         public static final int actionbar_activity_main=0x7f06001b;
-        public static final int activity_myfoot_ll=0x7f060024;
+        public static final int actionbar_activity_myfoot=0x7f060022;
+        public static final int activity_myfoot_ll=0x7f060025;
         public static final int both=0x7f060004;
-        public static final int box_rhythm=0x7f060023;
+        public static final int box_rhythm=0x7f060024;
         public static final int bt_login_activity_login=0x7f06001a;
         public static final int cb_savepassword_activity_login=0x7f060019;
-        public static final int civ_user_img_fragment_my=0x7f060027;
+        public static final int civ_user_img_fragment_my=0x7f060028;
         public static final int clamp=0x7f06000d;
         public static final int disabled=0x7f060005;
         public static final int et_password_activity_login=0x7f060018;
         public static final int et_username_activity_login=0x7f060017;
-        public static final int fl_inner=0x7f06002f;
+        public static final int fl_inner=0x7f060030;
         public static final int flip=0x7f06000b;
         public static final int gridview=0x7f060000;
-        public static final int image_icon=0x7f060025;
+        public static final int image_icon=0x7f060026;
         public static final int iv_search_actionbar=0x7f060013;
         public static final int ll_input_activity_login=0x7f060016;
         public static final int main_view=0x7f060021;
         public static final int manualOnly=0x7f060006;
         public static final int mirror=0x7f06000e;
-        public static final int pager=0x7f060022;
+        public static final int pager=0x7f060023;
         public static final int pullDownFromTop=0x7f060007;
         public static final int pullFromEnd=0x7f060008;
         public static final int pullFromStart=0x7f060009;
         public static final int pullUpFromBottom=0x7f06000a;
-        public static final int pull_to_refresh_image=0x7f060030;
-        public static final int pull_to_refresh_progress=0x7f060031;
-        public static final int pull_to_refresh_sub_text=0x7f060033;
-        public static final int pull_to_refresh_text=0x7f060032;
+        public static final int pull_to_refresh_image=0x7f060031;
+        public static final int pull_to_refresh_progress=0x7f060032;
+        public static final int pull_to_refresh_sub_text=0x7f060034;
+        public static final int pull_to_refresh_text=0x7f060033;
         public static final int rb_main_tab_menu1=0x7f06001d;
         public static final int rb_main_tab_menu2=0x7f06001e;
         public static final int rb_main_tab_menu3=0x7f06001f;
@@ -406,17 +407,17 @@ containing a value of this type.
         public static final int rg_menu_activity_main=0x7f06001c;
         public static final int rl_activity_login_body=0x7f060015;
         public static final int rl_back_actionbar=0x7f060010;
-        public static final int rl_collection_fragment_my=0x7f06002b;
+        public static final int rl_collection_fragment_my=0x7f06002d;
         public static final int rl_foot_fragment_my=0x7f06002c;
-        public static final int rl_head_fragment_my=0x7f060026;
-        public static final int rl_myborrow_fragment_my=0x7f06002a;
-        public static final int rl_ranklist_fragment_my=0x7f06002d;
+        public static final int rl_head_fragment_my=0x7f060027;
+        public static final int rl_myborrow_fragment_my=0x7f06002b;
+        public static final int rl_ranklist_fragment_my=0x7f06002e;
         public static final int rl_search_actionbar=0x7f060012;
         public static final int rotate=0x7f06000c;
         public static final int scrollview=0x7f060002;
-        public static final int title=0x7f06002e;
-        public static final int tv_department_fragment_my=0x7f060029;
-        public static final int tv_id_fragment_my=0x7f060028;
+        public static final int title=0x7f06002f;
+        public static final int tv_department_fragment_my=0x7f06002a;
+        public static final int tv_id_fragment_my=0x7f060029;
         public static final int tv_title_actionbar=0x7f060011;
         public static final int viewpager=0x7f060003;
         public static final int vp_activity_main=0x7f060020;
@@ -427,33 +428,39 @@ containing a value of this type.
         public static final int activity_login=0x7f030001;
         public static final int activity_main=0x7f030002;
         public static final int activity_myborrow=0x7f030003;
-        public static final int activity_myfoot=0x7f030004;
-        public static final int adapter_rhythm_icon=0x7f030005;
-        public static final int fragment_my=0x7f030006;
-        public static final int fragment_myfoot=0x7f030007;
-        public static final int need_this_for_maven=0x7f030008;
-        public static final int pull_to_refresh_header_horizontal=0x7f030009;
-        public static final int pull_to_refresh_header_vertical=0x7f03000a;
+        public static final int activity_mycollection=0x7f030004;
+        public static final int activity_myfoot=0x7f030005;
+        public static final int activity_rank=0x7f030006;
+        public static final int adapter_rhythm_icon=0x7f030007;
+        public static final int fragment_my=0x7f030008;
+        public static final int fragment_myfoot=0x7f030009;
+        public static final int need_this_for_maven=0x7f03000a;
+        public static final int pull_to_refresh_header_horizontal=0x7f03000b;
+        public static final int pull_to_refresh_header_vertical=0x7f03000c;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
     }
     public static final class string {
         public static final int app_name=0x7f070006;
-        public static final int home_text=0x7f07000e;
+        public static final int class_text=0x7f07000d;
+        public static final int home_text=0x7f070010;
         public static final int login_text=0x7f07000b;
         /**  登录 
          */
         public static final int login_title=0x7f070007;
         /**  MainActivity 
          */
-        public static final int main_title=0x7f07000c;
+        public static final int main_title=0x7f07000e;
         /**  我的 
          */
-        public static final int my_borrow_text=0x7f070010;
-        public static final int my_collection_text=0x7f070011;
-        public static final int my_foot_text=0x7f070012;
-        public static final int my_text=0x7f07000d;
+        public static final int my_borrow_text=0x7f070012;
+        public static final int my_collection_text=0x7f070013;
+        public static final int my_foot_text=0x7f070014;
+        public static final int my_text=0x7f07000f;
+        /**  用户 
+         */
+        public static final int numb_text=0x7f07000c;
         public static final int password=0x7f070009;
         /**  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
  Just use standard Pull Down String when pulling up. These can be set for languages which require it 
@@ -464,10 +471,10 @@ containing a value of this type.
         public static final int pull_to_refresh_pull_label=0x7f070000;
         public static final int pull_to_refresh_refreshing_label=0x7f070002;
         public static final int pull_to_refresh_release_label=0x7f070001;
-        public static final int ranklist_text=0x7f070013;
-        public static final int right_arrow_text=0x7f070014;
+        public static final int ranklist_text=0x7f070015;
+        public static final int right_arrow_text=0x7f070016;
         public static final int save_password=0x7f07000a;
-        public static final int setting_text=0x7f07000f;
+        public static final int setting_text=0x7f070011;
         public static final int username=0x7f070008;
     }
     public static final class style {

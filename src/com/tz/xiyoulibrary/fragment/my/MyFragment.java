@@ -6,8 +6,13 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
 import com.tz.xiyoulibrary.R;
+import com.tz.xiyoulibrary.activity.mybroorw.MyBorrowActivity_;
+import com.tz.xiyoulibrary.activity.mycollection.activity.view.MyCollectionActivity;
+import com.tz.xiyoulibrary.activity.myfoot.MyFootActivity_;
+import com.tz.xiyoulibrary.activity.rank.RankActivity_;
 import com.tz.xiyoulibrary.application.Application;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -18,8 +23,7 @@ import android.widget.TextView;
 
 @EFragment(R.layout.fragment_my)
 public class MyFragment extends Fragment {
-	
-	//dddd
+
 	@ViewById(R.id.rl_myborrow_fragment_my)
 	RelativeLayout mRelativeLayoutBorrow;// 我的借阅
 	@ViewById(R.id.rl_collection_fragment_my)
@@ -51,7 +55,7 @@ public class MyFragment extends Fragment {
 	 */
 	@Click(R.id.rl_myborrow_fragment_my)
 	public void pushMyBorrow() {
-
+		startActivity(new Intent(getActivity(), MyBorrowActivity_.class));
 	}
 
 	/**
@@ -59,7 +63,7 @@ public class MyFragment extends Fragment {
 	 */
 	@Click(R.id.rl_collection_fragment_my)
 	public void pushCollection() {
-
+		startActivity(new Intent(getActivity(), MyCollectionActivity.class));
 	}
 
 	/**
@@ -67,7 +71,7 @@ public class MyFragment extends Fragment {
 	 */
 	@Click(R.id.rl_foot_fragment_my)
 	public void pushFoot() {
-
+		startActivity(new Intent(getActivity(), MyFootActivity_.class));
 	}
 
 	/**
@@ -75,6 +79,6 @@ public class MyFragment extends Fragment {
 	 */
 	@Click(R.id.rl_ranklist_fragment_my)
 	public void pushRankList() {
-
+		startActivity(new Intent(getActivity(), RankActivity_.class));
 	}
 }

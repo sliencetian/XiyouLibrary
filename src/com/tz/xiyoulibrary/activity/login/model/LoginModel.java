@@ -31,7 +31,7 @@ public class LoginModel implements ILoginModel {
 			state = LOGIN_ING;
 			callBack.getModel(this);
 			StringRequest request = new StringRequest(Method.POST,
-					Constants.LOGIN, new Listener<String>() {
+					Constants.GET_USER_LOGIN, new Listener<String>() {
 
 						@Override
 						public void onResponse(String response) {

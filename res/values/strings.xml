@@ -8,6 +8,9 @@
     <string name="password">密 码</string>
     <string name="save_password">记住密码</string>
     <string name="login_text">登  录</string>
+    <!-- 用户 -->
+    <string name="numb_text">学  号</string>
+    <string name="class_text">班  级</string>
     <!-- MainActivity -->
     <string name="main_title">西邮图书馆</string>
     <string name="my_text">我的</string>
