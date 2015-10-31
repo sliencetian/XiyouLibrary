@@ -18,19 +18,21 @@ import android.widget.TextView;
 
 @EFragment(R.layout.fragment_my)
 public class MyFragment extends Fragment {
+	
+	//dddd
 	@ViewById(R.id.rl_myborrow_fragment_my)
-	RelativeLayout mRelativeLayoutBorrow;// ÎÒµÄ½èÔÄ
+	RelativeLayout mRelativeLayoutBorrow;// æˆ‘çš„å€Ÿé˜…
 	@ViewById(R.id.rl_collection_fragment_my)
-	RelativeLayout mRelativeLayoutCollection;// ÎÒµÄÊÕ²Ø
+	RelativeLayout mRelativeLayoutCollection;// æˆ‘çš„æ”¶è—
 	@ViewById(R.id.rl_foot_fragment_my)
-	RelativeLayout mRelativeLayoutFoot;// ÎÒµÄ×ã¼£
+	RelativeLayout mRelativeLayoutFoot;// æˆ‘çš„è¶³è¿¹
 	@ViewById(R.id.rl_ranklist_fragment_my)
-	RelativeLayout mRelativeLayoutRankList;// ÅÅĞĞ°ñ
+	RelativeLayout mRelativeLayoutRankList;// æ’è¡Œæ¦œ
 
 	@ViewById(R.id.tv_id_fragment_my)
-	TextView mTextViewId;// Ñ§ºÅ
+	TextView mTextViewId;// å­¦å·
 	@ViewById(R.id.tv_department_fragment_my)
-	TextView mTextViewDepartment;// °à¼¶
+	TextView mTextViewDepartment;// ç­çº§
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,7 +47,7 @@ public class MyFragment extends Fragment {
 	}
 
 	/**
-	 * ÎÒµÄ½èÔÄ
+	 * æˆ‘çš„å€Ÿé˜…
 	 */
 	@Click(R.id.rl_myborrow_fragment_my)
 	public void pushMyBorrow() {
@@ -53,7 +55,7 @@ public class MyFragment extends Fragment {
 	}
 
 	/**
-	 * ÎÒµÄÊÕ²Ø
+	 * æˆ‘çš„æ”¶è—
 	 */
 	@Click(R.id.rl_collection_fragment_my)
 	public void pushCollection() {
@@ -61,7 +63,7 @@ public class MyFragment extends Fragment {
 	}
 
 	/**
-	 * ÎÒµÄ×ã¼£
+	 * æˆ‘çš„è¶³è¿¹
 	 */
 	@Click(R.id.rl_foot_fragment_my)
 	public void pushFoot() {
@@ -69,7 +71,7 @@ public class MyFragment extends Fragment {
 	}
 
 	/**
-	 * ÅÅĞĞ°ñ
+	 * æ’è¡Œæ¦œ
 	 */
 	@Click(R.id.rl_ranklist_fragment_my)
 	public void pushRankList() {
