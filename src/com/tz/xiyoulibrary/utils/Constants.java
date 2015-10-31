@@ -61,20 +61,16 @@ public class Constants {
 
 	/***************************** 新闻、公告 ********************************/
 	/**
-	 * 公告、新闻列表 
-	 * 参数1：type:news or announce 
-	 * 参数2：page:1、2、3......
+	 * 公告、新闻列表 参数1：type:news or announce 参数2：page:1、2、3......
 	 * 新闻eg:http://api.xiyoumobile.com/xiyoulibv2/news/getList/news/1
 	 * 公告eg:http://api.xiyoumobile.com/xiyoulibv2/news/getList/announce/1
 	 */
 	public static final String GET_NEWS_LIST = ROOT_URL + "news/getList/";
 	/**
-	 * 公告、新闻详情
-	 * 参数1：type:news or announce 
-	 * 参数2：format:text or html
-	 * 参数3：id
+	 * 公告、新闻详情 参数1：type:news or announce 参数2：format:text or html 参数3：id
 	 * 新闻eg:http://api.xiyoumobile.com/xiyoulibv2/news/getDetail/news/text/132
-	 * 公告eg:http://api.xiyoumobile.com/xiyoulibv2/news/getDetail/announce/html/200
+	 * 公告eg
+	 * :http://api.xiyoumobile.com/xiyoulibv2/news/getDetail/announce/html/200
 	 */
 	public static final String GET_NEWS_DETAIL = ROOT_URL + "news/getDetail/";
 
