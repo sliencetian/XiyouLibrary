@@ -303,9 +303,9 @@ containing a value of this type.
         public static final int white=0x7f080004;
     }
     public static final class dimen {
-        public static final int actionbar_back=0x7f06000b;
-        public static final int actionbar_height=0x7f06000c;
-        public static final int actionbar_title_text_size=0x7f06000d;
+        public static final int actionbar_back=0x7f05000b;
+        public static final int actionbar_height=0x7f05000c;
+        public static final int actionbar_title_text_size=0x7f05000d;
         /**  Default screen margins, per the Android Design guidelines. 
 
          Example customization of dimensions originally defined in res/values/dimens.xml
@@ -313,20 +313,20 @@ containing a value of this type.
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
     
          */
-        public static final int activity_horizontal_margin=0x7f060005;
-        public static final int activity_vertical_margin=0x7f060006;
-        public static final int header_footer_left_right_padding=0x7f060003;
-        public static final int header_footer_top_bottom_padding=0x7f060004;
-        public static final int indicator_corner_radius=0x7f060001;
-        public static final int indicator_internal_padding=0x7f060002;
-        public static final int indicator_right_padding=0x7f060000;
-        public static final int radius_size=0x7f06000f;
-        public static final int rhythm_edge_size_for_shift=0x7f06000a;
-        public static final int rhythm_icon_margin=0x7f060007;
-        public static final int rhythm_item_height=0x7f060009;
-        public static final int rhythm_layout_height=0x7f060008;
-        public static final int right_arrow_size=0x7f060010;
-        public static final int text_size=0x7f06000e;
+        public static final int activity_horizontal_margin=0x7f050005;
+        public static final int activity_vertical_margin=0x7f050006;
+        public static final int header_footer_left_right_padding=0x7f050003;
+        public static final int header_footer_top_bottom_padding=0x7f050004;
+        public static final int indicator_corner_radius=0x7f050001;
+        public static final int indicator_internal_padding=0x7f050002;
+        public static final int indicator_right_padding=0x7f050000;
+        public static final int radius_size=0x7f05000f;
+        public static final int rhythm_edge_size_for_shift=0x7f05000a;
+        public static final int rhythm_icon_margin=0x7f050007;
+        public static final int rhythm_item_height=0x7f050009;
+        public static final int rhythm_layout_height=0x7f050008;
+        public static final int right_arrow_size=0x7f050010;
+        public static final int text_size=0x7f05000e;
     }
     public static final class drawable {
         public static final int bt_normal=0x7f020000;
@@ -369,58 +369,58 @@ containing a value of this type.
         public static final int user_img=0x7f020025;
     }
     public static final class id {
-        public static final int actionbar_activity_login=0x7f050014;
-        public static final int actionbar_activity_main=0x7f05001b;
-        public static final int activity_myfoot_ll=0x7f050024;
-        public static final int both=0x7f050003;
-        public static final int box_rhythm=0x7f050023;
-        public static final int bt_login_activity_login=0x7f05001a;
-        public static final int cb_savepassword_activity_login=0x7f050019;
-        public static final int civ_user_img_fragment_my=0x7f050027;
-        public static final int clamp=0x7f05000d;
-        public static final int disabled=0x7f050000;
-        public static final int et_password_activity_login=0x7f050018;
-        public static final int et_username_activity_login=0x7f050017;
-        public static final int fl_inner=0x7f05002f;
-        public static final int flip=0x7f050008;
-        public static final int gridview=0x7f050009;
-        public static final int image_icon=0x7f050025;
-        public static final int iv_search_actionbar=0x7f050013;
-        public static final int ll_input_activity_login=0x7f050016;
-        public static final int main_view=0x7f050021;
-        public static final int manualOnly=0x7f050004;
-        public static final int mirror=0x7f05000f;
-        public static final int pager=0x7f050022;
-        public static final int pullDownFromTop=0x7f050005;
-        public static final int pullFromEnd=0x7f050002;
-        public static final int pullFromStart=0x7f050001;
-        public static final int pullUpFromBottom=0x7f050006;
-        public static final int pull_to_refresh_image=0x7f050030;
-        public static final int pull_to_refresh_progress=0x7f050031;
-        public static final int pull_to_refresh_sub_text=0x7f050033;
-        public static final int pull_to_refresh_text=0x7f050032;
-        public static final int rb_main_tab_menu1=0x7f05001d;
-        public static final int rb_main_tab_menu2=0x7f05001e;
-        public static final int rb_main_tab_menu3=0x7f05001f;
-        public static final int repeat=0x7f05000e;
-        public static final int rg_menu_activity_main=0x7f05001c;
-        public static final int rl_activity_login_body=0x7f050015;
-        public static final int rl_back_actionbar=0x7f050010;
-        public static final int rl_collection_fragment_my=0x7f05002b;
-        public static final int rl_foot_fragment_my=0x7f05002c;
-        public static final int rl_head_fragment_my=0x7f050026;
-        public static final int rl_myborrow_fragment_my=0x7f05002a;
-        public static final int rl_ranklist_fragment_my=0x7f05002d;
-        public static final int rl_search_actionbar=0x7f050012;
-        public static final int rotate=0x7f050007;
-        public static final int scrollview=0x7f05000b;
-        public static final int title=0x7f05002e;
-        public static final int tv_department_fragment_my=0x7f050029;
-        public static final int tv_id_fragment_my=0x7f050028;
-        public static final int tv_title_actionbar=0x7f050011;
-        public static final int viewpager=0x7f05000c;
-        public static final int vp_activity_main=0x7f050020;
-        public static final int webview=0x7f05000a;
+        public static final int actionbar_activity_login=0x7f060014;
+        public static final int actionbar_activity_main=0x7f06001b;
+        public static final int activity_myfoot_ll=0x7f060024;
+        public static final int both=0x7f060004;
+        public static final int box_rhythm=0x7f060023;
+        public static final int bt_login_activity_login=0x7f06001a;
+        public static final int cb_savepassword_activity_login=0x7f060019;
+        public static final int civ_user_img_fragment_my=0x7f060027;
+        public static final int clamp=0x7f06000d;
+        public static final int disabled=0x7f060005;
+        public static final int et_password_activity_login=0x7f060018;
+        public static final int et_username_activity_login=0x7f060017;
+        public static final int fl_inner=0x7f06002f;
+        public static final int flip=0x7f06000b;
+        public static final int gridview=0x7f060000;
+        public static final int image_icon=0x7f060025;
+        public static final int iv_search_actionbar=0x7f060013;
+        public static final int ll_input_activity_login=0x7f060016;
+        public static final int main_view=0x7f060021;
+        public static final int manualOnly=0x7f060006;
+        public static final int mirror=0x7f06000e;
+        public static final int pager=0x7f060022;
+        public static final int pullDownFromTop=0x7f060007;
+        public static final int pullFromEnd=0x7f060008;
+        public static final int pullFromStart=0x7f060009;
+        public static final int pullUpFromBottom=0x7f06000a;
+        public static final int pull_to_refresh_image=0x7f060030;
+        public static final int pull_to_refresh_progress=0x7f060031;
+        public static final int pull_to_refresh_sub_text=0x7f060033;
+        public static final int pull_to_refresh_text=0x7f060032;
+        public static final int rb_main_tab_menu1=0x7f06001d;
+        public static final int rb_main_tab_menu2=0x7f06001e;
+        public static final int rb_main_tab_menu3=0x7f06001f;
+        public static final int repeat=0x7f06000f;
+        public static final int rg_menu_activity_main=0x7f06001c;
+        public static final int rl_activity_login_body=0x7f060015;
+        public static final int rl_back_actionbar=0x7f060010;
+        public static final int rl_collection_fragment_my=0x7f06002b;
+        public static final int rl_foot_fragment_my=0x7f06002c;
+        public static final int rl_head_fragment_my=0x7f060026;
+        public static final int rl_myborrow_fragment_my=0x7f06002a;
+        public static final int rl_ranklist_fragment_my=0x7f06002d;
+        public static final int rl_search_actionbar=0x7f060012;
+        public static final int rotate=0x7f06000c;
+        public static final int scrollview=0x7f060002;
+        public static final int title=0x7f06002e;
+        public static final int tv_department_fragment_my=0x7f060029;
+        public static final int tv_id_fragment_my=0x7f060028;
+        public static final int tv_title_actionbar=0x7f060011;
+        public static final int viewpager=0x7f060003;
+        public static final int vp_activity_main=0x7f060020;
+        public static final int webview=0x7f060001;
     }
     public static final class layout {
         public static final int actionbar=0x7f030000;
