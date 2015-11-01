@@ -16,8 +16,8 @@ public class BookDetialPresenter {
 		mBookDetialModel = new BookDetialModel();
 	}
 
-	public void getBookDetial(RequestQueue queue,String barcode) {
-		mBookDetialModel.getBookDetial(queue,barcode, new CallBack<BookDetialModel>() {
+	public void getBookDetial(RequestQueue queue,String url) {
+		mBookDetialModel.getBookDetial(queue,url, new CallBack<BookDetialModel>() {
 
 			@Override
 			public void getModel(BookDetialModel model) {

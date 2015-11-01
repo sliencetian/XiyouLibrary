@@ -8,6 +8,7 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -25,17 +26,16 @@ public class BookDetialModel implements IBookDetialModel {
 	public Map<String, Object> bookDetial;
 
 	@Override
-	public void getBookDetial(RequestQueue queue, String barcode,
+	public void getBookDetial(RequestQueue queue, String url,
 			final CallBack<BookDetialModel> callBack) {
 		state = LOADING;
 		callBack.getModel(this);
-		StringRequest request = new StringRequest(Method.POST,
-				Constants.GET_BOOK_DETAIL + barcode,
+		StringRequest request = new StringRequest(Method.POST, url,
 				new Response.Listener<String>() {
 
 					@Override
 					public void onResponse(String response) {
-						LogUtils.d("getFavorite:", response);
+						LogUtils.d("getBookDetial:", response);
 						// 解析数据
 						formatDataByJson(response, callBack);
 					}
@@ -48,6 +48,9 @@ public class BookDetialModel implements IBookDetialModel {
 						callBack.getModel(BookDetialModel.this);
 					}
 				});
+		request.setRetryPolicy(new DefaultRetryPolicy(Constants.TIMEOUT_MS,
+				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 		queue.add(request);
 	}
 
@@ -65,7 +68,11 @@ public class BookDetialModel implements IBookDetialModel {
 					bookDetial.put("ISBN", o2.getString("ISBN"));
 					bookDetial.put("Author", o2.getString("Author"));
 					bookDetial.put("ID", o2.getString("ID"));
-					bookDetial.put("Form", o2.getString("Form"));
+					try {
+						bookDetial.put("Form", o2.getString("Form"));
+					} catch (Exception e) {
+						bookDetial.put("Form", "暂无记录");
+					}
 					bookDetial.put("Subject", o2.getString("Subject"));
 					bookDetial.put("RentTimes", o2.getString("RentTimes"));
 					bookDetial.put("FavTimes", o2.getString("FavTimes"));
@@ -73,7 +80,7 @@ public class BookDetialModel implements IBookDetialModel {
 					bookDetial.put("Total", o2.getString("Total"));
 					bookDetial.put("Avaliable", o2.getString("Avaliable"));
 					// 流通信息数组
-					JSONArray array = o.getJSONArray("CirculationInfo");
+					JSONArray array = o2.getJSONArray("CirculationInfo");
 					List<Map<String, String>> circulationInfoList = new ArrayList<Map<String, String>>();
 					for (int i = 0; i < array.length(); i++) {
 						JSONObject o3 = array.getJSONObject(i);
@@ -87,7 +94,7 @@ public class BookDetialModel implements IBookDetialModel {
 					}
 					bookDetial.put("CirculationInfo", circulationInfoList);
 					// 相关图书信息数组
-					JSONArray array2 = o.getJSONArray("ReferBooks");
+					JSONArray array2 = o2.getJSONArray("ReferBooks");
 					List<Map<String, String>> referBooksList = new ArrayList<Map<String, String>>();
 					for (int i = 0; i < array2.length(); i++) {
 						JSONObject o3 = array2.getJSONObject(i);
@@ -98,34 +105,38 @@ public class BookDetialModel implements IBookDetialModel {
 						referBooksList.add(map);
 					}
 					bookDetial.put("ReferBooks", referBooksList);
-
 					// 来自豆瓣的信息，没有该书则为null
 					try {
-						JSONObject o3 = o.getJSONObject("DoubanInfo");
-						bookDetial.put("Pages", o3.getString("Pages"));
-						// bookDetial.put("small", o3.getString("small"));
-						// bookDetial.put("large", o3.getString("large"));
-						bookDetial.put("medium", o3.getString("medium"));
+						JSONObject o3 = o2.getJSONObject("DoubanInfo");
+						if (o3.getString("Pages").equals("")) {
+							bookDetial.put("Pages", "暂无记录");
+						} else {
+							bookDetial.put("Pages", o3.getString("Pages")+" 页");
+						}
+						try {
+							JSONObject o4 = o3.getJSONObject("Images");
+							bookDetial.put("medium", o4.getString("medium"));
+							// bookDetial.put("small", o3.getString("small"));
+							// bookDetial.put("large", o3.getString("large"));
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
 						bookDetial.put("Summary", o3.getString("Summary"));
 						bookDetial.put("Author_Info",
 								o3.getString("Author_Info"));
 					} catch (Exception e) {
+						e.printStackTrace();
 					}
-					
-					System.out.println("aaaaaaaa");
 					state = LOADING_SUCCESS;
 				} catch (Exception e) {
-					System.out.println("bbbbbbbb");
 					state = LOADING_FALUIRE;
 					msg = JsonUtils.getErrorMsg(o.getString("Detail"));
 				}
 			} else {
-				System.out.println("cccccccc");
 				state = LOADING_FALUIRE;
 				msg = "获取信息失败";
 			}
 		} catch (Exception e) {
-			System.out.println("ddddddddddd");
 			e.printStackTrace();
 			state = LOADING_FALUIRE;
 			msg = "获取信息失败";

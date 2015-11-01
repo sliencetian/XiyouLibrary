@@ -9,5 +9,5 @@ public interface IBookDetialModel {
 	static final int NO_DATA = 2;
 	static final int LOADING = 3;
 
-	void getBookDetial(RequestQueue queue,String barcode, CallBack<BookDetialModel> callBack);
+	void getBookDetial(RequestQueue queue,String url, CallBack<BookDetialModel> callBack);
 }

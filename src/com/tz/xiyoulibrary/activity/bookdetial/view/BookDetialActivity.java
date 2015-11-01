@@ -1,12 +1,10 @@
 package com.tz.xiyoulibrary.activity.bookdetial.view;
 
 import java.util.Map;
-
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ImageView;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.tz.xiyoulibrary.R;
@@ -25,7 +22,6 @@ import com.tz.xiyoulibrary.titanicview.Titanic;
 import com.tz.xiyoulibrary.titanicview.TitanicTextView;
 import com.tz.xiyoulibrary.titanicview.Typefaces;
 import com.tz.xiyoulibrary.toastview.CustomToast;
-import com.tz.xiyoulibrary.utils.LogUtils;
 
 @EActivity(R.layout.activity_book_detial)
 public class BookDetialActivity extends BaseActivity implements IBookDetialView {
@@ -48,7 +44,7 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 	PullToZoomListView mPullToZoomListView;
 	private Map<String, Object> bookDetial;
 
-	private String BarCode;
+	private String url;
 	private BookDetialPresenter mPresenter;
 
 	@Override
@@ -56,10 +52,8 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 		super.onCreate(savedInstanceState);
 
 		queue = Volley.newRequestQueue(BookDetialActivity.this);
-		BarCode = getIntent().getStringExtra("BarCode");
+		url = getIntent().getStringExtra("url");
 		mPresenter = new BookDetialPresenter(this);
-
-		LogUtils.d("BookDetialActivity.BarCode", BarCode);
 	}
 
 	@AfterViews
@@ -77,7 +71,7 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 	 * 获取图书详情
 	 */
 	private void getBookDetial() {
-		mPresenter.getBookDetial(queue, BarCode);
+		mPresenter.getBookDetial(queue, url);
 	}
 
 	@Click(R.id.rl_back_actionbar)
@@ -133,9 +127,9 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 		tv = (TextView) root
 				.findViewById(R.id.tv_book_page_activity_book_detial);// 页数
 		try {
-			tv.setText(bookDetial.get("Pages") + " 页");
+			tv.setText(bookDetial.get("Pages") + "");
 		} catch (Exception e) {
-			tv.setText(bookDetial.get("Form") + " 页");
+			tv.setText(bookDetial.get("Form") + "");
 		}
 
 		tv = (TextView) root
@@ -143,13 +137,13 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 		tv.setText(bookDetial.get("Avaliable") + " 本");
 		tv = (TextView) root
 				.findViewById(R.id.tv_book_renttimes_activity_book_detial);// 借阅次数
-		tv.setText(bookDetial.get("RentTimes") + " 本");
+		tv.setText(bookDetial.get("RentTimes") + " 次");
 		tv = (TextView) root
 				.findViewById(R.id.tv_book_favtimes_activity_book_detial);// 收藏次数
-		tv.setText(bookDetial.get("FavTimes") + " 本");
+		tv.setText(bookDetial.get("FavTimes") + " 次");
 		tv = (TextView) root
 				.findViewById(R.id.tv_book_browsetimes_activity_book_detial);// 浏览次数
-		tv.setText(bookDetial.get("BrowseTimes") + " 本");
+		tv.setText(bookDetial.get("BrowseTimes") + " 次");
 		tv = (TextView) root
 				.findViewById(R.id.tv_book_total_activity_book_detial);// 藏书数量
 		tv.setText(bookDetial.get("Total") + " 本");
