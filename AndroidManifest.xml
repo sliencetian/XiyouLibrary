@@ -21,6 +21,11 @@
         <activity
             android:name="com.tz.xiyoulibrary.activity.login.view.LoginActivity_"
             android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <!-- 主Activity -->
         <activity
@@ -42,11 +47,6 @@
         <activity
             android:name="com.tz.xiyoulibrary.activity.mycollection.activity.view.MyCollectionActivity"
             android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!-- 排行榜 -->
         <activity

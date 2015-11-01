@@ -22,5 +22,8 @@
     <string name="my_foot_text">我的足迹</string>
     <string name="ranklist_text">排行榜</string>
     <string name="right_arrow_text">></string>
-	
+	<!-- 加载 -->
+    <string name="loading_text">loading</string>
+    <string name="load_faluire_text">啊哦!加载失败了,点击重新加载</string>
+    <string name="load_no_data_text">亲！您没有收藏任何书籍哦~</string>
 </resources>

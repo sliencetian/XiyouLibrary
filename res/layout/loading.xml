@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <RelativeLayout
+        android:id="@+id/rl_loading"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="@dimen/actionbar_height"
+        android:background="@color/Light_grey" >
+
+        <com.tz.xiyoulibrary.titanicview.TitanicTextView
+            android:id="@+id/loading_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/loading_text"
+            android:textColor="@color/theme_color"
+            android:textSize="@dimen/loading_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_load_faluire"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="@dimen/actionbar_height"
+        android:background="@color/Light_grey"
+        android:visibility="invisible" >
+
+        <ImageView
+            android:id="@+id/iv_load_faluire"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/img_load_faluire"
+            android:contentDescription="@string/app_name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_load_faluire"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:text="@string/load_faluire_text"
+            android:textColor="@color/theme_color"
+            android:textSize="@dimen/load_faluire_size" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_load_no_data"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="@dimen/actionbar_height"
+        android:background="@color/Light_grey"
+        android:visibility="invisible" >
+
+        <ImageView
+            android:id="@+id/iv_load_no_data"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/img_load_no_data"
+            android:contentDescription="@string/app_name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_load_no_data"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:text="@string/load_no_data_text"
+            android:textColor="@color/theme_color"
+            android:textSize="@dimen/load_faluire_size" />
+    </RelativeLayout>
+
+</RelativeLayout>

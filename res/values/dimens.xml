@@ -13,5 +13,7 @@
     <dimen name="text_size">17dp</dimen>
     <dimen name="radius_size">8dp</dimen>
     <dimen name="right_arrow_size">22dp</dimen>
+    <dimen name="loading_size">45dp</dimen>
+    <dimen name="load_faluire_size">15dp</dimen>
 
 </resources>

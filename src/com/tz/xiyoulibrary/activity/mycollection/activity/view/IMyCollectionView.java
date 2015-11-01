@@ -22,5 +22,10 @@ public interface IMyCollectionView {
 	 */
 	void showGetDataNoData();
 	
+	/**
+	 * 显示获取视图
+	 */
+	void showLoadView();
+	
 	void showMsg(String msg);
 }

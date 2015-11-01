@@ -19,12 +19,12 @@ public class MyBorrowFragment extends Fragment {
 	public static MyBorrowFragment getInstance(Map<String, String> book) {
 		MyBorrowFragment fragment = new MyBorrowFragment();
 		Bundle bundle = new Bundle();
-		bundle.putString("title", book.get("title"));
-		bundle.putString("pub", book.get("pub"));
-		bundle.putString("sort", book.get("sort"));
+		bundle.putString("Title", book.get("Title"));
+		bundle.putString("Pub", book.get("Pub"));
+		bundle.putString("Sort", book.get("Sort"));
 		bundle.putString("ISBN", book.get("ISBN"));
-		bundle.putString("author", book.get("author"));
-		bundle.putString("id", book.get("id"));
+		bundle.putString("Author", book.get("Author"));
+		bundle.putString("ID", book.get("ID"));
 		fragment.setArguments(bundle);
 		return fragment;
 	}
@@ -37,7 +37,7 @@ public class MyBorrowFragment extends Fragment {
 
 		// 进行布局的数据添加
 		TextView title = (TextView) rootView.findViewById(R.id.title);
-		title.setText(bundle.getString("title"));
+		title.setText(bundle.getString("Title"));
 
 		return rootView;
 	}

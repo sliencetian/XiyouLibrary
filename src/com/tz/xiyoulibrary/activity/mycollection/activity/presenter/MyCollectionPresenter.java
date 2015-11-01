@@ -26,14 +26,17 @@ public class MyCollectionPresenter {
 					@Override
 					public void getModel(MyCollectionModel model) {
 						switch (model.status) {
-						case IMyCollectionModel.FALUIRE:
+						case IMyCollectionModel.LOADING:
+							mMyCollectionView.showLoadView();
+							break;
+						case IMyCollectionModel.LOADING_FALUIRE:
 							mMyCollectionView.showGetDataFaluire();
 							mMyCollectionView.showMsg(model.msg);
 							break;
 						case IMyCollectionModel.NO_DATA:
 							mMyCollectionView.showGetDataNoData();
 							break;
-						case IMyCollectionModel.SUCCESS:
+						case IMyCollectionModel.LOADING_SUCCESS:
 							mMyCollectionView
 									.showFavoriteData(model.favoriteData);
 							break;

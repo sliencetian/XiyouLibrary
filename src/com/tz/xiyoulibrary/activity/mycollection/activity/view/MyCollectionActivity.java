@@ -33,6 +33,9 @@ import com.tz.xiyoulibrary.activity.mycollection.viewutils.control.RhythmAdapter
 import com.tz.xiyoulibrary.activity.mycollection.viewutils.control.RhythmLayout;
 import com.tz.xiyoulibrary.activity.mycollection.viewutils.utils.AnimatorUtils;
 import com.tz.xiyoulibrary.activity.mycollection.viewutils.widget.ViewPagerScroller;
+import com.tz.xiyoulibrary.titanicview.Titanic;
+import com.tz.xiyoulibrary.titanicview.TitanicTextView;
+import com.tz.xiyoulibrary.titanicview.Typefaces;
 import com.tz.xiyoulibrary.toastview.CustomToast;
 
 public class MyCollectionActivity extends FragmentActivity implements
@@ -78,46 +81,12 @@ public class MyCollectionActivity extends FragmentActivity implements
 
 	private RequestQueue queue;
 
-	/**
-	 * 记录上一个选项卡的颜色值
-	 */
-	private int mPreColor;
+	private TitanicTextView mTitanicTextView;
 
-	private IRhythmItemListener iRhythmItemListener = new IRhythmItemListener() {
-		@Override
-		public void onSelected(final int position) {
-			new Handler().postDelayed(new Runnable() {
-				public void run() {
-					mViewPager.setCurrentItem(position);
-				}
-			}, 100L);
-		}
-	};
-
-	private ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
-		@Override
-		public void onPageScrolled(int position, float positionOffset,
-				int positionOffsetPixels) {
-
-		}
-
-		@Override
-		public void onPageSelected(int position) {
-			int currColor = mCardList.get(position).getBackgroundColor();
-			AnimatorUtils.showBackgroundColorAnimation(mMainView, mPreColor,
-					currColor, 400);
-			mPreColor = currColor;
-
-			mMainView.setBackgroundColor(mCardList.get(position)
-					.getBackgroundColor());
-			mRhythmLayout.showRhythmAtPosition(position);
-		}
-
-		@Override
-		public void onPageScrollStateChanged(int state) {
-
-		}
-	};
+	private RelativeLayout mRelativeLayoutLoading;
+	private Titanic mTitanic;
+	private RelativeLayout mRelativeLayoutLoadFaluire;
+	private RelativeLayout mRelativeLayoutLoadNoData;
 
 	@SuppressLint("InlinedApi")
 	@Override
@@ -132,15 +101,44 @@ public class MyCollectionActivity extends FragmentActivity implements
 			getWindow().addFlags(
 					WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 		}
-		setContentView(R.layout.activity_myfoot);
+		setContentView(R.layout.activity_mycollection);
 		mPresenter = new MyCollectionPresenter(this);
 		queue = Volley.newRequestQueue(MyCollectionActivity.this);
+		// 初始化控件
+		findViews();
 		// 初始化ActionBar
 		initActionBar();
+		// 添加监听事件
+		setListener();
 		// 获取收藏书籍
 		getFavoriteData();
-		// 初始化数据
-	//	init();
+	}
+
+	private void setListener() {
+		mRelativeLayoutBack.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				finish();
+			}
+		});
+		mRelativeLayoutLoadFaluire.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				getFavoriteData();
+			}
+		});
+	}
+
+	private void findViews() {
+		mTitanicTextView = (TitanicTextView) findViewById(R.id.loading_text);
+		mRelativeLayoutBack = (RelativeLayout) findViewById(R.id.rl_back_actionbar);
+		mTextViewTitle = (TextView) findViewById(R.id.tv_title_actionbar);
+
+		mRelativeLayoutLoading = (RelativeLayout) findViewById(R.id.rl_loading);
+		mRelativeLayoutLoadFaluire = (RelativeLayout) findViewById(R.id.rl_load_faluire);
+		mRelativeLayoutLoadNoData = (RelativeLayout) findViewById(R.id.rl_load_no_data);
 	}
 
 	/**
@@ -152,18 +150,58 @@ public class MyCollectionActivity extends FragmentActivity implements
 
 	@Override
 	public void showFavoriteData(List<Map<String, String>> favoriteData) {
+		// 关闭加载动画
+		mTitanic.cancel();
+		// 隐藏加载视图
+		mRelativeLayoutLoading.setVisibility(View.GONE);
+		mRelativeLayoutLoadNoData.setVisibility(View.GONE);
+		mRelativeLayoutLoadFaluire.setVisibility(View.GONE);
+		
 		mFavoriteList = favoriteData;
 		// 初始化颜色
 		mCardList = new ArrayList<Card>();
 		for (int i = 0; i < mFavoriteList.size(); i++) {
 			Card card = new Card();
 			// 随机生成颜色值
-			card.setBackgroundColor((int) -(Math.random() * (16777216 - 1) + 1));
-			// card.setBackgroundColor(getResources()
-			// .getColor(R.color.theme_color));
+			// card.setBackgroundColor((int) -(Math.random() * (16777216 - 1) +
+			// 1));
+			card.setBackgroundColor(getResources()
+					.getColor(R.color.theme_color));
 			mCardList.add(card);
 		}
 		init();
+	}
+
+	@Override
+	public void showGetDataFaluire() {
+		mRelativeLayoutLoadFaluire.setVisibility(View.VISIBLE);
+		mRelativeLayoutLoading.setVisibility(View.GONE);
+		mRelativeLayoutLoadNoData.setVisibility(View.GONE);
+	}
+
+	@Override
+	public void showGetDataNoData() {
+		mRelativeLayoutLoadNoData.setVisibility(View.VISIBLE);
+		mRelativeLayoutLoadFaluire.setVisibility(View.GONE);
+		mRelativeLayoutLoading.setVisibility(View.GONE);
+	}
+
+	@Override
+	public void showLoadView() {
+		mRelativeLayoutLoading.setVisibility(View.VISIBLE);
+		mRelativeLayoutLoadNoData.setVisibility(View.GONE);
+		mRelativeLayoutLoadFaluire.setVisibility(View.GONE);
+		// set fancy typeface
+		mTitanicTextView
+				.setTypeface(Typefaces.get(this, "Satisfy-Regular.ttf"));
+		// start animation
+		mTitanic = new Titanic();
+		mTitanic.start(mTitanicTextView);
+	}
+
+	@Override
+	public void showMsg(String msg) {
+		CustomToast.showToast(this, msg, 2000);
 	}
 
 	private void init() {
@@ -232,31 +270,48 @@ public class MyCollectionActivity extends FragmentActivity implements
 	 * 初始化ActionBar
 	 */
 	private void initActionBar() {
-		mRelativeLayoutBack = (RelativeLayout) findViewById(R.id.rl_back_actionbar);
-		mTextViewTitle = (TextView) findViewById(R.id.tv_title_actionbar);
 		mTextViewTitle.setText("我的收藏");
 		mRelativeLayoutBack.setVisibility(View.VISIBLE);
-		mRelativeLayoutBack.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				finish();
-			}
-		});
 	}
 
-	@Override
-	public void showGetDataFaluire() {
+	/**
+	 * 记录上一个选项卡的颜色值
+	 */
+	private int mPreColor;
 
-	}
+	private IRhythmItemListener iRhythmItemListener = new IRhythmItemListener() {
+		@Override
+		public void onSelected(final int position) {
+			new Handler().postDelayed(new Runnable() {
+				public void run() {
+					mViewPager.setCurrentItem(position);
+				}
+			}, 100L);
+		}
+	};
 
-	@Override
-	public void showGetDataNoData() {
+	private ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
+		@Override
+		public void onPageScrolled(int position, float positionOffset,
+				int positionOffsetPixels) {
 
-	}
+		}
 
-	@Override
-	public void showMsg(String msg) {
-		CustomToast.showToast(this, msg, 2000);
-	}
+		@Override
+		public void onPageSelected(int position) {
+			int currColor = mCardList.get(position).getBackgroundColor();
+			AnimatorUtils.showBackgroundColorAnimation(mMainView, mPreColor,
+					currColor, 400);
+			mPreColor = currColor;
+
+			mMainView.setBackgroundColor(mCardList.get(position)
+					.getBackgroundColor());
+			mRhythmLayout.showRhythmAtPosition(position);
+		}
+
+		@Override
+		public void onPageScrollStateChanged(int state) {
+
+		}
+	};
 }

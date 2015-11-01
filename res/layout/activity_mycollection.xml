@@ -1,10 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
+    android:id="@+id/main_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/theme_color"
     android:clipToPadding="true"
     android:fitsSystemWindows="true" >
-    
+
+    <include
+        android:id="@+id/actionbar_activity_myfoot"
+        layout="@layout/actionbar" />
+    <!--
+       侧拉时出现的圆圈图案执行旋转动画
+       ptr:ptrAnimationStyle="rotate_and_anim"
+       替换侧拉时出现的图案为loading_1
+       ptr:ptrDrawable="@drawable/loading_1"
+       设置侧拉模式为左右都可以侧拉
+       ptr:ptrMode="both"
+       刷新的时候，是否允许ViewPager滚动
+       ptr:ptrScrollingWhileRefreshingEnabled="false"
+    -->
+
+    <include
+        android:id="@+id/rl_load_activity_myfoot"
+        android:layout_below="@id/actionbar_activity_myfoot"
+        layout="@layout/loading" />
+
+    <com.handmark.pulltorefresh.extras.viewpager.PullToRefreshViewPager
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/actionbar_activity_myfoot"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dip"
+        ptr:ptrDrawable="@drawable/loading_1"
+        ptr:ptrMode="both"
+        ptr:ptrScrollingWhileRefreshingEnabled="false" />
+
+    <com.tz.xiyoulibrary.activity.mycollection.viewutils.control.RhythmLayout
+        android:id="@+id/box_rhythm"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/rhythm_layout_height"
+        android:layout_alignParentBottom="true"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:id="@+id/activity_myfoot_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" />
+    </com.tz.xiyoulibrary.activity.mycollection.viewutils.control.RhythmLayout>
 
 </RelativeLayout>

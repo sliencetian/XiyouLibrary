@@ -12,7 +12,7 @@ import com.tz.xiyoulibrary.activity.baseactivity.BaseActivity;
  * @author Administrator Œ“µƒ ’≤ÿ
  */
 
-@EActivity(R.layout.activity_mycollection)
+@EActivity(R.layout.activity_myfoot)
 public class MyFootActivity extends BaseActivity {
 
 	@Override
