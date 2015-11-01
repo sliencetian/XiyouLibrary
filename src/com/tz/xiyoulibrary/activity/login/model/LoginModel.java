@@ -2,11 +2,15 @@ package com.tz.xiyoulibrary.activity.login.model;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import android.content.Context;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request.Method;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.Response.Listener;
@@ -80,6 +84,9 @@ public class LoginModel implements ILoginModel {
 					return map;
 				}
 			};
+			request.setRetryPolicy(new DefaultRetryPolicy(Constants.TIMEOUT_MS,
+					DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+					DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 			queue.add(request);
 		} else {
 			state = LOGIN_FAILURE;
