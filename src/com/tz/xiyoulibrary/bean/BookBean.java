@@ -67,7 +67,7 @@ public class BookBean implements Serializable {
 		this.date = date;
 	}
 
-	public boolean isCanRenew() {
+	public boolean getCanRenew() {
 		return canRenew;
 	}
 

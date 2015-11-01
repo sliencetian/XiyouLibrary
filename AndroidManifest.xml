@@ -35,7 +35,7 @@
         </activity>
         <!-- 我的借阅 -->
         <activity
-            android:name="com.tz.xiyoulibrary.activity.mybroorw.MyBorrowActivity_"
+            android:name="com.tz.xiyoulibrary.activity.mybroorw.view.MyBorrowActivity_"
             android:screenOrientation="portrait" >
         </activity>
         <!-- 我的足迹 -->
@@ -51,6 +51,11 @@
         <!-- 排行榜 -->
         <activity
             android:name="com.tz.xiyoulibrary.activity.rank.RankActivity_"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 图书详情 -->
+        <activity
+            android:name="com.tz.xiyoulibrary.activity.bookdetial.view.BookDetialActivity_"
             android:screenOrientation="portrait" >
         </activity>
     </application>

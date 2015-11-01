@@ -6,7 +6,7 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
 import com.tz.xiyoulibrary.R;
-import com.tz.xiyoulibrary.activity.mybroorw.MyBorrowActivity_;
+import com.tz.xiyoulibrary.activity.mybroorw.view.MyBorrowActivity_;
 import com.tz.xiyoulibrary.activity.mycollection.activity.view.MyCollectionActivity;
 import com.tz.xiyoulibrary.activity.myfoot.MyFootActivity_;
 import com.tz.xiyoulibrary.activity.rank.RankActivity_;

@@ -93,8 +93,8 @@ public class RhythmAdapter extends BaseAdapter {
 		iconParams.width = iconSize;
 		iconParams.height = iconSize;
 		imageIcon.setLayoutParams(iconParams);
-		// …Ë÷√±≥æ∞Õº∆¨
-		imageIcon.setBackgroundResource(R.drawable.ic_launcher);
+		// …Ë÷√µ◊≤ø∞¥≈•µƒ±≥æ∞Õº∆¨
+		imageIcon.setBackgroundResource(R.drawable.img_book);
 
 		return relativeLayout;
 	}

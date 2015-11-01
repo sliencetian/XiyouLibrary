@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:paddingLeft="10dp" >
+
+    <TextView
+        android:id="@+id/tv_title_activity_book_detial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="5dp"
+        android:text="写给大家看的PPT设计书"
+        android:textSize="@dimen/book_detial_title_size" />
+
+    <LinearLayout
+        android:id="@+id/ll_activity_book_detial_one"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_title_activity_book_detial"
+        android:layout_marginTop="10dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="2.8" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:orientation="horizontal" >
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/img_circle"
+                android:text="1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="基本资料"
+                android:textSize="@dimen/book_detial_title_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/img_collection"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="收藏"
+                android:textSize="@dimen/book_detial_title_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal" >
+
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/img_share"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="分享"
+                android:textSize="@dimen/book_detial_title_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_activity_book_detial_one"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="索书号："
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+
+            <TextView
+                android:id="@+id/tv_book_id_activity_book_detial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TP394.41"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="作者："
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+
+            <TextView
+                android:id="@+id/tv_book_author_activity_book_detial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="吴亚峰 编 索依娜 编"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="页数："
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+
+            <TextView
+                android:id="@+id/tv_book_page_activity_book_detial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="540 页"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="可借数量："
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+
+            <TextView
+                android:id="@+id/tv_book_avaliable_activity_book_detial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3 本"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="借阅次数："
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+
+            <TextView
+                android:id="@+id/tv_book_renttimes_activity_book_detial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 次"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:text="收藏次数："
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+
+            <TextView
+                android:id="@+id/tv_book_favtimes_activity_book_detial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 次"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="浏览次数："
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+
+            <TextView
+                android:id="@+id/tv_book_browsetimes_activity_book_detial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 次"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:text="藏书数量："
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+
+            <TextView
+                android:id="@+id/tv_book_total_activity_book_detial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2 本"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="主题分类："
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+
+            <TextView
+                android:id="@+id/tv_book_subject_activity_book_detial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="移动通信  --携带电话机  --应用程序  --程序设计"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="出版社："
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+
+            <TextView
+                android:id="@+id/tv_book_pub_activity_book_detial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="北京  :电子工业出版社 ,2010.10"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

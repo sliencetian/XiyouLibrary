@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- 主题颜色 -->
     <color name="theme_color">#f55b56</color>
     <color name="theme_color_deep">#f24441</color>
     <!-- 浅灰色 -->
     <color name="Light_grey">#eeeeee</color>
     <!-- 深灰色 -->
-    <color name="Dark_grey">#a0a0a0</color>
+    <color name="dark_grey">#a0a0a0</color>
     <!-- 白色 -->
     <color name="white">#ffffff</color>
     <!-- 黑色 -->
-    <color name="black">#000000</color>
+    <color name="dark_black">#000000</color>
+    <!-- 浅黑色 -->
+    <color name="light_black">#99000000</color>
+    <!-- 借阅情况 -->
+    <color name="borrow_book">#68c5ca</color>
+    <color name="can_borrow">#73e07a</color>
+    <color name="renew_book">#f59f56</color>
+    <color name="exceed_book">#f55b56</color>
+
 </resources>

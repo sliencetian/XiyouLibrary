@@ -33,11 +33,27 @@ public class MyBorrowFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		Bundle bundle = getArguments();
-		View rootView = inflater.inflate(R.layout.fragment_myfoot, null);
+		View rootView = inflater.inflate(R.layout.fragment_mycollection, null);
 
 		// 进行布局的数据添加
-		TextView title = (TextView) rootView.findViewById(R.id.title);
+		TextView title = (TextView) rootView
+				.findViewById(R.id.tv_book_title_mycollection);
 		title.setText(bundle.getString("Title"));
+		TextView author = (TextView) rootView
+				.findViewById(R.id.tv_book_author_mycollection);
+		author.setText("作者：" + bundle.getString("Author"));
+		TextView id = (TextView) rootView
+				.findViewById(R.id.tv_book_id_mycollection);
+		id.setText("编号：" + bundle.getString("ID"));
+		TextView isbn = (TextView) rootView
+				.findViewById(R.id.tv_book_isbn_mycollection);
+		isbn.setText("条形码：" + bundle.getString("ISBN"));
+		TextView sort = (TextView) rootView
+				.findViewById(R.id.tv_book_sort_mycollection);
+		sort.setText("索书号：" + bundle.getString("Sort"));
+		TextView pub = (TextView) rootView
+				.findViewById(R.id.tv_book_pub_mycollection);
+		pub.setText("出版社：" + bundle.getString("Pub"));
 
 		return rootView;
 	}

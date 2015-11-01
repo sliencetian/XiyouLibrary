@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="130dp"
+    android:background="@color/white" >
+
+    <ImageView
+        android:id="@+id/iv_book_img_item_myborrow"
+        android:layout_width="80dp"
+        android:layout_height="110dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/img_book" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="110dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:layout_toRightOf="@id/iv_book_img_item_myborrow" >
+
+        <TextView
+            android:id="@+id/tv_book_title_item_myborrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="人人都是产品经理"
+            android:textColor="@color/dark_black"
+            android:textSize="@dimen/myborrow_book_title" />
+
+        <TextView
+            android:id="@+id/tv_book_department_item_myborrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_book_title_item_myborrow"
+            android:layout_marginTop="6dp"
+            android:singleLine="true"
+            android:text="分馆：通信计算机库（长安校区）"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/myborrow_book_info" />
+
+        <LinearLayout
+            android:id="@+id/ll_book_data_item_myborrow"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_book_department_item_myborrow"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="到期时间："
+                android:textColor="@color/dark_black"
+                android:textSize="@dimen/myborrow_book_info" />
+
+            <TextView
+                android:id="@+id/tv_book_data_item_myborrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="2015-11-30"
+                android:textColor="@color/exceed_book"
+                android:textSize="@dimen/myborrow_book_info" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/ll_book_state_item_myborrow"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_book_data_item_myborrow"
+            android:layout_marginTop="5dp" >
+
+            <TextView
+                android:id="@+id/tv_state_zhuangtai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:singleLine="true"
+                android:text="状态："
+                android:textColor="@color/dark_black"
+                android:textSize="@dimen/myborrow_book_info" />
+
+            <TextView
+                android:id="@+id/tv_book_state_item_myborrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/tv_state_zhuangtai"
+                android:singleLine="true"
+                android:text="本馆续借"
+                android:textColor="@color/exceed_book"
+                android:textSize="@dimen/myborrow_book_info"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/bt_book_state_item_myborrow"
+                android:layout_width="70dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/tv_state_zhuangtai"
+                android:background="@drawable/bt_radius_selector"
+                android:text="我要续借"
+                android:textColor="@color/white"
+                android:textSize="@dimen/myborrow_book_info" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -3,17 +3,32 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="text_size">17dp</dimen>
+    <dimen name="radius_size">8dp</dimen>
+    <!-- 我的收藏 -->
     <dimen name="rhythm_icon_margin">2.0dip</dimen>
     <dimen name="rhythm_layout_height">60.0dip</dimen>
     <dimen name="rhythm_item_height">100.0dip</dimen>
     <dimen name="rhythm_edge_size_for_shift">50.0dip</dimen>
+    <dimen name="mycollection_book_title">20.0dip</dimen>
+    <dimen name="mycollection_book_info">17.0dip</dimen>
+    <!-- 我的借阅 -->
+    <dimen name="myborrow_book_title">17.0dip</dimen>
+    <dimen name="myborrow_book_info">14.0dip</dimen>
+    <dimen name="myborrow_head_item_height">35dip</dimen>
+    <dimen name="myborrow_head_item_text_size">18dip</dimen>
+
+    <!-- 标题栏 -->
     <dimen name="actionbar_back">60dp</dimen>
     <dimen name="actionbar_height">48dp</dimen>
     <dimen name="actionbar_title_text_size">20dp</dimen>
-    <dimen name="text_size">17dp</dimen>
-    <dimen name="radius_size">8dp</dimen>
     <dimen name="right_arrow_size">22dp</dimen>
+    <!-- 加载 -->
     <dimen name="loading_size">45dp</dimen>
     <dimen name="load_faluire_size">15dp</dimen>
+    <!-- 图书详情 -->
+    <dimen name="book_detial_title_size">20dp</dimen>
+    <dimen name="book_info_title_size">15dp</dimen>
+    
 
 </resources>

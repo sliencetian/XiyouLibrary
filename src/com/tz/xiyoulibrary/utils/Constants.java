@@ -50,9 +50,9 @@ public class Constants {
 	public static final String GET_BOOK_SEARCH = ROOT_URL + "book/search";
 
 	/**
-	 * 图书详情 eg:http://api.xiyoumobile.com/xiyoulibv2/book/detail/id/01h0079766
+	 * 图书详情 eg:http://api.xiyoumobile.com/xiyoulibv2/book/detail/Barcode/03277606
 	 */
-	public static final String GET_BOOK_DETAIL = ROOT_URL + "book/detail/id/";
+	public static final String GET_BOOK_DETAIL = ROOT_URL + "book/detail/Barcode/";
 
 	/**
 	 * 图书排行榜

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/dark_grey"
+        android:contentDescription="@string/app_name" />
+
+    <TextView
+        android:id="@+id/tv_borrow_book_activity_my_borrow"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/myborrow_head_item_height"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:text="已借图书：   7本"
+        android:textColor="@color/borrow_book"
+        android:textSize="@dimen/myborrow_head_item_text_size" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="0.8dp"
+        android:background="@color/Light_grey"
+        android:contentDescription="@string/app_name" />
+
+    <TextView
+        android:id="@+id/tv_can_borrow_book_activity_my_borrow"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/myborrow_head_item_height"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:text="剩余可借：   8本"
+        android:textColor="@color/can_borrow"
+        android:textSize="@dimen/myborrow_head_item_text_size" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="0.8dp"
+        android:background="@color/Light_grey"
+        android:contentDescription="@string/app_name" />
+
+    <TextView
+        android:id="@+id/tv_renew_book_activity_my_borrow"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/myborrow_head_item_height"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:text="续借图书：   0本"
+        android:textColor="@color/renew_book"
+        android:textSize="@dimen/myborrow_head_item_text_size" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="0.8dp"
+        android:background="@color/Light_grey"
+        android:contentDescription="@string/app_name" />
+
+    <TextView
+        android:id="@+id/tv_exceed_book_activity_my_borrow"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/myborrow_head_item_height"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:text="超期图书：   1本"
+        android:textColor="@color/exceed_book"
+        android:textSize="@dimen/myborrow_head_item_text_size" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/dark_grey"
+        android:contentDescription="@string/app_name" />
+
+</LinearLayout>

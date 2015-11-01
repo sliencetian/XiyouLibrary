@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:background="@drawable/home_card_bg" >
+
+        <!-- 进行书的布局 -->
+
+        <TextView
+            android:id="@+id/tv_book_title_mycollection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:singleLine="true"
+            android:text="写给大家看的PPT设计书"
+            android:textColor="@color/dark_black"
+            android:textSize="@dimen/mycollection_book_title" />
+
+        <TextView
+            android:id="@+id/tv_book_author_mycollection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_book_title_mycollection"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:singleLine="true"
+            android:text="作者：Robin,Williams"
+            android:textColor="@color/dark_grey" />
+
+        <RelativeLayout
+            android:id="@+id/rl_book_img_mycollection"
+            android:layout_width="fill_parent"
+            android:layout_height="210dp"
+            android:layout_below="@id/tv_book_author_mycollection"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/img_book_back4" >
+
+            <ImageView
+                android:id="@+id/iv_book_img_mycollection"
+                android:layout_width="120dp"
+                android:layout_height="160dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/img_book"
+                android:contentDescription="@string/app_name" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_book_id_mycollection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_book_img_mycollection"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:singleLine="true"
+            android:text="编号：0100000015"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/mycollection_book_info" />
+
+        <TextView
+            android:id="@+id/tv_book_isbn_mycollection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_book_id_mycollection"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:singleLine="true"
+            android:text="条形码：7561116748"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/mycollection_book_info" />
+
+        <TextView
+            android:id="@+id/tv_book_sort_mycollection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_book_isbn_mycollection"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:singleLine="true"
+            android:text="索书号：O174.5"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/mycollection_book_info" />
+
+        <TextView
+            android:id="@+id/tv_book_pub_mycollection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_book_sort_mycollection"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:singleLine="true"
+            android:text="出版社：大连理工大学出版社"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/mycollection_book_info" />
+    </RelativeLayout>
+
+</FrameLayout>

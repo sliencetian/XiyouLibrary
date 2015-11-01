@@ -17,21 +17,21 @@ import java.util.Map;
 @SuppressWarnings("unchecked")
 public class BookPagerAdapter extends FragmentStatePagerAdapter {
 
-    private List<Map<String, String>> mCardList;
+    private List<Map<String, String>> mBookList;
 	@SuppressWarnings("rawtypes")
 	private List<Fragment> mFragments = new ArrayList();
 
-    public BookPagerAdapter(FragmentManager fragmentManager, List<Map<String, String>> cardList) {
+    public BookPagerAdapter(FragmentManager fragmentManager, List<Map<String, String>> bookList) {
         super(fragmentManager);
         //使用迭代器遍历List,
         @SuppressWarnings("rawtypes")
-		Iterator iterator = cardList.iterator();
+		Iterator iterator = bookList.iterator();
         while (iterator.hasNext()) {
         	Map<String, String> book = (Map<String, String>) iterator.next();
             //实例化相应的Fragment并添加到List中
             mFragments.add(MyBorrowFragment.getInstance(book));
         }
-        mCardList = cardList;
+        mBookList = bookList;
     }
 
     public int getCount() {
@@ -44,7 +44,7 @@ public class BookPagerAdapter extends FragmentStatePagerAdapter {
     }
 
     public List<Map<String, String>> getCardList() {
-        return mCardList;
+        return mBookList;
     }
 
     public List<Fragment> getFragments() {

@@ -314,4 +314,10 @@ public class MyCollectionActivity extends FragmentActivity implements
 
 		}
 	};
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		queue.cancelAll(this);
+	}
 }

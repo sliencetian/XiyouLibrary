@@ -7,21 +7,18 @@
     android:fitsSystemWindows="true" >
 
     <include
-        android:id="@+id/actionbar_activity_myborrow"
+        android:id="@+id/actionbar_activity_book_detial"
         layout="@layout/actionbar" />
 
-    <ListView
-        android:id="@+id/lv_borrow_activity_myborrow"
+    <com.tz.xiyoulibrary.pulltozoomview.PullToZoomListView
+        android:id="@+id/ptzv_book_detial"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/actionbar_activity_myborrow"
-        android:background="@color/white"
-        android:divider="@color/Light_grey"
-        android:dividerHeight="1dp" />
+        android:layout_below="@id/actionbar_activity_book_detial" />
 
     <include
-        android:id="@+id/rl_load_activity_myborrow"
-        android:layout_below="@id/actionbar_activity_myborrow"
+        android:id="@+id/rl_load_activity_book_detial"
+        android:layout_below="@id/actionbar_activity_book_detial"
         layout="@layout/loading" />
 
 </RelativeLayout>
