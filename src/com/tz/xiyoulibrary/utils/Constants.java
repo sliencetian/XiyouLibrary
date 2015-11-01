@@ -6,6 +6,9 @@ package com.tz.xiyoulibrary.utils;
  */
 public class Constants {
 
+	// 请求网络超时时间
+	public static final int TIMEOUT_MS = 10000;
+
 	private static final String ROOT_URL = "http://api.xiyoumobile.com/xiyoulibv2/";
 
 	/***************************** 用户 ********************************/
@@ -50,9 +53,17 @@ public class Constants {
 	public static final String GET_BOOK_SEARCH = ROOT_URL + "book/search";
 
 	/**
-	 * 图书详情 eg:http://api.xiyoumobile.com/xiyoulibv2/book/detail/Barcode/03277606
+	 * 图书详情by--barcode
+	 * eg:http://api.xiyoumobile.com/xiyoulibv2/book/detail/Barcode/03277606
 	 */
-	public static final String GET_BOOK_DETAIL = ROOT_URL + "book/detail/Barcode/";
+	public static final String GET_BOOK_DETAIL_BY_BARCODE = ROOT_URL
+			+ "book/detail/Barcode/";
+	/**
+	 * 图书详情by--id
+	 * eg:http://api.xiyoumobile.com/xiyoulibv2/book/detail/id/0100000015
+	 */
+	public static final String GET_BOOK_DETAIL_BY_ID = ROOT_URL
+			+ "book/detail/id/";
 
 	/**
 	 * 图书排行榜
