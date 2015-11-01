@@ -10,11 +10,17 @@
         android:id="@+id/actionbar_activity_book_detial"
         layout="@layout/actionbar" />
 
-    <com.tz.xiyoulibrary.pulltozoomview.PullToZoomListView
-        android:id="@+id/ptzv_book_detial"
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@id/actionbar_activity_book_detial" />
+        android:layout_below="@id/actionbar_activity_book_detial"
+        android:background="@color/white" >
+
+        <com.tz.xiyoulibrary.pulltozoomview.PullToZoomListView
+            android:id="@+id/ptzv_book_detial"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+    </RelativeLayout>
 
     <include
         android:id="@+id/rl_load_activity_book_detial"
