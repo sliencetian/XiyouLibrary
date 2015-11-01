@@ -111,7 +111,8 @@ public class BookDetialModel implements IBookDetialModel {
 						if (o3.getString("Pages").equals("")) {
 							bookDetial.put("Pages", "ÔÝÎÞ¼ÇÂ¼");
 						} else {
-							bookDetial.put("Pages", o3.getString("Pages")+" Ò³");
+							bookDetial.put("Pages", o3.getString("Pages")
+									+ " Ò³");
 						}
 						try {
 							JSONObject o4 = o3.getJSONObject("Images");
@@ -129,8 +130,10 @@ public class BookDetialModel implements IBookDetialModel {
 					}
 					state = LOADING_SUCCESS;
 				} catch (Exception e) {
-					state = LOADING_FALUIRE;
-					msg = JsonUtils.getErrorMsg(o.getString("Detail"));
+					Object[] object = JsonUtils.getErrorMsg(o
+							.getString("Detail"));
+					state = (Integer) object[0];
+					msg = (String) object[1];
 				}
 			} else {
 				state = LOADING_FALUIRE;

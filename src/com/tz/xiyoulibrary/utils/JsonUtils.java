@@ -1,24 +1,33 @@
 package com.tz.xiyoulibrary.utils;
 
+import com.tz.xiyoulibrary.activity.mybroorw.model.IMyBorrowModel;
+
 public class JsonUtils {
 
-	public static String getErrorMsg(String errorTag) {
-		String errorInfo = null;
+	public static Object[] getErrorMsg(String errorTag) {
+		Object[] o = new Object[2];
 		if (errorTag.equals("ACCOUNT_ERROR")) {
-			errorInfo = "账号错误，密码错误或账户不存在";
+			o[0] = IMyBorrowModel.LOADING_FALUIRE;
+			o[1] = "账号错误，密码错误或账户不存在";
 		} else if (errorTag.equals("USER_NOT_LOGIN")) {
-			errorInfo = "用户未登陆";
+			o[0] = IMyBorrowModel.LOADING_FALUIRE;
+			o[1] = "用户未登陆";
 		} else if (errorTag.equals("NO_RECORD")) {
-			errorInfo = "记录为空";
+			o[0] = IMyBorrowModel.NO_DATA;
+			o[1] = "记录为空";
 		} else if (errorTag.equals("REMOTE_SERVER_ERROR")) {
-			errorInfo = "远程服务器错误";
+			o[0] = IMyBorrowModel.LOADING_FALUIRE;
+			o[1] = "远程服务器错误";
 		} else if (errorTag.equals("PARAM_ERROR")) {
-			errorInfo = "参数错误";
+			o[0] = IMyBorrowModel.LOADING_FALUIRE;
+			o[1] = "参数错误";
 		} else if (errorTag.equals("RENEW_FAILED")) {
-			errorInfo = "续借失败";
+			o[0] = IMyBorrowModel.LOADING_FALUIRE;
+			o[1] = "续借失败";
 		} else if (errorTag.equals("OUT_OF_RANGE")) {
-			errorInfo = "超出范围";
+			o[0] = IMyBorrowModel.LOADING_FALUIRE;
+			o[1] = "超出范围";
 		}
-		return errorInfo;
+		return o;
 	}
 }

@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import com.android.volley.Request.Method;
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -86,8 +88,9 @@ public class MyCollectionModel implements IMyCollectionModel {
 					}
 					status = LOADING_SUCCESS;
 				} catch (Exception e) {
-					status = LOADING_FALUIRE;
-					msg = JsonUtils.getErrorMsg(o.getString("Detail"));
+					Object[] object = JsonUtils.getErrorMsg(o.getString("Detail"));
+					status = (Integer) object[0];
+					msg = (String) object[1];
 				}
 			} else {
 				status = LOADING_FALUIRE;

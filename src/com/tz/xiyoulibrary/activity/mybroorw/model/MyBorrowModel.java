@@ -65,9 +65,8 @@ public class MyBorrowModel implements IMyBorrowModel {
 		try {
 			JSONObject o = new JSONObject(response);
 			if (o.getBoolean("Result")) {
-
-				JSONArray array = o.getJSONArray("Detail");
 				try {
+					JSONArray array = o.getJSONArray("Detail");
 					borrowData = new ArrayList<BookBean>();
 					for (int i = 0; i < array.length(); i++) {
 						JSONObject o2 = array.getJSONObject(i);
@@ -84,8 +83,9 @@ public class MyBorrowModel implements IMyBorrowModel {
 					}
 					status = LOADING_SUCCESS;
 				} catch (Exception e) {
-					status = LOADING_FALUIRE;
-					msg = JsonUtils.getErrorMsg(o.getString("Detail"));
+					Object[] object = JsonUtils.getErrorMsg(o.getString("Detail"));
+					status = (Integer) object[0];
+					msg = (String) object[1];
 				}
 			} else {
 				status = LOADING_FALUIRE;
