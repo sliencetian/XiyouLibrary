@@ -28,6 +28,7 @@ import com.tz.xiyoulibrary.titanicview.Titanic;
 import com.tz.xiyoulibrary.titanicview.TitanicTextView;
 import com.tz.xiyoulibrary.titanicview.Typefaces;
 import com.tz.xiyoulibrary.toastview.CustomToast;
+import com.tz.xiyoulibrary.utils.Constants;
 
 /**
  * 
@@ -95,12 +96,13 @@ public class MyBorrowActivity extends BaseActivity implements IMyborrowView {
 	public void back() {
 		finish();
 	}
-	
+
 	@ItemClick(R.id.lv_borrow_activity_myborrow)
-	public void pushBookDetial(int position){
+	public void pushBookDetial(int position) {
 		Intent intent = new Intent(MyBorrowActivity.this,
 				BookDetialActivity_.class);
-		intent.putExtra("BarCode", borrowData.get(position-1).getBarCode());
+		intent.putExtra("url", Constants.GET_BOOK_DETAIL_BY_BARCODE
+				+ borrowData.get(position - 1).getBarCode());
 		startActivity(intent);
 	}
 
@@ -186,6 +188,7 @@ public class MyBorrowActivity extends BaseActivity implements IMyborrowView {
 	public void showMsg(String msg) {
 		CustomToast.showToast(this, msg, 2000);
 	}
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
