@@ -241,6 +241,9 @@ public class MyCollectionActivity extends FragmentActivity implements
 		mRhythmLayout.showRhythmAtPosition(0);
 		mPreColor = mCardList.get(0).getBackgroundColor();
 		mMainView.setBackgroundColor(mPreColor);
+		
+		
+		
 	}
 
 	/**
