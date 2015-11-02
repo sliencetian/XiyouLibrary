@@ -27,6 +27,9 @@ public class JsonUtils {
 		} else if (errorTag.equals("OUT_OF_RANGE")) {
 			o[0] = IMyBorrowModel.LOADING_FALUIRE;
 			o[1] = "³¬³ö·¶Î§";
+		}else{
+			o[0] = IMyBorrowModel.LOADING_FALUIRE;
+			o[1] = "»ñÈ¡Ê§°Ü";
 		}
 		return o;
 	}
