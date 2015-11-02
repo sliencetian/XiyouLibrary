@@ -40,7 +40,7 @@
         </activity>
         <!-- 我的足迹 -->
         <activity
-            android:name="com.tz.xiyoulibrary.activity.myfoot.MyFootActivity_"
+            android:name="com.tz.xiyoulibrary.activity.myfoot.view.MyFootActivity_"
             android:screenOrientation="portrait" >
         </activity>
         <!-- 我的收藏 -->
