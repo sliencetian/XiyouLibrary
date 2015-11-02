@@ -46,6 +46,7 @@ public class LoginModel implements ILoginModel {
 									state = LOGIN_SUCCESS;
 									msg = o.getString("Detail");
 									Application.SESSION = msg;
+									Application.USERNAME = username;
 									getUserInfo(queue, msg, callBack);
 								} else {
 									state = LOGIN_FAILURE;
