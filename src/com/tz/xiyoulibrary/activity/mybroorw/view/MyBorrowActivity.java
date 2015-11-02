@@ -101,6 +101,8 @@ public class MyBorrowActivity extends BaseActivity implements IMyborrowView {
 
 	@ItemClick(R.id.lv_borrow_activity_myborrow)
 	public void pushBookDetial(int position) {
+		if (position == 0)
+			return;
 		Intent intent = new Intent(MyBorrowActivity.this,
 				BookDetialActivity_.class);
 		intent.putExtra("url", Constants.GET_BOOK_DETAIL_BY_BARCODE
