@@ -9,7 +9,7 @@ import com.tz.xiyoulibrary.R;
 import com.tz.xiyoulibrary.activity.mybroorw.view.MyBorrowActivity_;
 import com.tz.xiyoulibrary.activity.mycollection.activity.view.MyCollectionActivity;
 import com.tz.xiyoulibrary.activity.myfoot.view.MyFootActivity_;
-import com.tz.xiyoulibrary.activity.rank.RankActivity_;
+import com.tz.xiyoulibrary.activity.rank.view.RankActivity_;
 import com.tz.xiyoulibrary.application.Application;
 
 import android.content.Intent;
