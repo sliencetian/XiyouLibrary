@@ -2,25 +2,25 @@ package com.tz.xiyoulibrary.activity.bookdetial.view;
 
 import java.util.List;
 import java.util.Map;
-
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
-
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ImageView;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.tz.xiyoulibrary.R;
@@ -56,6 +56,7 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 
 	private String url;
 	private BookDetialPresenter mPresenter;
+	private ProgressDialog progressDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,11 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 		queue = Volley.newRequestQueue(BookDetialActivity.this);
 		url = getIntent().getStringExtra("url");
 		mPresenter = new BookDetialPresenter(this);
+
+		progressDialog = new ProgressDialog(BookDetialActivity.this);
+		progressDialog.setTitle("提示");
+		progressDialog.setMessage("收藏中,请稍候...");
+		progressDialog.setCancelable(false);
 	}
 
 	@AfterViews
@@ -87,6 +93,11 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 	@Click(R.id.rl_back_actionbar)
 	public void back() {
 		finish();
+	}
+
+	@Click(R.id.rl_load_no_data)
+	public void resetGetData() {
+		getBookDetial();
 	}
 
 	@Override
@@ -217,6 +228,24 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 	 * 基本资料
 	 */
 	private void addOneView(RelativeLayout root) {
+		Button collection = (Button) root
+				.findViewById(R.id.bt_collection_activity_book_detial);
+		Button share = (Button) root
+				.findViewById(R.id.bt_share_activity_book_detial);
+		collection.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				mPresenter.collection(queue, bookDetial.get("ID") + "");
+			}
+		});
+		share.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+			}
+		});
 		TextView tv;
 		tv = (TextView) root.findViewById(R.id.tv_title_activity_book_detial);// 标题
 		tv.setText(bookDetial.get("Title") + "");
@@ -282,5 +311,15 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 	protected void onDestroy() {
 		super.onDestroy();
 		queue.cancelAll(this);
+	}
+
+	@Override
+	public void hidenDialog() {
+		progressDialog.dismiss();
+	}
+
+	@Override
+	public void showDialog() {
+		progressDialog.show();
 	}
 }

@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -13,6 +16,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.Request.Method;
 import com.android.volley.toolbox.StringRequest;
 import com.tz.xiyoulibrary.activity.callback.CallBack;
+import com.tz.xiyoulibrary.application.Application;
 import com.tz.xiyoulibrary.utils.Constants;
 import com.tz.xiyoulibrary.utils.JsonUtils;
 import com.tz.xiyoulibrary.utils.LogUtils;
@@ -35,7 +39,7 @@ public class BookDetialModel implements IBookDetialModel {
 					public void onResponse(String response) {
 						LogUtils.d("getBookDetial:", response);
 						// 解析数据
-						formatDataByJson(response, callBack);
+						formatBookDetialDataByJson(response, callBack);
 					}
 				}, new Response.ErrorListener() {
 
@@ -52,7 +56,86 @@ public class BookDetialModel implements IBookDetialModel {
 		queue.add(request);
 	}
 
-	protected void formatDataByJson(String response,
+	@Override
+	public void collection(RequestQueue queue, final String id,
+			final CallBack<BookDetialModel> callBack) {
+		state = LOADING;
+		callBack.getModel(this);
+		StringRequest request = new StringRequest(Method.POST,
+				Constants.GET_BOOK_ADD_FAVORITE,
+				new Response.Listener<String>() {
+
+					@Override
+					public void onResponse(String response) {
+						LogUtils.d("collection:", response);
+						// 解析数据
+						formatCollectionDataByJson(response, callBack);
+					}
+				}, new Response.ErrorListener() {
+
+					@Override
+					public void onErrorResponse(VolleyError error) {
+						state = LOADING_FALUIRE;
+						msg = "网络异常";
+						callBack.getModel(BookDetialModel.this);
+					}
+				}) {
+			@Override
+			protected Map<String, String> getParams() throws AuthFailureError {
+				Map<String, String> map = new HashMap<String, String>();
+				map.put("session", Application.SESSION);
+				map.put("id", id);
+				return map;
+			}
+		};
+		request.setRetryPolicy(new DefaultRetryPolicy(Constants.TIMEOUT_MS,
+				DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+				DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+		queue.add(request);
+	}
+
+	/**
+	 * 解析收藏数据
+	 */
+	protected void formatCollectionDataByJson(String response,
+			CallBack<BookDetialModel> callBack) {
+		try {
+			JSONObject o = new JSONObject(response);
+			if (o.getBoolean("Result")) {
+				state = LOADING_SUCCESS;
+				msg = getMsgByDetial(o.getString("Detail"));
+			} else {
+				state = LOADING_FALUIRE;
+				msg = "收藏失败";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			state = LOADING_FALUIRE;
+			msg = "收藏失败";
+		}
+		callBack.getModel(this);
+	}
+
+	private String getMsgByDetial(String detial) {
+		String s = null;
+		if (detial.equals("ADDED_SUCCEED")) {
+			s = "收藏成功";
+		} else if (detial.equals("ALREADY_IN_FAVORITE")) {
+			s = "已经收藏过了";
+		} else if (detial.equals("USER_NOT_LOGIN")) {
+			s = "用户登录失效,请重新登录";
+		} else if (detial.equals("PARAM_ERROR")) {
+			s = "参数错误，缺少参数";
+		} else {
+			s = "收藏失败";
+		}
+		return s;
+	}
+
+	/**
+	 * 解析获取详情信息数据
+	 */
+	protected void formatBookDetialDataByJson(String response,
 			CallBack<BookDetialModel> callBack) {
 		try {
 			JSONObject o = new JSONObject(response);
@@ -87,8 +170,9 @@ public class BookDetialModel implements IBookDetialModel {
 					List<Map<String, String>> circulationInfoList = new ArrayList<Map<String, String>>();
 					int size = array.length() > 50 ? 50 : array.length();
 					for (int i = 0; i < size; i++) {
-						LogUtils.d("BookDetial", "解析已完成---"+i+"/"+array.length());
-						
+						LogUtils.d("BookDetial",
+								"解析已完成---" + i + "/" + array.length());
+
 						JSONObject o3 = array.getJSONObject(i);
 						Map<String, String> map = new HashMap<String, String>();
 						map.put("Barcode", o3.getString("Barcode"));
@@ -138,7 +222,7 @@ public class BookDetialModel implements IBookDetialModel {
 								o3.getString("Author_Info"));
 					} catch (Exception e) {
 						bookDetial.put("Summary", "");
-						bookDetial.put("Author_Info","");
+						bookDetial.put("Author_Info", "");
 					}
 					state = LOADING_SUCCESS;
 				} catch (Exception e) {

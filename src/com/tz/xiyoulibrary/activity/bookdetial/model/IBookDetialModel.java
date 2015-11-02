@@ -10,4 +10,6 @@ public interface IBookDetialModel {
 	static final int LOADING = 3;
 
 	void getBookDetial(RequestQueue queue,String url, CallBack<BookDetialModel> callBack);
+	
+	void collection(RequestQueue queue,String id,CallBack<BookDetialModel> callBack);
 }

@@ -12,4 +12,9 @@ public interface IBookDetialView {
 	void showNoDataView();
 
 	void showMsg(String msg);
+	
+	void showDialog();
+	
+	void hidenDialog();
+	
 }

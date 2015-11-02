@@ -16,24 +16,51 @@ public class BookDetialPresenter {
 		mBookDetialModel = new BookDetialModel();
 	}
 
-	public void getBookDetial(RequestQueue queue,String url) {
-		mBookDetialModel.getBookDetial(queue,url, new CallBack<BookDetialModel>() {
+	/**
+	 * 获取书籍信息
+	 */
+	public void getBookDetial(RequestQueue queue, String url) {
+		mBookDetialModel.getBookDetial(queue, url,
+				new CallBack<BookDetialModel>() {
+
+					@Override
+					public void getModel(BookDetialModel model) {
+						switch (model.state) {
+						case IBookDetialModel.LOADING:
+							mBookDetialView.showLoadingView();
+							break;
+						case IBookDetialModel.LOADING_FALUIRE:
+							mBookDetialView.showLoadFaluireView();
+							mBookDetialView.showMsg(model.msg);
+							break;
+						case IBookDetialModel.NO_DATA:
+							mBookDetialView.showNoDataView();
+							break;
+						case IBookDetialModel.LOADING_SUCCESS:
+							mBookDetialView
+									.showBookDetialView(model.bookDetial);
+							break;
+						}
+					}
+				});
+	}
+
+	/**
+	 * 添加收藏
+	 */
+	public void collection(RequestQueue queue, String id) {
+		mBookDetialModel.collection(queue, id, new CallBack<BookDetialModel>() {
 
 			@Override
 			public void getModel(BookDetialModel model) {
 				switch (model.state) {
 				case IBookDetialModel.LOADING:
-					mBookDetialView.showLoadingView();
+					mBookDetialView.showDialog();
 					break;
 				case IBookDetialModel.LOADING_FALUIRE:
-					mBookDetialView.showLoadFaluireView();
-					mBookDetialView.showMsg(model.msg);
-					break;
-				case IBookDetialModel.NO_DATA:
-					mBookDetialView.showNoDataView();
-					break;
 				case IBookDetialModel.LOADING_SUCCESS:
-					mBookDetialView.showBookDetialView(model.bookDetial);
+					mBookDetialView.hidenDialog();
+					mBookDetialView.showMsg(model.msg);
 					break;
 				}
 			}
