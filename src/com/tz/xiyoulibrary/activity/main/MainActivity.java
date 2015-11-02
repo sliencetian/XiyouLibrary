@@ -2,19 +2,16 @@ package com.tz.xiyoulibrary.activity.main;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
-
 import com.tz.xiyoulibrary.R;
 import com.tz.xiyoulibrary.application.Application;
 import com.tz.xiyoulibrary.fragment.home.HomeFragment;
 import com.tz.xiyoulibrary.fragment.my.MyFragment_;
-import com.tz.xiyoulibrary.fragment.setting.SettingFragment;
+import com.tz.xiyoulibrary.fragment.setting.SettingFragment_;
 import com.tz.xiyoulibrary.toastview.CustomToast;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Build.VERSION;
@@ -53,7 +50,7 @@ public class MainActivity extends FragmentActivity {
 	 */
 	private HomeFragment homeFragment;
 	private MyFragment_ myFragment;
-	private SettingFragment settingFragment;
+	private SettingFragment_ settingFragment;
 
 	/**
 	 * 底部的三个radiobutton
@@ -95,7 +92,7 @@ public class MainActivity extends FragmentActivity {
 
 		homeFragment = new HomeFragment();
 		myFragment = new MyFragment_();
-		settingFragment = new SettingFragment();
+		settingFragment = new SettingFragment_();
 
 		mFragments.add(homeFragment);
 		mFragments.add(myFragment);
