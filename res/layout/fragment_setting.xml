@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_grey"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/rl_message_notic_fragment_setting"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="0.5dp"
+                android:background="@drawable/my_rl_selector" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="@string/setting_message_notic_text"
+                    android:textSize="@dimen/text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/right_arrow_text"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/right_arrow_size" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_net_type_fragment_setting"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="0.5dp"
+                android:background="@drawable/my_rl_selector" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="@string/setting_net_type_text"
+                    android:textSize="@dimen/text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/right_arrow_text"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/right_arrow_size" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_question_fragment_setting"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="0.5dp"
+                android:background="@drawable/my_rl_selector" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="@string/setting_question_text"
+                    android:textSize="@dimen/text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/right_arrow_text"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/right_arrow_size" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_back_advice_fragment_setting"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="0.5dp"
+                android:background="@drawable/my_rl_selector" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="@string/setting_back_advice_text"
+                    android:textSize="@dimen/text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/right_arrow_text"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/right_arrow_size" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_about_fragment_setting"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="0.5dp"
+                android:background="@drawable/my_rl_selector" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="@string/setting_about_text"
+                    android:textSize="@dimen/text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/right_arrow_text"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/right_arrow_size" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_exit_fragment_setting"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="0.5dp"
+                android:background="@drawable/my_rl_selector" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="@string/setting_exit_text"
+                    android:textSize="@dimen/text_size" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:text="@string/right_arrow_text"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="@dimen/right_arrow_size" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
