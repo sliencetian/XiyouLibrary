@@ -103,7 +103,7 @@ public class PullToZoomListView extends ListView implements
 	}
 
 	public boolean onInterceptTouchEvent(MotionEvent paramMotionEvent) {
-		return super.onInterceptTouchEvent(paramMotionEvent);
+		return false;
 	}
 
 	protected void onLayout(boolean paramBoolean, int paramInt1, int paramInt2,
