@@ -4,7 +4,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,7 +19,6 @@ import android.view.WindowManager;
 import android.view.animation.OvershootInterpolator;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.handmark.pulltorefresh.extras.viewpager.PullToRefreshViewPager;
@@ -87,6 +85,7 @@ public class MyCollectionActivity extends FragmentActivity implements
 	private Titanic mTitanic;
 	private RelativeLayout mRelativeLayoutLoadFaluire;
 	private RelativeLayout mRelativeLayoutLoadNoData;
+	private TextView mTextViewTip;
 
 	@SuppressLint("InlinedApi")
 	@Override
@@ -104,8 +103,13 @@ public class MyCollectionActivity extends FragmentActivity implements
 		setContentView(R.layout.activity_mycollection);
 		mPresenter = new MyCollectionPresenter(this);
 		queue = Volley.newRequestQueue(MyCollectionActivity.this);
+		mTitanic = new Titanic();
 		// 初始化控件
 		findViews();
+		// set fancy typeface
+		mTitanicTextView
+				.setTypeface(Typefaces.get(this, "Satisfy-Regular.ttf"));
+		// start animation
 		// 初始化ActionBar
 		initActionBar();
 		// 添加监听事件
@@ -135,6 +139,7 @@ public class MyCollectionActivity extends FragmentActivity implements
 		mTitanicTextView = (TitanicTextView) findViewById(R.id.loading_text);
 		mRelativeLayoutBack = (RelativeLayout) findViewById(R.id.rl_back_actionbar);
 		mTextViewTitle = (TextView) findViewById(R.id.tv_title_actionbar);
+		mTextViewTip = (TextView) findViewById(R.id.tv_load_no_data_tip);
 
 		mRelativeLayoutLoading = (RelativeLayout) findViewById(R.id.rl_loading);
 		mRelativeLayoutLoadFaluire = (RelativeLayout) findViewById(R.id.rl_load_faluire);
@@ -156,7 +161,7 @@ public class MyCollectionActivity extends FragmentActivity implements
 		mRelativeLayoutLoading.setVisibility(View.GONE);
 		mRelativeLayoutLoadNoData.setVisibility(View.GONE);
 		mRelativeLayoutLoadFaluire.setVisibility(View.GONE);
-		
+
 		mFavoriteList = favoriteData;
 		// 初始化颜色
 		mCardList = new ArrayList<Card>();
@@ -174,6 +179,7 @@ public class MyCollectionActivity extends FragmentActivity implements
 
 	@Override
 	public void showGetDataFaluire() {
+		mTitanic.cancel();
 		mRelativeLayoutLoadFaluire.setVisibility(View.VISIBLE);
 		mRelativeLayoutLoading.setVisibility(View.GONE);
 		mRelativeLayoutLoadNoData.setVisibility(View.GONE);
@@ -181,22 +187,19 @@ public class MyCollectionActivity extends FragmentActivity implements
 
 	@Override
 	public void showGetDataNoData() {
+		mTitanic.cancel();
 		mRelativeLayoutLoadNoData.setVisibility(View.VISIBLE);
+		mTextViewTip.setText("亲！您还没有任何收藏哦~");
 		mRelativeLayoutLoadFaluire.setVisibility(View.GONE);
 		mRelativeLayoutLoading.setVisibility(View.GONE);
 	}
 
 	@Override
 	public void showLoadView() {
+		mTitanic.start(mTitanicTextView);
 		mRelativeLayoutLoading.setVisibility(View.VISIBLE);
 		mRelativeLayoutLoadNoData.setVisibility(View.GONE);
 		mRelativeLayoutLoadFaluire.setVisibility(View.GONE);
-		// set fancy typeface
-		mTitanicTextView
-				.setTypeface(Typefaces.get(this, "Satisfy-Regular.ttf"));
-		// start animation
-		mTitanic = new Titanic();
-		mTitanic.start(mTitanicTextView);
 	}
 
 	@Override
@@ -241,9 +244,7 @@ public class MyCollectionActivity extends FragmentActivity implements
 		mRhythmLayout.showRhythmAtPosition(0);
 		mPreColor = mCardList.get(0).getBackgroundColor();
 		mMainView.setBackgroundColor(mPreColor);
-		
-		
-		
+
 	}
 
 	/**
@@ -317,7 +318,7 @@ public class MyCollectionActivity extends FragmentActivity implements
 
 		}
 	};
-	
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
