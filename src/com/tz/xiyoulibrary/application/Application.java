@@ -6,6 +6,7 @@ import com.tz.xiyoulibrary.bean.UserBean;
 public class Application extends android.app.Application{
 
 	public static String SESSION = "";
+	public static String USERNAME = "";
 	public static UserBean user;
 	
 	@Override
