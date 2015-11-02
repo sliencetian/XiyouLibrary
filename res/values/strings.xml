@@ -22,6 +22,13 @@
     <string name="my_foot_text">我的足迹</string>
     <string name="ranklist_text">排行榜</string>
     <string name="right_arrow_text">></string>
+    <!-- 设置 -->
+    <string name="setting_message_notic_text">消息通知</string>
+    <string name="setting_net_type_text">2G/3G/4G网络下显示图片</string>
+    <string name="setting_question_text">常见问题</string>
+    <string name="setting_back_advice_text">问题反馈</string>
+    <string name="setting_about_text">关于我们</string>
+    <string name="setting_exit_text">退出当前账户</string>
 	<!-- 加载 -->
     <string name="loading_text">loading</string>
     <string name="load_faluire_text">啊哦!加载失败了,点击重新加载</string>
