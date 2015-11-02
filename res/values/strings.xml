@@ -26,4 +26,37 @@
     <string name="loading_text">loading</string>
     <string name="load_faluire_text">啊哦!加载失败了,点击重新加载</string>
     <string name="load_no_data_text">亲！您没有收藏任何书籍哦~</string>
+    <!-- 图书详情 -->
+    <string name="share_text">分享</string>
+    <string name="collection_text">收藏</string>
+    <string name="one_numb_text">1</string>
+    <string name="one_text">基本资料</string>
+    <string name="one_pub_text">出版社：</string>
+    <string name="one_subject_text">主题分类：</string>
+    <string name="one_total_text">藏书数量：</string>
+    <string name="one_borrow_text">浏览次数：</string>
+    <string name="one_fav_text">收藏次数：</string>
+    <string name="one_rent_text">借阅次数：</string>
+    <string name="one_can_borrow_text">可借数量：</string>
+    <string name="one_pages_text">页数：</string>
+    <string name="one_author_text">作者：</string>
+    <string name="one_id_text">索书号：</string>
+    <string name="two_numb_text">2</string>
+    <string name="two_text">流通情况</string>
+    <string name="two_info_text">图书流通情况如下：</string>
+    <string name="two_total_text">共有图书：</string>
+    <string name="two_can_borrow_text">可借数量：</string>
+    <string name="three_numb_text">3</string>
+    <string name="three_text">图书摘要</string>
+    <string name="three_author_text">作者简介:</string>
+    <string name="three_book_text">图书简介:</string>
+    <string name="four_numb_text">4</string>
+    <string name="four_text">相关推荐</string>
+    <string name="no_book_detial">暂无该书简介</string>
+    <string name="date_text">应还日期：</string>
+    <string name="department_text">所在书库：</string>
+    <string name="status_text">状态：</string>
+    <string name="barcode_text">条形码：</string>
+    <string name="id_refer_text">控制号：</string>
+    
 </resources>

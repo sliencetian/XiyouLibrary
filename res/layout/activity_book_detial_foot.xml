@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:paddingLeft="5dp"
-        android:text="写给大家看的PPT设计书"
         android:textSize="@dimen/book_detial_title_size" />
 
     <LinearLayout
@@ -34,7 +33,8 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/img_circle"
-                android:text="1"
+                android:gravity="center"
+                android:text="@string/one_numb_text"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size" />
 
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
-                android:text="基本资料"
+                android:text="@string/one_text"
                 android:textSize="@dimen/book_detial_title_size" />
         </LinearLayout>
 
@@ -63,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
-                android:text="收藏"
+                android:text="@string/collection_text"
                 android:textSize="@dimen/book_detial_title_size" />
         </LinearLayout>
 
@@ -84,18 +84,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
-                android:text="分享"
+                android:text="@string/share_text"
                 android:textSize="@dimen/book_detial_title_size" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_activity_book_detial_one_info"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/ll_activity_book_detial_one"
         android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_marginTop="10dp"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:visibility="visible" >
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -105,7 +108,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="索书号："
+                android:text="@string/one_id_text"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/book_info_title_size" />
 
@@ -113,7 +116,6 @@
                 android:id="@+id/tv_book_id_activity_book_detial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TP394.41"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/book_info_title_size" />
         </LinearLayout>
@@ -127,7 +129,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="作者："
+                android:text="@string/one_author_text"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/book_info_title_size" />
 
@@ -135,7 +137,6 @@
                 android:id="@+id/tv_book_author_activity_book_detial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="吴亚峰 编 索依娜 编"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/book_info_title_size" />
         </LinearLayout>
@@ -149,7 +150,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="页数："
+                android:text="@string/one_pages_text"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/book_info_title_size" />
 
@@ -157,7 +158,6 @@
                 android:id="@+id/tv_book_page_activity_book_detial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="540 页"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/book_info_title_size" />
         </LinearLayout>
@@ -171,7 +171,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="可借数量："
+                android:text="@string/one_can_borrow_text"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/book_info_title_size" />
 
@@ -179,7 +179,6 @@
                 android:id="@+id/tv_book_avaliable_activity_book_detial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3 本"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/book_info_title_size" />
         </LinearLayout>
@@ -193,7 +192,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="借阅次数："
+                android:text="@string/one_rent_text"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/book_info_title_size" />
 
@@ -201,7 +200,6 @@
                 android:id="@+id/tv_book_renttimes_activity_book_detial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5 次"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/book_info_title_size" />
 
@@ -209,7 +207,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
-                android:text="收藏次数："
+                android:text="@string/one_fav_text"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/book_info_title_size" />
 
@@ -217,7 +215,6 @@
                 android:id="@+id/tv_book_favtimes_activity_book_detial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2 次"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/book_info_title_size" />
         </LinearLayout>
@@ -231,7 +228,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="浏览次数："
+                android:text="@string/one_borrow_text"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/book_info_title_size" />
 
@@ -239,7 +236,6 @@
                 android:id="@+id/tv_book_browsetimes_activity_book_detial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2 次"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/book_info_title_size" />
 
@@ -247,7 +243,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
-                android:text="藏书数量："
+                android:text="@string/one_total_text"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/book_info_title_size" />
 
@@ -255,7 +251,6 @@
                 android:id="@+id/tv_book_total_activity_book_detial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2 本"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/book_info_title_size" />
         </LinearLayout>
@@ -269,7 +264,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="主题分类："
+                android:text="@string/one_subject_text"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/book_info_title_size" />
 
@@ -277,7 +272,6 @@
                 android:id="@+id/tv_book_subject_activity_book_detial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="移动通信  --携带电话机  --应用程序  --程序设计"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/book_info_title_size" />
         </LinearLayout>
@@ -291,7 +285,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="出版社："
+                android:text="@string/one_pub_text"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/book_info_title_size" />
 
@@ -299,10 +293,232 @@
                 android:id="@+id/tv_book_pub_activity_book_detial"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="北京  :电子工业出版社 ,2010.10"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/book_info_title_size" />
         </LinearLayout>
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_activity_book_detial_two"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_activity_book_detial_one_info"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/img_circle"
+            android:gravity="center"
+            android:text="@string/two_numb_text"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:text="@string/two_text"
+            android:textSize="@dimen/book_detial_title_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_activity_book_detial_two_info"
+        android:layout_width="fill_parent"
+        android:layout_height="350dp"
+        android:layout_below="@id/ll_activity_book_detial_two"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        android:visibility="visible" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/two_info_text"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/book_info_title_size" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/two_can_borrow_text"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+
+            <TextView
+                android:id="@+id/tv_book_avaliable_activity_book_detial_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:text="@string/two_total_text"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+
+            <TextView
+                android:id="@+id/tv_book_total_activity_book_detial_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/book_info_title_size" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lv_circlu_activity_book_detial"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:divider="@color/white"
+            android:dividerHeight="2dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_activity_book_detial_three"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_activity_book_detial_two_info"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/img_circle"
+            android:gravity="center"
+            android:text="@string/three_numb_text"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:text="@string/three_text"
+            android:textSize="@dimen/book_detial_title_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_activity_book_detial_three_info"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_activity_book_detial_three"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        android:visibility="visible" >
+
+        <LinearLayout
+            android:id="@+id/ll_book_detial"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible" >
+
+            <LinearLayout
+                android:id="@+id/ll_book_author_info_activity_book_detial"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/three_author_text"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/book_info_title_size" />
+
+                <TextView
+                    android:id="@+id/tv_book_author_info_activity_book_detial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/book_info_title_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_book_Summary_activity_book_detial"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/three_book_text"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/book_info_title_size" />
+
+                <TextView
+                    android:id="@+id/tv_book_Summary_activity_book_detial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/book_info_title_size" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_no_book_detial"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/no_book_detial"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/text_size"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_activity_book_detial_four"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_activity_book_detial_three_info"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/img_circle"
+            android:gravity="center"
+            android:text="@string/four_numb_text"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:text="@string/four_text"
+            android:textSize="@dimen/book_detial_title_size" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_refer_activity_book_detial"
+        android:layout_width="fill_parent"
+        android:layout_height="400dp"
+        android:layout_below="@id/ll_activity_book_detial_four"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:divider="@color/white"
+        android:dividerHeight="5dp" />
 
 </RelativeLayout>
