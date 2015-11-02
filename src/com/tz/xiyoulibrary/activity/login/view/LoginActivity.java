@@ -131,7 +131,6 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
 	@Override
 	public void setIsSavePass(boolean isSavePass) {
-		System.out.println("isSavePass-->" + isSavePass);
 		mCheckBoxSavePassword.setChecked(isSavePass);
 	}
 }
