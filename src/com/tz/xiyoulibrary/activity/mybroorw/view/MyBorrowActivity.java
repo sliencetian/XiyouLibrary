@@ -58,6 +58,8 @@ public class MyBorrowActivity extends BaseActivity implements IMyborrowView {
 	RelativeLayout mRelativeLayoutLoadFaluire;
 	@ViewById(R.id.rl_load_no_data)
 	RelativeLayout mRelativeLayoutLoadNoData;
+	@ViewById(R.id.tv_load_no_data_tip)
+	TextView mTextViewTip;
 
 	private List<BookBean> borrowData;
 
@@ -180,6 +182,7 @@ public class MyBorrowActivity extends BaseActivity implements IMyborrowView {
 	public void showNoDataView() {
 		mTitanic.cancel();
 		mRelativeLayoutLoadNoData.setVisibility(View.VISIBLE);
+		mTextViewTip.setText("亲！您当前没有借阅书籍哦~");
 		mRelativeLayoutLoadFaluire.setVisibility(View.GONE);
 		mRelativeLayoutLoading.setVisibility(View.GONE);
 	}
