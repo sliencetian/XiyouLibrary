@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -73,16 +71,24 @@ public class BookDetialModel implements IBookDetialModel {
 					} catch (Exception e) {
 						bookDetial.put("Form", "暂无记录");
 					}
-					bookDetial.put("Subject", o2.getString("Subject"));
+					try {
+						bookDetial.put("Subject", o2.getString("Subject"));
+					} catch (Exception e) {
+						bookDetial.put("Subject", "暂无记录");
+					}
 					bookDetial.put("RentTimes", o2.getString("RentTimes"));
 					bookDetial.put("FavTimes", o2.getString("FavTimes"));
 					bookDetial.put("BrowseTimes", o2.getString("BrowseTimes"));
 					bookDetial.put("Total", o2.getString("Total"));
 					bookDetial.put("Avaliable", o2.getString("Avaliable"));
 					// 流通信息数组
+					LogUtils.d("BookDetial", "开始解析流通信息");
 					JSONArray array = o2.getJSONArray("CirculationInfo");
 					List<Map<String, String>> circulationInfoList = new ArrayList<Map<String, String>>();
-					for (int i = 0; i < array.length(); i++) {
+					int size = array.length() > 50 ? 50 : array.length();
+					for (int i = 0; i < size; i++) {
+						LogUtils.d("BookDetial", "解析已完成---"+i+"/"+array.length());
+						
 						JSONObject o3 = array.getJSONObject(i);
 						Map<String, String> map = new HashMap<String, String>();
 						map.put("Barcode", o3.getString("Barcode"));
@@ -93,6 +99,8 @@ public class BookDetialModel implements IBookDetialModel {
 						circulationInfoList.add(map);
 					}
 					bookDetial.put("CirculationInfo", circulationInfoList);
+					LogUtils.d("BookDetial", "流通信息解析完成");
+					LogUtils.d("BookDetial", "开始解析相关图书数据");
 					// 相关图书信息数组
 					JSONArray array2 = o2.getJSONArray("ReferBooks");
 					List<Map<String, String>> referBooksList = new ArrayList<Map<String, String>>();
@@ -105,6 +113,8 @@ public class BookDetialModel implements IBookDetialModel {
 						referBooksList.add(map);
 					}
 					bookDetial.put("ReferBooks", referBooksList);
+					LogUtils.d("BookDetial", "相关推荐解析完成");
+					LogUtils.d("BookDetial", "开始解析来自豆瓣的数据");
 					// 来自豆瓣的信息，没有该书则为null
 					try {
 						JSONObject o3 = o2.getJSONObject("DoubanInfo");
@@ -121,12 +131,14 @@ public class BookDetialModel implements IBookDetialModel {
 							// bookDetial.put("large", o3.getString("large"));
 						} catch (Exception e) {
 							e.printStackTrace();
+							LogUtils.d("BookDetial", "解析豆瓣书籍图片异常");
 						}
 						bookDetial.put("Summary", o3.getString("Summary"));
 						bookDetial.put("Author_Info",
 								o3.getString("Author_Info"));
 					} catch (Exception e) {
-						e.printStackTrace();
+						bookDetial.put("Summary", "");
+						bookDetial.put("Author_Info","");
 					}
 					state = LOADING_SUCCESS;
 				} catch (Exception e) {

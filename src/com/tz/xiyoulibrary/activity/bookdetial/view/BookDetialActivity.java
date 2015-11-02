@@ -1,17 +1,26 @@
 package com.tz.xiyoulibrary.activity.bookdetial.view;
 
+import java.util.List;
 import java.util.Map;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ImageView;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.tz.xiyoulibrary.R;
@@ -22,6 +31,7 @@ import com.tz.xiyoulibrary.titanicview.Titanic;
 import com.tz.xiyoulibrary.titanicview.TitanicTextView;
 import com.tz.xiyoulibrary.titanicview.Typefaces;
 import com.tz.xiyoulibrary.toastview.CustomToast;
+import com.tz.xiyoulibrary.utils.Constants;
 
 @EActivity(R.layout.activity_book_detial)
 public class BookDetialActivity extends BaseActivity implements IBookDetialView {
@@ -102,6 +112,12 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 				R.layout.activity_book_detial_foot, null);
 		// 初始化基本资料
 		addOneView(foot);
+		// 添加流通情况
+		addTwoView(foot);
+		// 添加图书摘要
+		addThreeView(foot);
+		// 添加相关推荐
+		addFourView(foot);
 
 		mPullToZoomListView.addFooterView(foot);
 		String[] adapterData = new String[] {};
@@ -115,6 +131,91 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 
 	}
 
+	/**
+	 * 添加相关推荐
+	 */
+	private void addFourView(RelativeLayout root) {
+		ListView lv = (ListView) root
+				.findViewById(R.id.lv_refer_activity_book_detial);// 流通情况
+		@SuppressWarnings("unchecked")
+		ReferAdapter adapter = new ReferAdapter(BookDetialActivity.this,
+				(List<Map<String, String>>) bookDetial.get("ReferBooks"),
+				R.layout.item_refer_adapter);
+		lv.setAdapter(adapter);
+		lv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				TextView tv = (TextView) view
+						.findViewById(R.id.tv_id_item_refer);
+				Intent intent = new Intent(BookDetialActivity.this,
+						BookDetialActivity_.class);
+				intent.putExtra("url", Constants.GET_BOOK_DETAIL_BY_ID
+						+ tv.getText().toString());
+				startActivity(intent);
+			}
+		});
+	}
+
+	/**
+	 * 添加图书摘要
+	 */
+	private void addThreeView(RelativeLayout root) {
+		TextView tv_no_data = (TextView) root
+				.findViewById(R.id.tv_no_book_detial);
+		LinearLayout ll = (LinearLayout) root.findViewById(R.id.ll_book_detial);
+		if (!bookDetial.get("Author_Info").equals("")) {
+			tv_no_data.setVisibility(View.GONE);
+			ll.setVisibility(View.VISIBLE);
+			TextView tv = (TextView) root
+					.findViewById(R.id.tv_book_author_info_activity_book_detial);
+			tv.setText(bookDetial.get("Author_Info") + "");
+		} else {
+			root.findViewById(R.id.ll_book_author_info_activity_book_detial)
+					.setVisibility(View.GONE);
+		}
+		if (!bookDetial.get("Summary").equals("")) {
+			tv_no_data.setVisibility(View.GONE);
+			ll.setVisibility(View.VISIBLE);
+			TextView tv = (TextView) root
+					.findViewById(R.id.tv_book_Summary_activity_book_detial);
+			tv.setText(bookDetial.get("Summary") + "");
+		} else {
+			root.findViewById(R.id.ll_book_Summary_activity_book_detial)
+					.setVisibility(View.GONE);
+		}
+		if (bookDetial.containsKey("Author_Info")
+				&& bookDetial.get("Summary").equals("")) {
+			ll.setVisibility(View.GONE);
+			tv_no_data.setVisibility(View.VISIBLE);
+		}
+	}
+
+	/**
+	 * 流通情况
+	 */
+	private void addTwoView(RelativeLayout root) {
+		TextView tv;
+		tv = (TextView) root
+				.findViewById(R.id.tv_book_avaliable_activity_book_detial_two);// 可借数量
+		tv.setText(bookDetial.get("Avaliable") + " 本");
+		tv = (TextView) root
+				.findViewById(R.id.tv_book_total_activity_book_detial_two);// 藏书数量
+		tv.setText(bookDetial.get("Total") + " 本");
+		ListView lv = (ListView) root
+				.findViewById(R.id.lv_circlu_activity_book_detial);// 流通情况
+		@SuppressWarnings("unchecked")
+		CirculationAdapter adapter = new CirculationAdapter(
+				BookDetialActivity.this,
+				(List<Map<String, String>>) bookDetial.get("CirculationInfo"),
+				R.layout.item_circulation_adapter);
+		lv.setAdapter(adapter);
+	}
+
+	/**
+	 * 基本资料
+	 */
 	private void addOneView(RelativeLayout root) {
 		TextView tv;
 		tv = (TextView) root.findViewById(R.id.tv_title_activity_book_detial);// 标题
