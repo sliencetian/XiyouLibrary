@@ -1,7 +1,6 @@
 package com.tz.xiyoulibrary.activity.mycollection.activity.view;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import android.annotation.SuppressLint;
@@ -25,7 +24,6 @@ import com.handmark.pulltorefresh.extras.viewpager.PullToRefreshViewPager;
 import com.tz.xiyoulibrary.R;
 import com.tz.xiyoulibrary.activity.mycollection.activity.presenter.MyCollectionPresenter;
 import com.tz.xiyoulibrary.activity.mycollection.fragment.BookPagerAdapter;
-import com.tz.xiyoulibrary.activity.mycollection.viewutils.bean.Card;
 import com.tz.xiyoulibrary.activity.mycollection.viewutils.control.IRhythmItemListener;
 import com.tz.xiyoulibrary.activity.mycollection.viewutils.control.RhythmAdapter;
 import com.tz.xiyoulibrary.activity.mycollection.viewutils.control.RhythmLayout;
@@ -69,7 +67,6 @@ public class MyCollectionActivity extends FragmentActivity implements
 	 */
 	private View mMainView;
 
-	private List<Card> mCardList;
 	private List<Map<String, String>> mFavoriteList;
 
 	private RelativeLayout mRelativeLayoutBack;
@@ -109,7 +106,6 @@ public class MyCollectionActivity extends FragmentActivity implements
 		// set fancy typeface
 		mTitanicTextView
 				.setTypeface(Typefaces.get(this, "Satisfy-Regular.ttf"));
-		// start animation
 		// 初始化ActionBar
 		initActionBar();
 		// 添加监听事件
@@ -163,17 +159,17 @@ public class MyCollectionActivity extends FragmentActivity implements
 		mRelativeLayoutLoadFaluire.setVisibility(View.GONE);
 
 		mFavoriteList = favoriteData;
-		// 初始化颜色
-		mCardList = new ArrayList<Card>();
-		for (int i = 0; i < mFavoriteList.size(); i++) {
-			Card card = new Card();
-			// 随机生成颜色值
-			// card.setBackgroundColor((int) -(Math.random() * (16777216 - 1) +
-			// 1));
-			card.setBackgroundColor(getResources()
-					.getColor(R.color.theme_color));
-			mCardList.add(card);
+		for (Map<String, String> map : mFavoriteList) {
+			map.put("Color", getResources().getColor(R.color.theme_color) + "");
 		}
+		// 初始化颜色
+		/*
+		 * mCardList = new ArrayList<Card>(); for (int i = 0; i <
+		 * mFavoriteList.size(); i++) { Card card = new Card(); // 随机生成颜色值 //
+		 * card.setBackgroundColor((int) -(Math.random() * (16777216 - 1) + //
+		 * 1)); card.setBackgroundColor(getResources()
+		 * .getColor(R.color.theme_color)); mCardList.add(card); }
+		 */
 		init();
 	}
 
@@ -228,7 +224,7 @@ public class MyCollectionActivity extends FragmentActivity implements
 		mViewPager.setAdapter(bookPagerAdapter);
 
 		// 设置钢琴布局的适配器
-		mRhythmAdapter = new RhythmAdapter(this, mCardList);
+		mRhythmAdapter = new RhythmAdapter(this, mFavoriteList);
 		mRhythmLayout.setAdapter(mRhythmAdapter);
 
 		// 设置ViewPager的滚动速度
@@ -242,7 +238,7 @@ public class MyCollectionActivity extends FragmentActivity implements
 
 		// 初始化时将第一个键帽弹出,并设置背景颜色
 		mRhythmLayout.showRhythmAtPosition(0);
-		mPreColor = mCardList.get(0).getBackgroundColor();
+		mPreColor = Integer.parseInt(mFavoriteList.get(0).get("Color"));
 		mMainView.setBackgroundColor(mPreColor);
 
 	}
@@ -303,13 +299,14 @@ public class MyCollectionActivity extends FragmentActivity implements
 
 		@Override
 		public void onPageSelected(int position) {
-			int currColor = mCardList.get(position).getBackgroundColor();
+			int currColor = Integer.parseInt(mFavoriteList.get(position).get(
+					"Color"));
 			AnimatorUtils.showBackgroundColorAnimation(mMainView, mPreColor,
 					currColor, 400);
 			mPreColor = currColor;
 
-			mMainView.setBackgroundColor(mCardList.get(position)
-					.getBackgroundColor());
+			mMainView.setBackgroundColor(Integer.parseInt(mFavoriteList.get(
+					position).get("Color")));
 			mRhythmLayout.showRhythmAtPosition(position);
 		}
 
@@ -323,5 +320,21 @@ public class MyCollectionActivity extends FragmentActivity implements
 	protected void onDestroy() {
 		super.onDestroy();
 		queue.cancelAll(this);
+	}
+
+	public RequestQueue getQueue() {
+		return queue;
+	}
+
+	public void upDate(String position) {
+		CustomToast.showToast(MyCollectionActivity.this, "删除成功", 2000);
+		mFavoriteList.remove(Integer.parseInt(position) - 1);
+		if (mFavoriteList.size() == 0) {
+			showGetDataNoData();
+		} else {
+			init();
+			mRhythmLayout.showRhythmAtPosition(1);
+			mRhythmLayout.showRhythmAtPosition(0);
+		}
 	}
 }

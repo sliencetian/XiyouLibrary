@@ -7,12 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-
-import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 import com.tz.xiyoulibrary.R;
-import com.tz.xiyoulibrary.activity.mycollection.viewutils.bean.Card;
 
 /**
  * User: shine Date: 2015-01-14 Time: 13:32 Description:
@@ -29,13 +26,11 @@ public class RhythmAdapter extends BaseAdapter {
 	/**
 	 * สýพÝิด
 	 */
-	private List<Card> mCardList;
+	private List<Map<String, String>> mCardList;
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public RhythmAdapter(Context context, List<Card> cardList) {
+	public RhythmAdapter(Context context, List<Map<String, String>> cardList) {
 		this.mContext = context;
-		this.mCardList = new ArrayList();
-		this.mCardList.addAll(cardList);
+		this.mCardList = cardList;
 		if (context != null)
 			this.mInflater = LayoutInflater.from(context);
 	}

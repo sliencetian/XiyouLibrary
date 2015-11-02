@@ -123,6 +123,7 @@ public class RhythmLayout extends HorizontalScrollView {
         if (mLinearLayout == null) {
             mLinearLayout = (LinearLayout) getChildAt(0);
         }
+        mLinearLayout.removeAllViews();
         //循环获取adapter中的View，设置item的宽度并且add到mLinearLayout中
         for (int i = 0; i < this.mAdapter.getCount(); i++) {
             mAdapter.setItemWidth(mItemWidth);
