@@ -50,7 +50,7 @@
         </activity>
         <!-- 排行榜 -->
         <activity
-            android:name="com.tz.xiyoulibrary.activity.rank.RankActivity_"
+            android:name="com.tz.xiyoulibrary.activity.rank.view.RankActivity_"
             android:screenOrientation="portrait" >
         </activity>
         <!-- 图书详情 -->
