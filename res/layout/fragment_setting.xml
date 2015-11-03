@@ -145,6 +145,7 @@
                 android:id="@+id/rl_exit_fragment_setting"
                 android:layout_width="fill_parent"
                 android:layout_height="60dp"
+                android:layout_marginBottom="0.5dp"
                 android:layout_marginTop="0.5dp"
                 android:background="@drawable/my_rl_selector" >
 

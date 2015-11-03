@@ -6,7 +6,10 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
 import com.tz.xiyoulibrary.R;
+import com.tz.xiyoulibrary.activity.about.AboutActivity_;
+import com.tz.xiyoulibrary.activity.advice.AdviceActivity_;
 import com.tz.xiyoulibrary.activity.login.view.LoginActivity_;
+import com.tz.xiyoulibrary.activity.question.QuestionActivity_;
 import com.tz.xiyoulibrary.switchview.togglebutton.ToggleButton;
 import com.tz.xiyoulibrary.utils.ConfigFile;
 
@@ -75,7 +78,7 @@ public class SettingFragment extends Fragment {
 	 */
 	@Click(R.id.rl_question_fragment_setting)
 	public void pushQuestin() {
-
+		startActivity(new Intent(getActivity(), QuestionActivity_.class));
 	}
 
 	/**
@@ -83,7 +86,7 @@ public class SettingFragment extends Fragment {
 	 */
 	@Click(R.id.rl_back_advice_fragment_setting)
 	public void pushBackAdvice() {
-
+		startActivity(new Intent(getActivity(), AdviceActivity_.class));
 	}
 
 	/**
@@ -91,7 +94,7 @@ public class SettingFragment extends Fragment {
 	 */
 	@Click(R.id.rl_about_fragment_setting)
 	public void pushAbout() {
-
+		startActivity(new Intent(getActivity(), AboutActivity_.class));
 	}
 
 	/**
@@ -113,6 +116,7 @@ public class SettingFragment extends Fragment {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						dialog.dismiss();
+						ConfigFile.savePassword(getActivity(), "");
 						startActivity(new Intent(getActivity(),
 								LoginActivity_.class));
 						getActivity().finish();
