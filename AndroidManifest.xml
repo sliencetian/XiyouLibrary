@@ -9,6 +9,7 @@
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:name="com.tz.xiyoulibrary.application.Application"
@@ -56,6 +57,21 @@
         <!-- 图书详情 -->
         <activity
             android:name="com.tz.xiyoulibrary.activity.bookdetial.view.BookDetialActivity_"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 常见问题 -->
+        <activity
+            android:name="com.tz.xiyoulibrary.activity.question.QuestionActivity_"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 问题反馈 -->
+        <activity
+            android:name="com.tz.xiyoulibrary.activity.advice.AdviceActivity_"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 关于我们 -->
+        <activity
+            android:name="com.tz.xiyoulibrary.activity.about.AboutActivity_"
             android:screenOrientation="portrait" >
         </activity>
     </application>

@@ -29,7 +29,7 @@
     <string name="setting_back_advice_text">问题反馈</string>
     <string name="setting_about_text">关于我们</string>
     <string name="setting_exit_text">退出当前账户</string>
-	<!-- 加载 -->
+    <!-- 加载 -->
     <string name="loading_text">loading</string>
     <string name="load_faluire_text">啊哦!加载失败了,点击重新加载</string>
     <string name="load_no_data_text">亲！您没有收藏任何书籍哦~</string>
@@ -65,10 +65,19 @@
     <string name="status_text">状态：</string>
     <string name="barcode_text">条形码：</string>
     <string name="id_refer_text">控制号：</string>
-	<!-- 排行榜 -->    
+    <!-- 排行榜 -->
     <string name="sort_type_text">排序方式：</string>
-	<!-- 我的节借阅 -->    
+    <!-- 我的节借阅 -->
     <string name="bt_status_text">我要续借：</string>
     <string name="tv_status_text">本馆续借：</string>
     <string name="data_myborrow_text">到期时间：</string>
+    <!-- 常见问题 -->
+    <string name="question1_text">1.登录时的学号和密码都指的是什么？</string>
+    <string name="answer1_text">\t学号一般为:s+自己的学号,初始密码为123456</string>
+    <string name="question2_text">2.学号和用户名安全吗？</string>
+    <string name="answer2_text">\t为了提高查询速度和缓解服务器压力，我们只对一些图书信息进行了缓存。请放心使用</string>
+    <!-- 问题反馈 -->
+    <string name="bt_send_text">发送</string>
+    <string name="advice_text">\t\t请留下您的宝贵意见我们将不断完善,谢谢。</string>
+
 </resources>

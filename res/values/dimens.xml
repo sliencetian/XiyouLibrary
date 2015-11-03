@@ -4,6 +4,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="text_size">17dp</dimen>
+    <dimen name="samle_text_size">15dp</dimen>
     <dimen name="radius_size">8dp</dimen>
     <!-- 我的收藏 -->
     <dimen name="rhythm_icon_margin">2.0dip</dimen>
