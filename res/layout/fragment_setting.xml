@@ -30,15 +30,13 @@
                     android:text="@string/setting_message_notic_text"
                     android:textSize="@dimen/text_size" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <com.tz.xiyoulibrary.switchview.togglebutton.ToggleButton
+                    android:id="@+id/tb_message_notic_fragment_setting"
+                    android:layout_width="55dp"
+                    android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
-                    android:text="@string/right_arrow_text"
-                    android:textColor="@color/dark_grey"
-                    android:textSize="@dimen/right_arrow_size" />
+                    android:layout_marginRight="10dp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -56,15 +54,13 @@
                     android:text="@string/setting_net_type_text"
                     android:textSize="@dimen/text_size" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <com.tz.xiyoulibrary.switchview.togglebutton.ToggleButton
+                    android:id="@+id/tb_net_fragment_setting"
+                    android:layout_width="55dp"
+                    android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
-                    android:text="@string/right_arrow_text"
-                    android:textColor="@color/dark_grey"
-                    android:textSize="@dimen/right_arrow_size" />
+                    android:layout_marginRight="10dp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -144,7 +140,8 @@
                     android:textColor="@color/dark_grey"
                     android:textSize="@dimen/right_arrow_size" />
             </RelativeLayout>
-            <RelativeLayout
+
+            <RelativeLayout
                 android:id="@+id/rl_exit_fragment_setting"
                 android:layout_width="fill_parent"
                 android:layout_height="60dp"
