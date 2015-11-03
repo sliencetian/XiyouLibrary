@@ -1,11 +1,14 @@
 package com.tz.xiyoulibrary.fragment.setting;
 
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
 import com.tz.xiyoulibrary.R;
 import com.tz.xiyoulibrary.activity.login.view.LoginActivity_;
+import com.tz.xiyoulibrary.switchview.togglebutton.ToggleButton;
+import com.tz.xiyoulibrary.utils.ConfigFile;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -20,6 +23,10 @@ import android.widget.RelativeLayout;
 @EFragment(R.layout.fragment_setting)
 public class SettingFragment extends Fragment {
 
+	@ViewById(R.id.tb_message_notic_fragment_setting)
+	ToggleButton mToggleButtonMessageBotic;
+	@ViewById(R.id.tb_net_fragment_setting)
+	ToggleButton mToggleButtonNet;
 	@ViewById(R.id.rl_question_fragment_setting)
 	RelativeLayout mRelativeLayoutQuestion;
 	@ViewById(R.id.rl_back_advice_fragment_setting)
@@ -33,6 +40,34 @@ public class SettingFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		return super.onCreateView(inflater, container, savedInstanceState);
+	}
+
+	/**
+	 * 常见问题
+	 */
+	@Click(R.id.tb_message_notic_fragment_setting)
+	public void setMessageNotic() {
+		if (ConfigFile.getMessageNotic(getActivity())) {
+			mToggleButtonMessageBotic.toggleOff();
+			ConfigFile.saveMessageNotic(getActivity(), false);
+		} else {
+			mToggleButtonMessageBotic.toggleOn();
+			ConfigFile.saveMessageNotic(getActivity(), true);
+		}
+	}
+
+	/**
+	 * 常见问题
+	 */
+	@Click(R.id.tb_net_fragment_setting)
+	public void pushNet() {
+		if (ConfigFile.getNet(getActivity())) {
+			mToggleButtonNet.toggleOff();
+			ConfigFile.saveNet(getActivity(), false);
+		} else {
+			mToggleButtonNet.toggleOn();
+			ConfigFile.saveNet(getActivity(), true);
+		}
 	}
 
 	/**
@@ -85,4 +120,17 @@ public class SettingFragment extends Fragment {
 				}).create().show();
 	}
 
+	@AfterViews
+	public void init() {
+		if (ConfigFile.getMessageNotic(getActivity())) {
+			mToggleButtonMessageBotic.toggleOn();
+		} else {
+			mToggleButtonMessageBotic.toggleOff();
+		}
+		if (ConfigFile.getNet(getActivity())) {
+			mToggleButtonNet.toggleOn();
+		} else {
+			mToggleButtonNet.toggleOff();
+		}
+	}
 }

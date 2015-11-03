@@ -16,6 +16,11 @@ public class ConfigFile {
 	private static final String PassWord = "password";
 	private static final String IsSavePassWord = "isSavePass";
 
+	// 消息通知
+	private static final String SETTING_MESSAGE_NOTIC = "setting_message_notic";
+	// 网络图片显示
+	private static final String SETTING_NET = "setting_net";
+
 	public static void saveUsername(Context context, String username) {
 		initSp(context);
 		sp.edit().putString(UserName, username).commit();
@@ -44,6 +49,27 @@ public class ConfigFile {
 	public static boolean getIsSavePass(Context context) {
 		initSp(context);
 		return sp.getBoolean(IsSavePassWord, false);
+	}
+
+	public static boolean getMessageNotic(Context context) {
+		initSp(context);
+		return sp.getBoolean(SETTING_MESSAGE_NOTIC, true);
+	}
+
+	public static void saveMessageNotic(Context context,
+			boolean message_notic_status) {
+		initSp(context);
+		sp.edit().putBoolean(SETTING_MESSAGE_NOTIC, message_notic_status).commit();
+	}
+
+	public static boolean getNet(Context context) {
+		initSp(context);
+		return sp.getBoolean(SETTING_NET, true);
+	}
+
+	public static void saveNet(Context context, boolean net_status) {
+		initSp(context);
+		sp.edit().putBoolean(SETTING_NET, net_status).commit();
 	}
 
 	private static void initSp(Context context) {
