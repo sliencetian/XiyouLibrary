@@ -1,6 +1,7 @@
 package com.tz.xiyoulibrary.pulltozoomview;
 
 import com.tz.xiyoulibrary.R;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.SystemClock;
@@ -14,6 +15,7 @@ import android.widget.AbsListView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 public class PullToZoomListView extends ListView implements
 		AbsListView.OnScrollListener {
@@ -27,6 +29,8 @@ public class PullToZoomListView extends ListView implements
 	private FrameLayout mHeaderContainer;
 	private int mHeaderHeight;
 	private ImageView mHeaderImage;
+	private RelativeLayout mHeaderBack;
+	private int mHeaderBackImage = R.drawable.img_book_back4;
 	float mLastMotionY = -1.0F;
 	float mLastScale = -1.0F;
 	float mMaxScale = -1.0F;
@@ -64,9 +68,13 @@ public class PullToZoomListView extends ListView implements
 				.getMetrics(localDisplayMetrics);
 		this.mScreenHeight = localDisplayMetrics.heightPixels;
 		this.mHeaderContainer = new FrameLayout(paramContext);
-		this.mHeaderContainer.setBackgroundColor(paramContext.getResources()
-				.getColor(R.color.theme_color));
+		this.mHeaderContainer.setBackgroundResource(mHeaderBackImage);
+		mHeaderBack = new RelativeLayout(paramContext);
 		this.mHeaderImage = new ImageView(paramContext);
+		RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(240, 320);
+		params.addRule(RelativeLayout.CENTER_IN_PARENT);
+		this.mHeaderImage.setLayoutParams(params);
+		mHeaderBack.addView(this.mHeaderImage);
 		int i = localDisplayMetrics.widthPixels;
 		setHeaderViewSize(i, (int) (9.0F * (i / 16.0F)));
 		this.mShadow = new ImageView(paramContext);
@@ -74,7 +82,7 @@ public class PullToZoomListView extends ListView implements
 				-1, -2);
 		localLayoutParams.gravity = 80;
 		this.mShadow.setLayoutParams(localLayoutParams);
-		this.mHeaderContainer.addView(this.mHeaderImage);
+		this.mHeaderContainer.addView(this.mHeaderBack);
 		this.mHeaderContainer.addView(this.mShadow);
 		addHeaderView(this.mHeaderContainer);
 		this.mScalingRunnalable = new ScalingRunnalable();
@@ -91,6 +99,7 @@ public class PullToZoomListView extends ListView implements
 			}
 	}
 
+	
 	private void reset() {
 		this.mActivePointerId = -1;
 		this.mLastMotionY = -1.0F;
@@ -100,6 +109,10 @@ public class PullToZoomListView extends ListView implements
 
 	public ImageView getHeaderView() {
 		return this.mHeaderImage;
+	}
+	
+	public FrameLayout getHeaderBackView() {
+		return this.mHeaderContainer;
 	}
 
 	public boolean onInterceptTouchEvent(MotionEvent paramMotionEvent) {
