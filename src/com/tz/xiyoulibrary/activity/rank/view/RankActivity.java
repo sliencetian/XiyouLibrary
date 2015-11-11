@@ -2,24 +2,22 @@ package com.tz.xiyoulibrary.activity.rank.view;
 
 import java.util.List;
 import java.util.Map;
-
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.PopupMenu;
+import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -53,6 +51,9 @@ public class RankActivity extends BaseActivity implements IRankView {
 	RelativeLayout mRelativeLayoutLoadNoData;
 	@ViewById(R.id.tv_load_no_data_tip)
 	TextView mTextViewTip;
+	@ViewById(R.id.iv_rank_type_activity_rank)
+	ImageView mImageViewRankType;
+
 	private RequestQueue queue;
 
 	private List<Map<String, String>> rankData;
@@ -62,13 +63,8 @@ public class RankActivity extends BaseActivity implements IRankView {
 	PullToRefreshListView mRefreshListView;
 	private RankAdapter mRankAdapter;
 
-	@ViewById(R.id.sp_sort_activity_rank)
-	Spinner mSpinner;
-
 	private String type = "1";
-
-	private String[] typeItem = { "借阅排行榜", "收藏排行榜", "查看排行榜" };
-	private String[] typeItemNumb = { "1", "3", "5" };
+	private PopupMenu popupMenu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,12 +81,13 @@ public class RankActivity extends BaseActivity implements IRankView {
 				.setTypeface(Typefaces.get(this, "Satisfy-Regular.ttf"));
 		mTitanic = new Titanic();
 		mRelativeLayoutBack.setVisibility(View.VISIBLE);
-		mTextViewTitle.setText("我的足迹");
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_spinner_item, typeItem);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		mSpinner.setAdapter(adapter);
 
+		popupMenu = new PopupMenu(RankActivity.this, mImageViewRankType);
+		popupMenu.getMenuInflater().inflate(R.menu.rank_type_menu,
+				popupMenu.getMenu());
+
+		mTextViewTitle.setText("借阅排行");
+		
 		mRefreshListView
 				.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
 
@@ -122,29 +119,42 @@ public class RankActivity extends BaseActivity implements IRankView {
 				startActivity(intent);
 			}
 		});
-		mSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+		popupMenu.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
 			@Override
-			public void onItemSelected(AdapterView<?> arg0, View arg1,
-					int arg2, long arg3) {
-				type = typeItemNumb[arg2];
+			public boolean onMenuItemClick(MenuItem item) {
+				switch (item.getItemId()) {
+				case R.id.borrow_rank:
+					type = "1";
+					mTextViewTitle.setText("借阅排行");
+					break;
+				case R.id.collection_rank:
+					type = "3";
+					mTextViewTitle.setText("收藏排行");
+					break;
+				case R.id.look_rank:
+					type = "5";
+					mTextViewTitle.setText("查看排行");
+					break;
+				}
 				getRankData();
+				return false;
 			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-			}
-
 		});
 		// 获取排行信息
 		getRankData();
+	}
+
+	@Click(R.id.iv_rank_type_activity_rank)
+	public void selectRankType() {
+		popupMenu.show();
 	}
 
 	/**
 	 * 获取排行信息
 	 */
 	private void getRankData() {
-		mSpinner.setClickable(false);
+		mImageViewRankType.setClickable(false);
 		mPresenter.getRankData(queue, type);
 	}
 
@@ -152,13 +162,13 @@ public class RankActivity extends BaseActivity implements IRankView {
 	 * 获取排行信息
 	 */
 	private void refreshRankData(int what) {
-		mSpinner.setClickable(false);
+		mImageViewRankType.setClickable(false);
 		mPresenter.refershData(queue, type, rankData.size(), what);
 	}
 
 	@Override
 	public void showLoadingView() {
-		mSpinner.setClickable(true);
+		mImageViewRankType.setClickable(true);
 		mRelativeLayoutLoading.setVisibility(View.VISIBLE);
 		mRelativeLayoutLoadNoData.setVisibility(View.GONE);
 		mRelativeLayoutLoadFaluire.setVisibility(View.GONE);
@@ -168,7 +178,7 @@ public class RankActivity extends BaseActivity implements IRankView {
 	@Override
 	public void showRankView(List<Map<String, String>> rankData) {
 		mRefreshListView.onRefreshComplete();
-		mSpinner.setClickable(true);
+		mImageViewRankType.setClickable(true);
 		// 关闭加载动画
 		mTitanic.cancel();
 		// 隐藏加载视图
@@ -184,13 +194,13 @@ public class RankActivity extends BaseActivity implements IRankView {
 
 	@Override
 	public void showRefershFaluireView() {
-		mSpinner.setClickable(true);
+		mImageViewRankType.setClickable(true);
 		mRefreshListView.onRefreshComplete();
 	}
 
 	@Override
 	public void showUpRefershView(List<Map<String, String>> rankData) {
-		mSpinner.setClickable(true);
+		mImageViewRankType.setClickable(true);
 		mRefreshListView.onRefreshComplete();
 		this.rankData.addAll(rankData);
 		mRankAdapter.setDatas(this.rankData);
@@ -199,7 +209,7 @@ public class RankActivity extends BaseActivity implements IRankView {
 
 	@Override
 	public void showDownRefershView(List<Map<String, String>> rankData) {
-		mSpinner.setClickable(true);
+		mImageViewRankType.setClickable(true);
 		mRefreshListView.onRefreshComplete();
 		this.rankData = rankData;
 		mRankAdapter.setDatas(this.rankData);
@@ -207,7 +217,7 @@ public class RankActivity extends BaseActivity implements IRankView {
 
 	@Override
 	public void showLoadFaluireView() {
-		mSpinner.setClickable(true);
+		mImageViewRankType.setClickable(true);
 		mTitanic.cancel();
 		mRelativeLayoutLoadFaluire.setVisibility(View.VISIBLE);
 		mRelativeLayoutLoading.setVisibility(View.GONE);
@@ -216,7 +226,7 @@ public class RankActivity extends BaseActivity implements IRankView {
 
 	@Override
 	public void showNoDataView() {
-		mSpinner.setClickable(true);
+		mImageViewRankType.setClickable(true);
 		mTitanic.cancel();
 		mRelativeLayoutLoadNoData.setVisibility(View.VISIBLE);
 		mTextViewTip.setText("哦啊~当前没有排行信息!");
