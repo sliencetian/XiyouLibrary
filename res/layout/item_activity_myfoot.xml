@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:text="@string/one_author_text"
+                android:text="@string/foot_type"
                 android:textColor="@color/dark_black"
                 android:textSize="@dimen/myborrow_book_info" />
 
@@ -65,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:text="@string/one_pub_text"
+                android:text="@string/foot_date"
                 android:textColor="@color/dark_black"
                 android:textSize="@dimen/myborrow_book_info" />
 

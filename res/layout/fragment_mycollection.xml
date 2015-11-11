@@ -3,6 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/app_name" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,7 +23,6 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:singleLine="true"
-            android:text="写给大家看的PPT设计书"
             android:textColor="@color/dark_black"
             android:textSize="@dimen/mycollection_book_title" />
 
@@ -30,7 +34,6 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:singleLine="true"
-            android:text="作者：Robin,Williams"
             android:textColor="@color/dark_grey" />
 
         <RelativeLayout
@@ -46,8 +49,8 @@
                 android:layout_width="120dp"
                 android:layout_height="160dp"
                 android:layout_centerInParent="true"
-                android:background="@drawable/img_book"
-                android:contentDescription="@string/app_name" />
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitXY" />
         </RelativeLayout>
 
         <TextView
@@ -58,7 +61,6 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:singleLine="true"
-            android:text="编号：0100000015"
             android:textColor="@color/light_black"
             android:textSize="@dimen/mycollection_book_info" />
 
@@ -70,7 +72,6 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:singleLine="true"
-            android:text="条形码：7561116748"
             android:textColor="@color/light_black"
             android:textSize="@dimen/mycollection_book_info" />
 
@@ -82,7 +83,6 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:singleLine="true"
-            android:text="索书号：O174.5"
             android:textColor="@color/light_black"
             android:textSize="@dimen/mycollection_book_info" />
 
@@ -94,7 +94,6 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:singleLine="true"
-            android:text="出版社：大连理工大学出版社"
             android:textColor="@color/light_black"
             android:textSize="@dimen/mycollection_book_info" />
     </RelativeLayout>

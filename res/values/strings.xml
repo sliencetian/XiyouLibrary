@@ -67,6 +67,9 @@
     <string name="id_refer_text">控制号：</string>
     <!-- 排行榜 -->
     <string name="sort_type_text">排序方式：</string>
+    <string name="borrow_rank_text">借阅排行</string>
+    <string name="collection_rank_text">收藏排行</string>
+    <string name="look_rank_text">查看排行</string>
     <!-- 我的节借阅 -->
     <string name="bt_status_text">我要续借：</string>
     <string name="tv_status_text">本馆续借：</string>
@@ -79,5 +82,7 @@
     <!-- 问题反馈 -->
     <string name="bt_send_text">发送</string>
     <string name="advice_text">\t\t请留下您的宝贵意见我们将不断完善,谢谢。</string>
-
+    <!-- 我的历史 -->
+	<string name="foot_type">操作类型:</string>
+	<string name="foot_date">操作日期:</string>
 </resources>

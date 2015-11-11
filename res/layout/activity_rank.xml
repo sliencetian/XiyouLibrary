@@ -10,50 +10,37 @@
         android:id="@+id/actionbar_activity_rank"
         layout="@layout/actionbar" />
 
+    <ImageView
+        android:id="@+id/iv_rank_type_activity_rank"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rank_type_selector"
+        android:contentDescription="@string/app_name" />
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/actionbar_activity_rank"
         android:background="@color/white" >
 
-        <LinearLayout
-            android:id="@+id/ll_sort"
-            android:layout_width="fill_parent"
-            android:layout_height="@dimen/actionbar_height"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="10dp"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:gravity="center_vertical"
-                android:text="@string/sort_type_text"
-                android:textColor="@color/light_black"
-                android:textSize="@dimen/text_size" />
-
-            <Spinner
-                android:id="@+id/sp_sort_activity_rank"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
         <com.handmark.pulltorefresh.library.PullToRefreshListView
             xmlns:ptr="http://schemas.android.com/apk/res-auto"
             android:id="@+id/ptrlv_activity_rank"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
             android:divider="@color/white"
             android:dividerHeight="2dp"
-            android:layout_below="@id/ll_sort"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             ptr:ptrDrawable="@drawable/loading_1"
             ptr:ptrMode="both" />
-
-        <include
-            android:id="@+id/rl_load_activity_rank"
-            layout="@layout/loading"/>
     </RelativeLayout>
+
+    <include
+        android:id="@+id/rl_load_activity_rank"
+        layout="@layout/loading" />
 
 </RelativeLayout>
