@@ -2,14 +2,14 @@ package com.tz.xiyoulibrary.activity.mycollection.fragment;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import org.json.JSONObject;
-
 import com.android.volley.Request.Method;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.ImageLoader.ImageListener;
 import com.android.volley.toolbox.StringRequest;
 import com.tz.xiyoulibrary.R;
 import com.tz.xiyoulibrary.activity.bookdetial.view.BookDetialActivity_;
@@ -18,6 +18,7 @@ import com.tz.xiyoulibrary.application.Application;
 import com.tz.xiyoulibrary.toastview.CustomToast;
 import com.tz.xiyoulibrary.utils.Constants;
 import com.tz.xiyoulibrary.utils.LogUtils;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -25,11 +26,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -37,9 +40,13 @@ import android.widget.TextView;
  */
 @SuppressLint("ValidFragment")
 public class MyBorrowFragment extends Fragment {
+	private static ImageLoader imageLoader;
 
-	public static MyBorrowFragment getInstance(Map<String, String> book) {
+	public static MyBorrowFragment getInstance(Map<String, String> book,
+			ImageLoader imageLoader) {
 		MyBorrowFragment fragment = new MyBorrowFragment();
+		if (MyBorrowFragment.imageLoader == null)
+			MyBorrowFragment.imageLoader = imageLoader;
 		Bundle bundle = new Bundle();
 		bundle.putString("Title", book.get("Title"));
 		bundle.putString("Pub", book.get("Pub"));
@@ -48,6 +55,9 @@ public class MyBorrowFragment extends Fragment {
 		bundle.putString("Author", book.get("Author"));
 		bundle.putString("ID", book.get("ID"));
 		bundle.putString("position", book.get("position"));
+		bundle.putString("small", book.get("small"));
+		bundle.putString("large", book.get("large"));
+		bundle.putString("medium", book.get("medium"));
 		fragment.setArguments(bundle);
 		return fragment;
 	}
@@ -78,6 +88,16 @@ public class MyBorrowFragment extends Fragment {
 				.findViewById(R.id.tv_book_pub_mycollection);
 		pub.setText("³ö°æÉç£º" + bundle.getString("Pub"));
 
+		ImageView bookImg = (ImageView) rootView
+				.findViewById(R.id.iv_book_img_mycollection);
+		String imgUrl = bundle.getString("medium");
+		if (TextUtils.equals(imgUrl, "")) {
+			bookImg.setBackgroundResource(R.drawable.img_book_no);
+		} else {
+			ImageListener imageListener = ImageLoader.getImageListener(bookImg,
+					R.drawable.img_book, R.drawable.img_book_no);
+			imageLoader.get(imgUrl, imageListener, 240, 320);
+		}
 		rootView.setOnClickListener(new OnClickListener() {
 
 			@Override

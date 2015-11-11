@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.tz.xiyoulibrary.R;
 import com.tz.xiyoulibrary.activity.baseactivity.BaseActivity;
@@ -27,6 +28,7 @@ import com.tz.xiyoulibrary.titanicview.Titanic;
 import com.tz.xiyoulibrary.titanicview.TitanicTextView;
 import com.tz.xiyoulibrary.titanicview.Typefaces;
 import com.tz.xiyoulibrary.toastview.CustomToast;
+import com.tz.xiyoulibrary.utils.BitmapCache;
 import com.tz.xiyoulibrary.utils.Constants;
 
 /**
@@ -53,6 +55,7 @@ public class MyFootActivity extends BaseActivity implements IMyFootView {
 	@ViewById(R.id.tv_load_no_data_tip)
 	TextView mTextViewTip;
 	private RequestQueue queue;
+	private ImageLoader imageLoader;
 
 	private List<BookBean> favoriteData;
 	private MyFootPresenter mPresenter;
@@ -64,6 +67,7 @@ public class MyFootActivity extends BaseActivity implements IMyFootView {
 		super.onCreate(savedInstanceState);
 
 		queue = Volley.newRequestQueue(MyFootActivity.this);
+		imageLoader = new ImageLoader(queue, new BitmapCache());
 		mPresenter = new MyFootPresenter(this);
 	}
 
@@ -104,7 +108,7 @@ public class MyFootActivity extends BaseActivity implements IMyFootView {
 		this.favoriteData = favoriteData;
 
 		MyFootAdapter adapter = new MyFootAdapter(MyFootActivity.this,
-				this.favoriteData, R.layout.item_activity_myfoot);
+				this.favoriteData, R.layout.item_activity_myfoot,imageLoader);
 		mListViewMyFoot.setAdapter(adapter);
 		mListViewMyFoot.setOnItemClickListener(new OnItemClickListener() {
 

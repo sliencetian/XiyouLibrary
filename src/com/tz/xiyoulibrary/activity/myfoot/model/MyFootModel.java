@@ -34,7 +34,7 @@ public class MyFootModel implements IMyFootModel {
 		status = LOADING;
 		callBack.getModel(this);
 		StringRequest request = new StringRequest(Method.POST,
-				Constants.GET_BOOK_FAVORITE, new Response.Listener<String>() {
+				Constants.GET_BOOK_HISTORY, new Response.Listener<String>() {
 
 					@Override
 					public void onResponse(String response) {
@@ -73,15 +73,20 @@ public class MyFootModel implements IMyFootModel {
 				try {
 					favoriteData = new ArrayList<BookBean>();
 					JSONArray array = o.getJSONArray("Detail");
-					for(int i = 0;i < array.length();i++){
+					for (int i = 0; i < array.length(); i++) {
 						JSONObject o2 = array.getJSONObject(i);
 						BookBean book = new BookBean();
 						book.setTitle(o2.getString("Title"));
-						book.setPub(o2.getString("Pub"));
-						book.setSort(o2.getString("Sort"));
-						book.setId(o2.getString("ID"));
-						book.setISBN(o2.getString("ISBN"));
-						book.setAuthor(o2.getString("Author"));
+						book.setBarCode(o2.getString("Barcode"));
+						book.setState(o2.getString("Type"));
+						book.setDate(o2.getString("Date"));
+						try {
+							JSONObject o3 = o2.getJSONObject("Images");
+							book.setImgUrl(o3.getString("medium"));
+						} catch (Exception e) {
+							book.setImgUrl("");
+							e.printStackTrace();
+						}
 						favoriteData.add(book);
 					}
 					status = LOADING_SUCCESS;

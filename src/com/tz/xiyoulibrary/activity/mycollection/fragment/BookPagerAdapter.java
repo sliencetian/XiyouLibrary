@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import com.android.volley.toolbox.ImageLoader;
 
 /**
  * User: shine Date: 2015-03-13 Time: 09:21 Description:
@@ -19,7 +20,7 @@ public class BookPagerAdapter extends FragmentStatePagerAdapter {
 	private List<Fragment> mFragments = new ArrayList();
 
 	public BookPagerAdapter(FragmentManager fragmentManager,
-			List<Map<String, String>> bookList) {
+			List<Map<String, String>> bookList,ImageLoader imageLoader) {
 		super(fragmentManager);
 		int position = 0;
 		// 使用迭代器遍历List,
@@ -30,7 +31,7 @@ public class BookPagerAdapter extends FragmentStatePagerAdapter {
 			Map<String, String> book = (Map<String, String>) iterator.next();
 			book.put("position", position + "");
 			// 实例化相应的Fragment并添加到List中
-			mFragments.add(MyBorrowFragment.getInstance(book));
+			mFragments.add(MyBorrowFragment.getInstance(book,imageLoader));
 		}
 		mBookList = bookList;
 	}

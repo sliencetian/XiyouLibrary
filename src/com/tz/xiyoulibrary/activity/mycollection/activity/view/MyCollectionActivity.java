@@ -3,6 +3,7 @@ package com.tz.xiyoulibrary.activity.mycollection.activity.view;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,7 +19,9 @@ import android.view.WindowManager;
 import android.view.animation.OvershootInterpolator;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.handmark.pulltorefresh.extras.viewpager.PullToRefreshViewPager;
 import com.tz.xiyoulibrary.R;
@@ -33,6 +36,7 @@ import com.tz.xiyoulibrary.titanicview.Titanic;
 import com.tz.xiyoulibrary.titanicview.TitanicTextView;
 import com.tz.xiyoulibrary.titanicview.Typefaces;
 import com.tz.xiyoulibrary.toastview.CustomToast;
+import com.tz.xiyoulibrary.utils.BitmapCache;
 
 public class MyCollectionActivity extends FragmentActivity implements
 		IMyCollectionView {
@@ -75,6 +79,7 @@ public class MyCollectionActivity extends FragmentActivity implements
 	private MyCollectionPresenter mPresenter;
 
 	private RequestQueue queue;
+	private ImageLoader imageLoader;
 
 	private TitanicTextView mTitanicTextView;
 
@@ -100,6 +105,7 @@ public class MyCollectionActivity extends FragmentActivity implements
 		setContentView(R.layout.activity_mycollection);
 		mPresenter = new MyCollectionPresenter(this);
 		queue = Volley.newRequestQueue(MyCollectionActivity.this);
+		imageLoader = new ImageLoader(queue, new BitmapCache());
 		mTitanic = new Titanic();
 		// 初始化控件
 		findViews();
@@ -220,11 +226,11 @@ public class MyCollectionActivity extends FragmentActivity implements
 				.getLayoutParams()).bottomMargin = height;
 
 		bookPagerAdapter = new BookPagerAdapter(getSupportFragmentManager(),
-				mFavoriteList);
+				mFavoriteList, imageLoader);
 		mViewPager.setAdapter(bookPagerAdapter);
 
 		// 设置钢琴布局的适配器
-		mRhythmAdapter = new RhythmAdapter(this, mFavoriteList);
+		mRhythmAdapter = new RhythmAdapter(this, mFavoriteList, imageLoader);
 		mRhythmLayout.setAdapter(mRhythmAdapter);
 
 		// 设置ViewPager的滚动速度

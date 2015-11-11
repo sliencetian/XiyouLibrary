@@ -79,11 +79,19 @@ public class MyBorrowModel implements IMyBorrowModel {
 						book.setCanRenew(o2.getBoolean("CanRenew"));
 						book.setDepartment_id(o2.getString("Department_id"));
 						book.setLibrary_id(o2.getString("Library_id"));
+						try {
+							JSONObject o3 = o2.getJSONObject("Images");
+							book.setImgUrl(o3.getString("medium"));
+						} catch (Exception e) {
+							book.setImgUrl("");
+							e.printStackTrace();
+						}
 						borrowData.add(book);
 					}
 					status = LOADING_SUCCESS;
 				} catch (Exception e) {
-					Object[] object = JsonUtils.getErrorMsg(o.getString("Detail"));
+					Object[] object = JsonUtils.getErrorMsg(o
+							.getString("Detail"));
 					status = (Integer) object[0];
 					msg = (String) object[1];
 				}

@@ -33,7 +33,7 @@ public class MyCollectionModel implements IMyCollectionModel {
 		status = LOADING;
 		callBack.getModel(MyCollectionModel.this);
 		StringRequest request = new StringRequest(Method.POST,
-				Constants.GET_BOOK_FAVORITE, new Listener<String>() {
+				Constants.GET_BOOK_FAVORITE_IMG, new Listener<String>() {
 
 					@Override
 					public void onResponse(String response) {
@@ -84,11 +84,23 @@ public class MyCollectionModel implements IMyCollectionModel {
 						map.put("ISBN", o2.getString("ISBN"));
 						map.put("Author", o2.getString("Author"));
 						map.put("ID", o2.getString("ID"));
+						try {
+							JSONObject o3 = o2.getJSONObject("Images");
+							map.put("small", o3.getString("small"));
+							map.put("large", o3.getString("large"));
+							map.put("medium", o3.getString("medium"));
+						} catch (Exception e) {
+							map.put("small", "");
+							map.put("large", "");
+							map.put("medium", "");
+							e.printStackTrace();
+						}
 						favoriteData.add(map);
 					}
 					status = LOADING_SUCCESS;
 				} catch (Exception e) {
-					Object[] object = JsonUtils.getErrorMsg(o.getString("Detail"));
+					Object[] object = JsonUtils.getErrorMsg(o
+							.getString("Detail"));
 					status = (Integer) object[0];
 					msg = (String) object[1];
 				}

@@ -1,14 +1,19 @@
 package com.tz.xiyoulibrary.activity.mycollection.viewutils.control;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
 import java.util.List;
 import java.util.Map;
+
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.ImageLoader.ImageListener;
 import com.tz.xiyoulibrary.R;
 
 /**
@@ -19,6 +24,8 @@ public class RhythmAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;
 	private Context mContext;
 
+	private ImageLoader imageLoader;
+
 	/**
 	 * item的宽度
 	 */
@@ -28,9 +35,11 @@ public class RhythmAdapter extends BaseAdapter {
 	 */
 	private List<Map<String, String>> mCardList;
 
-	public RhythmAdapter(Context context, List<Map<String, String>> cardList) {
+	public RhythmAdapter(Context context, List<Map<String, String>> cardList,
+			ImageLoader imageLoader) {
 		this.mContext = context;
 		this.mCardList = cardList;
+		this.imageLoader = imageLoader;
 		if (context != null)
 			this.mInflater = LayoutInflater.from(context);
 	}
@@ -89,7 +98,14 @@ public class RhythmAdapter extends BaseAdapter {
 		iconParams.height = iconSize;
 		imageIcon.setLayoutParams(iconParams);
 		// 设置底部按钮的背景图片
-		imageIcon.setBackgroundResource(R.drawable.img_book);
+		String imgUrl = mCardList.get(position).get("medium");
+		if (TextUtils.equals(imgUrl, "")) {
+			imageIcon.setBackgroundResource(R.drawable.img_book_no);
+		} else {
+			ImageListener imageListener = ImageLoader.getImageListener(
+					imageIcon, R.drawable.img_book, R.drawable.img_book_no);
+			imageLoader.get(imgUrl, imageListener, iconSize, iconSize);
+		}
 
 		return relativeLayout;
 	}

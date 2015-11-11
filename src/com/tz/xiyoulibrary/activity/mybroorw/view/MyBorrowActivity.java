@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.tz.xiyoulibrary.R;
 import com.tz.xiyoulibrary.activity.baseactivity.BaseActivity;
@@ -28,6 +29,7 @@ import com.tz.xiyoulibrary.titanicview.Titanic;
 import com.tz.xiyoulibrary.titanicview.TitanicTextView;
 import com.tz.xiyoulibrary.titanicview.Typefaces;
 import com.tz.xiyoulibrary.toastview.CustomToast;
+import com.tz.xiyoulibrary.utils.BitmapCache;
 import com.tz.xiyoulibrary.utils.Constants;
 
 /**
@@ -46,6 +48,7 @@ public class MyBorrowActivity extends BaseActivity implements IMyborrowView {
 	ListView mListViewBorrow;
 	private MyBorrowAdapter mMyBorrowAdapter;
 	private RequestQueue queue;
+	private ImageLoader imageLoader;
 	private MyBorrowPresenter mPresenter;
 
 	private Titanic mTitanic;
@@ -74,6 +77,7 @@ public class MyBorrowActivity extends BaseActivity implements IMyborrowView {
 
 		mPresenter = new MyBorrowPresenter(this);
 		queue = Volley.newRequestQueue(MyBorrowActivity.this);
+		imageLoader = new ImageLoader(queue, new BitmapCache());
 	}
 
 	@AfterViews
@@ -156,7 +160,7 @@ public class MyBorrowActivity extends BaseActivity implements IMyborrowView {
 		mListViewBorrow.addHeaderView(head);
 
 		mMyBorrowAdapter = new MyBorrowAdapter(MyBorrowActivity.this,
-				this.borrowData, R.layout.item_activity_myborrow);
+				this.borrowData, R.layout.item_activity_myborrow, imageLoader);
 		mListViewBorrow.setAdapter(mMyBorrowAdapter);
 	}
 
