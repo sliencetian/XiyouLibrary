@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/borrow_rank"
+        android:title="@string/borrow_rank_text"/>
+    <item
+        android:id="@+id/collection_rank"
+        android:title="@string/collection_rank_text"/>
+    <item
+        android:id="@+id/look_rank"
+        android:title="@string/look_rank_text"/>
+
+</menu>
