@@ -214,6 +214,7 @@ public class BookDetialModel implements IBookDetialModel {
 							// bookDetial.put("small", o3.getString("small"));
 							// bookDetial.put("large", o3.getString("large"));
 						} catch (Exception e) {
+							bookDetial.put("medium", "");
 							e.printStackTrace();
 							LogUtils.d("BookDetial", "Ω‚Œˆ∂π∞Í ÈºÆÕº∆¨“Ï≥£");
 						}

@@ -2,13 +2,16 @@ package com.tz.xiyoulibrary.activity.bookdetial.view;
 
 import java.util.List;
 import java.util.Map;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,7 +24,10 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ImageView;
+
 import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.ImageLoader.ImageListener;
 import com.android.volley.toolbox.Volley;
 import com.tz.xiyoulibrary.R;
 import com.tz.xiyoulibrary.activity.baseactivity.BaseActivity;
@@ -31,6 +37,7 @@ import com.tz.xiyoulibrary.titanicview.Titanic;
 import com.tz.xiyoulibrary.titanicview.TitanicTextView;
 import com.tz.xiyoulibrary.titanicview.Typefaces;
 import com.tz.xiyoulibrary.toastview.CustomToast;
+import com.tz.xiyoulibrary.utils.BitmapCache;
 import com.tz.xiyoulibrary.utils.Constants;
 
 @EActivity(R.layout.activity_book_detial)
@@ -49,6 +56,7 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 	@ViewById(R.id.rl_load_no_data)
 	RelativeLayout mRelativeLayoutLoadNoData;
 	private RequestQueue queue;
+	private ImageLoader imageLoader;
 
 	@ViewById(R.id.ptzv_book_detial)
 	PullToZoomListView mPullToZoomListView;
@@ -65,6 +73,7 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 		queue = Volley.newRequestQueue(BookDetialActivity.this);
 		url = getIntent().getStringExtra("url");
 		mPresenter = new BookDetialPresenter(this);
+		imageLoader = new ImageLoader(queue, new BitmapCache());
 
 		progressDialog = new ProgressDialog(BookDetialActivity.this);
 		progressDialog.setTitle("ÌבÊ¾");
@@ -135,11 +144,18 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 		mPullToZoomListView.setAdapter(new ArrayAdapter<String>(
 				BookDetialActivity.this, android.R.layout.simple_list_item_1,
 				adapterData));
-		mPullToZoomListView.getHeaderView().setImageResource(
-				R.drawable.img_book);
+		String imgUrl = bookDetial.get("medium").toString();
+		if (TextUtils.equals(imgUrl, "")) {
+			mPullToZoomListView.getHeaderView().setImageResource(
+					R.drawable.img_book);
+		} else {
+			ImageListener listener = ImageLoader.getImageListener(
+					mPullToZoomListView.getHeaderView(),
+					R.drawable.img_book_no, R.drawable.img_book_no);
+			imageLoader.get(imgUrl, listener);
+		}
 		mPullToZoomListView.getHeaderView().setScaleType(
 				ImageView.ScaleType.CENTER_CROP);
-
 	}
 
 	/**
