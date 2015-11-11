@@ -1,5 +1,7 @@
 package com.tz.xiyoulibrary.utils;
 
+import android.os.Environment;
+
 /**
  * 
  * @author tianzhao 全局常量
@@ -9,6 +11,11 @@ public class Constants {
 	// 请求网络超时时间
 	public static final int TIMEOUT_MS = 10000;
 
+	// 图片缓存路径
+	public static final String IMG_CACHE_DIR_PATH = Environment
+			.getExternalStorageDirectory().getPath() + "/xiyouLibrary";
+
+	// 服务器地址
 	private static final String ROOT_URL = "http://api.xiyoumobile.com/xiyoulibv2/";
 
 	/***************************** 用户 ********************************/
@@ -20,6 +27,11 @@ public class Constants {
 	 * 用户信息
 	 */
 	public static final String GET_USER_INFO = ROOT_URL + "user/info";
+	/**
+	 * 修改密码
+	 */
+	public static final String GET_USER_MODIFY_PASSWORD = ROOT_URL + "user/modifyPassword";
+	
 
 	/***************************** 图书 ********************************/
 	/**
@@ -38,6 +50,11 @@ public class Constants {
 	 * 图书收藏
 	 */
 	public static final String GET_BOOK_FAVORITE = ROOT_URL + "user/favorite";
+	/**
+	 * 图书收藏(有图片)
+	 */
+	public static final String GET_BOOK_FAVORITE_IMG = ROOT_URL
+			+ "user/favoriteWithImg";
 	/**
 	 * 添加图书收藏
 	 */
@@ -84,5 +101,6 @@ public class Constants {
 	 * :http://api.xiyoumobile.com/xiyoulibv2/news/getDetail/announce/html/200
 	 */
 	public static final String GET_NEWS_DETAIL = ROOT_URL + "news/getDetail/";
+	
 
 }
