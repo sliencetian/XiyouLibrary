@@ -59,6 +59,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 		mProgressDialog = new ProgressDialog(this);
 		mProgressDialog.setTitle("提示");
 		mProgressDialog.setMessage("正在登录,请稍候...");
+		mProgressDialog.setCancelable(false);
 
 	}
 
