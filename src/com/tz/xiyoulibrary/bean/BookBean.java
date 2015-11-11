@@ -26,6 +26,7 @@ public class BookBean implements Serializable {
 	private boolean canRenew;// 是否可续借
 	private String department_id;// 书库ID号，用于续借
 	private String library_id;// 分馆ID号，用于续借
+	private String imgUrl;
 
 	public String getTitle() {
 		return title;
@@ -161,6 +162,14 @@ public class BookBean implements Serializable {
 
 	public void setAvaliable(String avaliable) {
 		this.avaliable = avaliable;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 	
 }
