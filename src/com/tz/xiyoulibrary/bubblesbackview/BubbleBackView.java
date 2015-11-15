@@ -49,7 +49,7 @@ public class BubbleBackView extends View {
 				Color.parseColor("#11ffffff"));
 		backColor = ta.getColor(R.styleable.BubbleBackView_backColor,
 				getResources().getColor(R.color.theme_color));
-		circleRadio = ta.getInteger(R.styleable.BubbleBackView_circleRadio, 50);
+		circleRadio = ta.getInteger(R.styleable.BubbleBackView_circleRadio, 30);
 		ta.recycle();
 		init();
 	}
@@ -103,7 +103,8 @@ public class BubbleBackView extends View {
 			int d = random.nextInt(direction.length);
 			int x = random.nextInt((int) width);
 			int y = random.nextInt((int) height);
-			circles[i] = new Circle(x, y, d);
+			int r = random.nextInt(circleRadio)+circleRadio;
+			circles[i] = new Circle(x, y, d,r);
 		}
 	}
 
@@ -114,7 +115,7 @@ public class BubbleBackView extends View {
 				backPaint);
 		// 遍历绘制每一个圆
 		for (Circle c : circles) {
-			canvas.drawCircle(c.getX(), c.getY(), circleRadio, circlePaint);
+			canvas.drawCircle(c.getX(), c.getY(), c.getR(), circlePaint);
 		}
 		if (mMyThread == null) {
 			mMyThread = new MyThread();
@@ -236,12 +237,19 @@ public class BubbleBackView extends View {
 	class Circle {
 		private float x;
 		private float y;
+		private float r;
 		private int direction;
 
 		public Circle(float x, float y, int d) {
 			this.x = x;
 			this.y = y;
 			this.direction = d;
+		}
+		public Circle(float x, float y, int d,int r) {
+			this.x = x;
+			this.y = y;
+			this.direction = d;
+			this.r = r;
 		}
 
 		public float getX() {
@@ -266,6 +274,14 @@ public class BubbleBackView extends View {
 
 		public int getDirection() {
 			return direction;
+		}
+
+		public float getR() {
+			return r;
+		}
+
+		public void setR(float r) {
+			this.r = r;
 		}
 	}
 

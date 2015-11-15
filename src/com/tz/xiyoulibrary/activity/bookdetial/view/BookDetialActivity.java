@@ -2,13 +2,12 @@ package com.tz.xiyoulibrary.activity.bookdetial.view;
 
 import java.util.List;
 import java.util.Map;
-
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
-
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -24,11 +23,14 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ImageView;
-
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.sharesdk.onekeyshare.OnekeyShareTheme;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.ImageLoader.ImageListener;
 import com.android.volley.toolbox.Volley;
+import com.tencent.tauth.Tencent;
 import com.tz.xiyoulibrary.R;
 import com.tz.xiyoulibrary.activity.baseactivity.BaseActivity;
 import com.tz.xiyoulibrary.activity.bookdetial.presenter.BookDetialPresenter;
@@ -66,6 +68,8 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 	private BookDetialPresenter mPresenter;
 	private ProgressDialog progressDialog;
 
+	Tencent mTencent;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -79,6 +83,8 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 		progressDialog.setTitle("提示");
 		progressDialog.setMessage("收藏中,请稍候...");
 		progressDialog.setCancelable(false);
+
+		ShareSDK.initSDK(this);
 	}
 
 	@AfterViews
@@ -259,7 +265,7 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 
 			@Override
 			public void onClick(View v) {
-
+				showShare(BookDetialActivity.this, null, true);
 			}
 		});
 		TextView tv;
@@ -337,5 +343,81 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 	@Override
 	public void showDialog() {
 		progressDialog.show();
+	}
+
+	/**
+	 * 演示调用ShareSDK执行分享
+	 * 
+	 * @param context
+	 * @param platformToShare
+	 *            指定直接分享平台名称（一旦设置了平台名称，则九宫格将不会显示）
+	 * @param showContentEdit
+	 *            是否显示编辑页
+	 */
+	private void showShare(Context context, String platformToShare,
+			boolean showContentEdit) {
+		OnekeyShare oks = new OnekeyShare();
+		oks.setSilent(!showContentEdit);
+		if (platformToShare != null) {
+			oks.setPlatform(platformToShare);
+		}
+		// ShareSDK快捷分享提供两个界面第一个是九宫格 CLASSIC 第二个是SKYBLUE
+		oks.setTheme(OnekeyShareTheme.CLASSIC);
+		// 令编辑页面显示为Dialog模式
+		oks.setDialogMode();
+		// 在自动授权时可以禁用SSO方式
+		oks.disableSSOWhenAuthorize();
+		String imgUrl = bookDetial.get("medium").toString();
+		oks.setTitle("西邮图书馆---"+"《" + bookDetial.get("Title") + "》");
+		oks.setTitleUrl("http://lib.xiyoumobile.com/moreInfo.html?id="
+				+ bookDetial.get("ID").toString());
+		oks.setText(bookDetial.get("Summary")+"");
+		// oks.setImagePath("/sdcard/test-pic.jpg"); //分享sdcard目录下的图片
+		if (!TextUtils.equals(imgUrl, "")) {
+			oks.setImageUrl(imgUrl);
+		} else {
+			// oks.setImageUrl("http://f1.sharesdk.cn/imgs/2014/02/26/owWpLZo_638x960.jpg");
+		}
+		oks.setComment("分享"); // 我对这条分享的评论，仅在人人网和QQ空间使用，否则可以不提供
+		oks.setSite("西邮图书馆"); // QZone分享完之后返回应用时提示框上显示的名称
+		oks.setSiteUrl("http://lib.xiyoumobile.com/moreInfo.html?id="
+				+ bookDetial.get("ID").toString());// QZone分享参数
+		oks.setSiteUrl(imgUrl);// QZone分享参数
+		oks.setVenueName("西邮图书馆");
+		oks.setVenueDescription("form xiyouLibrary");
+		oks.setShareFromQQAuthSupport(false);
+		// 将快捷分享的操作结果将通过OneKeyShareCallback回调
+		// oks.setCallback(new OneKeyShareCallback());
+		// 去自定义不同平台的字段内容
+		// oks.setShareContentCustomizeCallback(new
+		// ShareContentCustomizeDemo());
+		// 在九宫格设置自定义的图标
+		/*
+		 * Bitmap enableLogo = BitmapFactory.decodeResource(
+		 * context.getResources(), R.drawable.ssdk_oks_logo_qzone); Bitmap
+		 * disableLogo = BitmapFactory.decodeResource( context.getResources(),
+		 * R.drawable.ssdk_oks_logo_qzone); String label = "QQ空间";
+		 * OnClickListener listener = new OnClickListener() { public void
+		 * onClick(View v) { shareToQQzone(); } };
+		 * oks.setCustomerLogo(enableLogo, disableLogo, label, listener);
+		 */
+		// 隐藏支付宝
+		// 为EditPage设置一个背景的View
+		// oks.setEditPageBackground(getPage());
+		// 隐藏九宫格中的新浪微博
+		// oks.addHiddenPlatform(SinaWeibo.NAME);
+
+		// String[] AVATARS = {
+		// "http://99touxiang.com/public/upload/nvsheng/125/27-011820_433.jpg",
+		// "http://img1.2345.com/duoteimg/qqTxImg/2012/04/09/13339485237265.jpg",
+		// "http://diy.qqjay.com/u/files/2012/0523/f466c38e1c6c99ee2d6cd7746207a97a.jpg",
+		// "http://diy.qqjay.com/u2/2013/0422/fadc08459b1ef5fc1ea6b5b8d22e44b4.jpg",
+		// "http://img1.2345.com/duoteimg/qqTxImg/2012/04/09/13339510584349.jpg",
+		// "http://diy.qqjay.com/u2/2013/0401/4355c29b30d295b26da6f242a65bcaad.jpg"
+		// };
+		// oks.setImageArray(AVATARS); //腾讯微博和twitter用此方法分享多张图片，其他平台不可以
+
+		// 启动分享
+		oks.show(context);
 	}
 }
