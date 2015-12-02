@@ -5,21 +5,22 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
 import com.tz.xiyoulibrary.R;
+import com.tz.xiyoulibrary.activity.event.LoginSuccessEvent;
+import com.tz.xiyoulibrary.activity.login.view.LoginActivity_;
 import com.tz.xiyoulibrary.activity.mybroorw.view.MyBorrowActivity_;
 import com.tz.xiyoulibrary.activity.mycollection.activity.view.MyCollectionActivity;
 import com.tz.xiyoulibrary.activity.myfoot.view.MyFootActivity_;
 import com.tz.xiyoulibrary.activity.rank.view.RankActivity_;
 import com.tz.xiyoulibrary.application.Application;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import com.tz.xiyoulibrary.toastview.CustomToast;
+import com.ypy.eventbus.EventBus;
 
 @EFragment(R.layout.fragment_my)
 public class MyFragment extends Fragment {
@@ -39,15 +40,21 @@ public class MyFragment extends Fragment {
 	TextView mTextViewDepartment;// 班级
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		return super.onCreateView(inflater, container, savedInstanceState);
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		EventBus.getDefault().register(this);
+
 	}
 
 	@AfterViews
 	public void init() {
-		mTextViewId.setText(Application.user.getId());
-		mTextViewDepartment.setText(Application.user.getDepartment());
+		if (Application.user == null) {
+			mTextViewId.setText("未登录");
+			mTextViewDepartment.setText("");
+		} else {
+			mTextViewId.setText(Application.user.getId());
+			mTextViewDepartment.setText(Application.user.getDepartment());
+		}
 	}
 
 	/**
@@ -55,7 +62,8 @@ public class MyFragment extends Fragment {
 	 */
 	@Click(R.id.rl_myborrow_fragment_my)
 	public void pushMyBorrow() {
-		startActivity(new Intent(getActivity(), MyBorrowActivity_.class));
+		if (checkLogin())
+			startActivity(new Intent(getActivity(), MyBorrowActivity_.class));
 	}
 
 	/**
@@ -63,7 +71,8 @@ public class MyFragment extends Fragment {
 	 */
 	@Click(R.id.rl_collection_fragment_my)
 	public void pushCollection() {
-		startActivity(new Intent(getActivity(), MyCollectionActivity.class));
+		if (checkLogin())
+			startActivity(new Intent(getActivity(), MyCollectionActivity.class));
 	}
 
 	/**
@@ -71,7 +80,8 @@ public class MyFragment extends Fragment {
 	 */
 	@Click(R.id.rl_foot_fragment_my)
 	public void pushFoot() {
-		startActivity(new Intent(getActivity(), MyFootActivity_.class));
+		if (checkLogin())
+			startActivity(new Intent(getActivity(), MyFootActivity_.class));
 	}
 
 	/**
@@ -80,5 +90,38 @@ public class MyFragment extends Fragment {
 	@Click(R.id.rl_ranklist_fragment_my)
 	public void pushRankList() {
 		startActivity(new Intent(getActivity(), RankActivity_.class));
+	}
+
+	/**
+	 * 跳入登录
+	 */
+	@Click(R.id.tv_id_fragment_my)
+	public void pushLoginActivity() {
+		if (Application.user == null)
+			startActivity(new Intent(getActivity(), LoginActivity_.class));
+	}
+
+	public void onEventMainThread(LoginSuccessEvent event) {
+		init();
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		init();
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		EventBus.getDefault().unregister(this);
+	}
+
+	private boolean checkLogin() {
+		if (Application.user == null) {
+			CustomToast.showToast(getActivity(), "请先登录", 2000);
+			return false;
+		}
+		return true;
 	}
 }

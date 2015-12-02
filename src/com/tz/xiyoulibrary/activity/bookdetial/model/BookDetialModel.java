@@ -144,11 +144,36 @@ public class BookDetialModel implements IBookDetialModel {
 				try {
 					JSONObject o2 = o.getJSONObject("Detail");
 					bookDetial.put("Title", o2.getString("Title"));
-					bookDetial.put("Pub", o2.getString("Pub"));
-					bookDetial.put("Sort", o2.getString("Sort"));
-					bookDetial.put("ISBN", o2.getString("ISBN"));
-					bookDetial.put("Author", o2.getString("Author"));
-					bookDetial.put("ID", o2.getString("ID"));
+					try {
+						bookDetial.put("Pub", o2.getString("Pub"));
+					} catch (Exception e) {
+						bookDetial.put("Pub", "暂无");
+					}
+					try {
+						bookDetial.put("Summary", o2.getString("Summary"));
+					} catch (Exception e) {
+						bookDetial.put("Summary", "暂无");
+					}
+					try {
+						bookDetial.put("Sort", o2.getString("Sort"));
+					} catch (Exception e) {
+						bookDetial.put("Sort", "暂无");
+					}
+					try {
+						bookDetial.put("ISBN", o2.getString("ISBN"));
+					} catch (Exception e) {
+						bookDetial.put("ISBN", "暂无");
+					}
+					try {
+						bookDetial.put("Author", o2.getString("Author"));
+					} catch (Exception e) {
+						bookDetial.put("Author", "暂无");
+					}
+					try {
+						bookDetial.put("ID", o2.getString("ID"));
+					} catch (Exception e) {
+						bookDetial.put("ID", "暂无");
+					}
 					try {
 						bookDetial.put("Form", o2.getString("Form"));
 					} catch (Exception e) {
@@ -159,20 +184,38 @@ public class BookDetialModel implements IBookDetialModel {
 					} catch (Exception e) {
 						bookDetial.put("Subject", "暂无记录");
 					}
-					bookDetial.put("RentTimes", o2.getString("RentTimes"));
-					bookDetial.put("FavTimes", o2.getString("FavTimes"));
-					bookDetial.put("BrowseTimes", o2.getString("BrowseTimes"));
-					bookDetial.put("Total", o2.getString("Total"));
-					bookDetial.put("Avaliable", o2.getString("Avaliable"));
+					try {
+						bookDetial.put("RentTimes", o2.getString("RentTimes"));
+					} catch (Exception e) {
+						bookDetial.put("RentTimes", "暂无");
+					}
+					try {
+						bookDetial.put("FavTimes", o2.getString("FavTimes"));
+					} catch (Exception e) {
+						bookDetial.put("FavTimes", "暂无");
+					}
+					try {
+						bookDetial.put("BrowseTimes",
+								o2.getString("BrowseTimes"));
+					} catch (Exception e) {
+						bookDetial.put("BrowseTimes", "暂无");
+					}
+					try {
+						bookDetial.put("Total", o2.getString("Total"));
+					} catch (Exception e) {
+						bookDetial.put("Total", "暂无");
+					}
+					try {
+						bookDetial.put("Avaliable", o2.getString("Avaliable"));
+					} catch (Exception e) {
+						bookDetial.put("Avaliable", "暂无");
+					}
 					// 流通信息数组
 					LogUtils.d("BookDetial", "开始解析流通信息");
 					JSONArray array = o2.getJSONArray("CirculationInfo");
 					List<Map<String, String>> circulationInfoList = new ArrayList<Map<String, String>>();
 					int size = array.length() > 50 ? 50 : array.length();
 					for (int i = 0; i < size; i++) {
-						LogUtils.d("BookDetial",
-								"解析已完成---" + i + "/" + array.length());
-
 						JSONObject o3 = array.getJSONObject(i);
 						Map<String, String> map = new HashMap<String, String>();
 						map.put("Barcode", o3.getString("Barcode"));
@@ -202,7 +245,8 @@ public class BookDetialModel implements IBookDetialModel {
 					// 来自豆瓣的信息，没有该书则为null
 					try {
 						JSONObject o3 = o2.getJSONObject("DoubanInfo");
-						if (o3.getString("Pages").equals("")) {
+						if (o3.getString("Pages").equals("null")
+								|| o3.getString("Pages").equals("")) {
 							bookDetial.put("Pages", "暂无记录");
 						} else {
 							bookDetial.put("Pages", o3.getString("Pages")
@@ -210,7 +254,7 @@ public class BookDetialModel implements IBookDetialModel {
 						}
 						try {
 							JSONObject o4 = o3.getJSONObject("Images");
-							bookDetial.put("medium", o4.getString("medium"));
+							bookDetial.put("medium", o4.getString("large"));
 							// bookDetial.put("small", o3.getString("small"));
 							// bookDetial.put("large", o3.getString("large"));
 						} catch (Exception e) {
@@ -222,8 +266,10 @@ public class BookDetialModel implements IBookDetialModel {
 						bookDetial.put("Author_Info",
 								o3.getString("Author_Info"));
 					} catch (Exception e) {
-						bookDetial.put("Summary", "");
-						bookDetial.put("Author_Info", "");
+						bookDetial.put("Summary", "暂无");
+						bookDetial.put("Author_Info", "暂无");
+						bookDetial.put("Pages", "暂无记录");
+						bookDetial.put("medium", "");
 					}
 					state = LOADING_SUCCESS;
 				} catch (Exception e) {

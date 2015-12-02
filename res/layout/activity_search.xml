@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/theme_color"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:paddingBottom="40dp" >
+
+    <include
+        android:id="@+id/actionbar_activity_search"
+        layout="@layout/actionbar" />
+
+    <RelativeLayout
+        android:id="@+id/layout_search"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/actionbar_activity_search"
+        android:background="@color/white"
+        android:paddingTop="8dp" >
+
+        <RelativeLayout
+            android:id="@+id/layout_search_text"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" >
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/back_search"
+                android:gravity="center_vertical"
+                android:hint="@string/input_book_name"
+                android:paddingLeft="5dp"
+                android:singleLine="true"
+                android:textSize="@dimen/search_hint_size" />
+
+            <ImageView
+                android:id="@+id/iv_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/iv_delete"
+                android:contentDescription="@string/app_name"
+                android:visibility="invisible" />
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/search_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:dividerHeight="0.5px"
+            android:divider="@color/light_black"
+            android:layout_below="@+id/layout_search_text"
+            android:layout_marginTop="8dp" >
+        </ListView>
+
+        <RelativeLayout
+            android:id="@+id/layout_search_no_data"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/layout_search_text"
+            android:visibility="invisible" >
+
+            <TextView
+                android:id="@+id/search_no_data_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/no_data_text"
+                android:textColor="@color/theme_color"
+                android:textSize="@dimen/search_no_data_size" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

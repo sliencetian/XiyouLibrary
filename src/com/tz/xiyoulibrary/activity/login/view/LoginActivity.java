@@ -5,23 +5,23 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-import com.tz.xiyoulibrary.R;
-import com.tz.xiyoulibrary.activity.baseactivity.BaseActivity;
-import com.tz.xiyoulibrary.activity.login.presenter.LoginPresenter;
-import com.tz.xiyoulibrary.activity.main.MainActivity_;
-import com.tz.xiyoulibrary.toastview.CustomToast;
-
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+import com.tz.xiyoulibrary.R;
+import com.tz.xiyoulibrary.activity.baseactivity.BaseActivity;
+import com.tz.xiyoulibrary.activity.event.LoginSuccessEvent;
+import com.tz.xiyoulibrary.activity.login.presenter.LoginPresenter;
+import com.tz.xiyoulibrary.dialog.progressbar.MyProgressBar;
+import com.tz.xiyoulibrary.toastview.CustomToast;
+import com.ypy.eventbus.EventBus;
 
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends BaseActivity implements ILoginView {
@@ -42,8 +42,11 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
 	@ViewById(R.id.cb_savepassword_activity_login)
 	CheckBox mCheckBoxSavePassword;
+	// 自动登录
+	@ViewById(R.id.cb_auto_activity_login)
+	CheckBox mCheckBoxAutoLogin;
 
-	private ProgressDialog mProgressDialog;
+	private MyProgressBar myProgressBar;
 
 	private LoginPresenter loginPresenter;
 	private RequestQueue mQueue;
@@ -53,20 +56,16 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		
 		mQueue = Volley.newRequestQueue(LoginActivity.this);
 		loginPresenter = new LoginPresenter(this);
-		mProgressDialog = new ProgressDialog(this);
-		mProgressDialog.setTitle("提示");
-		mProgressDialog.setMessage("正在登录,请稍候...");
-		mProgressDialog.setCancelable(false);
-
+		myProgressBar = new MyProgressBar(this);
 	}
 
 	@AfterViews
 	public void init() {
 		mRelativeLayoutSearch.setVisibility(View.INVISIBLE);
 		loginPresenter.setIsSavePass(LoginActivity.this);
+		loginPresenter.setIsAutoLogin(LoginActivity.this);
 		loginPresenter.setUsername(this);
 		if (mCheckBoxSavePassword.isChecked())
 			loginPresenter.setPassword(this);
@@ -104,12 +103,12 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 
 	@Override
 	public void showDialog() {
-		mProgressDialog.show();
+		myProgressBar.show();
 	}
 
 	@Override
 	public void hideDialog() {
-		mProgressDialog.dismiss();
+		myProgressBar.dismiss();
 	}
 
 	@Override
@@ -120,8 +119,9 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 	@Override
 	public void pushMainActivity() {
 		loginPresenter.saveIsSavePass(this);
+		loginPresenter.saveIsAutoLogin(this);
 		loginPresenter.saveUsernameAndPassword(this);
-		startActivity(new Intent(this, MainActivity_.class));
+		EventBus.getDefault().post(new LoginSuccessEvent());
 		finish();
 	}
 
@@ -133,5 +133,15 @@ public class LoginActivity extends BaseActivity implements ILoginView {
 	@Override
 	public void setIsSavePass(boolean isSavePass) {
 		mCheckBoxSavePassword.setChecked(isSavePass);
+	}
+
+	@Override
+	public boolean getIsAutoLogin() {
+		return mCheckBoxAutoLogin.isChecked();
+	}
+
+	@Override
+	public void setIsAutoLogin(boolean isAutoLogin) {
+		mCheckBoxAutoLogin.setChecked(isAutoLogin);
 	}
 }

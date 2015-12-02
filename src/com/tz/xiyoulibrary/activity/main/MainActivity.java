@@ -1,21 +1,21 @@
 package com.tz.xiyoulibrary.activity.main;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
-import com.tz.xiyoulibrary.R;
-import com.tz.xiyoulibrary.application.Application;
-import com.tz.xiyoulibrary.fragment.home.HomeFragment;
-import com.tz.xiyoulibrary.fragment.my.MyFragment_;
-import com.tz.xiyoulibrary.fragment.setting.SettingFragment_;
-import com.tz.xiyoulibrary.toastview.CustomToast;
+
 import android.annotation.SuppressLint;
-import android.os.Bundle;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
+import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -28,10 +28,28 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.RadioGroup.OnCheckedChangeListener;
 
+import com.avos.avoscloud.AVInstallation;
+import com.avos.avoscloud.PushService;
+import com.tz.xiyoulibrary.R;
+import com.tz.xiyoulibrary.activity.event.LoginSuccessEvent;
+import com.tz.xiyoulibrary.activity.search.view.SearchActivity_;
+import com.tz.xiyoulibrary.application.Application;
+import com.tz.xiyoulibrary.dialog.progressbar.MyProgressBar;
+import com.tz.xiyoulibrary.dialog.progressdialog.MyAlertDialog;
+import com.tz.xiyoulibrary.fragment.home.HomeFragment;
+import com.tz.xiyoulibrary.fragment.home.HomeFragment_;
+import com.tz.xiyoulibrary.fragment.my.MyFragment_;
+import com.tz.xiyoulibrary.fragment.setting.SettingFragment_;
+import com.tz.xiyoulibrary.toastview.CustomToast;
+import com.tz.xiyoulibrary.utils.LogUtils;
+import com.tz.xiyoulibrary.utils.UpDateUtils;
+import com.ypy.eventbus.EventBus;
+
+@SuppressLint("HandlerLeak")
 @EActivity(R.layout.activity_main)
 public class MainActivity extends FragmentActivity {
 
@@ -72,6 +90,7 @@ public class MainActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		EventBus.getDefault().register(this);
 		if (VERSION.SDK_INT >= VERSION_CODES.KITKAT) {
 			// 透明状态栏
 			getWindow().addFlags(
@@ -80,7 +99,6 @@ public class MainActivity extends FragmentActivity {
 			getWindow().addFlags(
 					WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 		}
-
 		init();
 	}
 
@@ -90,7 +108,7 @@ public class MainActivity extends FragmentActivity {
 	private void init() {
 		mFragments = new ArrayList<Fragment>();
 
-		homeFragment = new HomeFragment();
+		homeFragment = new HomeFragment_();
 		myFragment = new MyFragment_();
 		settingFragment = new SettingFragment_();
 
@@ -107,6 +125,10 @@ public class MainActivity extends FragmentActivity {
 		initViewPage();
 		// 初始化ViewPage
 		initMenu();
+		if (!UpDateUtils.isNew)
+			showUpdateView();
+
+		initLeanCouldPush();
 	}
 
 	/**
@@ -187,7 +209,8 @@ public class MainActivity extends FragmentActivity {
 
 	@Click(R.id.rl_search_actionbar)
 	public void search() {
-		CustomToast.showToast(this, "查询", 2000);
+		Intent intent = new Intent(MainActivity.this, SearchActivity_.class);
+		startActivity(intent);
 	}
 
 	public void initActionBar(int currPage) {
@@ -196,13 +219,68 @@ public class MainActivity extends FragmentActivity {
 					.getString(R.string.main_title));
 			mRelativeLayoutSearch.setVisibility(View.VISIBLE);
 		} else if (currPage == 1) {
-			mTextViewTitle.setText(Application.user.getName());
+			if (Application.user == null) {
+				mTextViewTitle.setText("我的");
+			} else {
+				mTextViewTitle.setText(Application.user.getName());
+			}
 			mRelativeLayoutSearch.setVisibility(View.INVISIBLE);
 		} else {
 			mTextViewTitle.setText(getResources().getString(
 					R.string.setting_text));
 			mRelativeLayoutSearch.setVisibility(View.INVISIBLE);
 		}
+	}
+
+	private MyProgressBar progressBar;
+
+	Handler handler = new Handler() {
+		public void handleMessage(android.os.Message msg) {
+			if (msg.what == 0x001) {
+				progressBar.show();
+				CustomToast.showToast(MainActivity.this, "开始下载", 2000);
+			} else if (msg.what == 0x003) {// 下载完成
+				CustomToast.showToast(MainActivity.this, "下载完成", 2000);
+				LogUtils.d("MainActivity", "下载完成");
+				progressBar.dismiss();
+				File apkFile = (File) msg.obj;
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setDataAndType(Uri.fromFile(apkFile),
+						"application/vnd.android.package-archive");
+				startActivity(intent);
+			} else {// 正在下载
+				LogUtils.d("MainActivity : currProgress", msg.what + "%");
+				progressBar.setCurrProgress(msg.what);
+			}
+		};
+	};
+
+	public void onEventMainThread(LoginSuccessEvent event) {
+		if (Application.user == null) {
+			mTextViewTitle.setText("我的");
+		} else if (vp_main_tab.getCurrentItem() == 1) {
+			mTextViewTitle.setText(Application.user.getName());
+		}
+	}
+
+	protected void onDestroy() {
+		super.onDestroy();
+		EventBus.getDefault().unregister(this);
+	};
+
+	private void showUpdateView() {
+		MyAlertDialog alertDialog = new MyAlertDialog(MainActivity.this,
+				"亲！出新版本了，是否下载？", new MyAlertDialog.MyAlertDialogListener() {
+
+					@Override
+					public void confirm() {
+						// 下载新文件
+						progressBar = new MyProgressBar(MainActivity.this);
+						UpDateUtils.downLoadApk(handler);
+					}
+				});
+		alertDialog.setCancelable(false);
+		alertDialog.show();
 	}
 
 	private long exitTime = 0;
@@ -221,5 +299,13 @@ public class MainActivity extends FragmentActivity {
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);
+	}
+
+	private void initLeanCouldPush() {
+		// 设置默认打开的 Activity
+		PushService.setDefaultPushCallback(this, MainActivity_.class);
+	    // 订阅频道，当该频道消息到来的时候，打开对应的 Activity
+	    PushService.subscribe(this, "public", MainActivity_.class);
+		AVInstallation.getCurrentInstallation().saveInBackground();
 	}
 }

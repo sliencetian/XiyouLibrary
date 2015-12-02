@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_homedetail"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/theme_color"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true" >
+
+    <include
+        android:id="@+id/actionbar_activity_homedetail"
+        layout="@layout/actionbar" />
+
+    <ImageView
+        android:id="@+id/iv_home_moreoption"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rank_type_selector"
+        android:contentDescription="@string/app_name"
+        android:visibility="invisible" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/actionbar_activity_homedetail"
+        android:background="@color/white"
+        android:scrollbars="none" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white" >
+
+            <TextView
+                android:id="@+id/homeTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="80dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="14dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textSize="@dimen/right_arrow_size" />
+
+            <WebView
+                android:id="@+id/homedetail"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/homeTitle"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp" />
+
+            <LinearLayout
+                android:id="@+id/layout_publisher"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/homedetail"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="20dp"
+                android:visibility="invisible"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="right"
+                    android:text="@string/published"
+                    android:textSize="@dimen/right_arrow_size" />
+
+                <TextView
+                    android:id="@+id/publisher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="left"
+                    android:textSize="@dimen/right_arrow_size" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_publish_date"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/layout_publisher"
+                android:layout_marginRight="8dp"
+                android:visibility="invisible"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="right"
+                    android:text="@string/publish_date"
+                    android:textSize="@dimen/right_arrow_size" />
+
+                <TextView
+                    android:id="@+id/publish_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="left"
+                    android:textSize="@dimen/right_arrow_size" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/rl_load_activity_homedetail"
+        android:layout_below="@id/actionbar_activity_homedetail"
+        layout="@layout/loading" />
+
+</RelativeLayout>

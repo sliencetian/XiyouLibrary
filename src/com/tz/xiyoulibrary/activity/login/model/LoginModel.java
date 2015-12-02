@@ -180,6 +180,16 @@ public class LoginModel implements ILoginModel {
 	}
 
 	@Override
+	public boolean getIsAutoLogin(Context context) {
+		return ConfigFile.getIsAutoLogin(context);
+	}
+
+	@Override
+	public void setIsAutoLogin(Context context, boolean isAutoLogin) {
+		ConfigFile.saveIsAutoLogin(context, isAutoLogin);
+	}
+
+	@Override
 	public boolean checkInput(String username, String password) {
 		if (username.equals("")) {
 			msg = "用户名不能为空";

@@ -25,6 +25,10 @@ public interface ILoginModel {
 
 	void setIsSavePass(Context context, boolean isSavePass);
 
+	boolean getIsAutoLogin(Context context);
+
+	void setIsAutoLogin(Context context, boolean isAutoLogin);
+
 	void saveUsernameAndPassword(Context context, String username,
 			String password);
 

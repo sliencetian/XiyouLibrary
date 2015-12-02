@@ -17,7 +17,8 @@ public class CirculationAdapter extends CommonAdapter<Map<String, String>> {
 
 	@Override
 	public void convert(ViewHolder helper, Map<String, String> map) {
-		helper.setText(R.id.tv_barcode_item_circulation, map.get("Barcode"));
+//		helper.setText(R.id.tv_barcode_item_circulation, map.get("Barcode"));
+		helper.setText(R.id.tv_barcode_item_circulation, map.get("Sort"));
 		helper.setText(R.id.tv_state_item_circulation, map.get("Status"));
 		helper.setText(R.id.tv_department_item_circulation,
 				map.get("Department"));

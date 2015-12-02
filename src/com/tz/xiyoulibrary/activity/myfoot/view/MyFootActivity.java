@@ -119,7 +119,7 @@ public class MyFootActivity extends BaseActivity implements IMyFootView {
 						.findViewById(R.id.tv_book_id_item_myfoot);
 				Intent intent = new Intent(MyFootActivity.this,
 						BookDetialActivity_.class);
-				intent.putExtra("url", Constants.GET_BOOK_DETAIL_BY_ID
+				intent.putExtra("url", Constants.GET_BOOK_DETAIL_BY_BARCODE
 						+ tv.getText().toString());
 				startActivity(intent);
 			}

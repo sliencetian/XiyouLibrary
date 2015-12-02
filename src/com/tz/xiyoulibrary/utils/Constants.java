@@ -10,6 +10,14 @@ public class Constants {
 
 	// 请求网络超时时间
 	public static final int TIMEOUT_MS = 10000;
+	//当前版本号
+	public static int versionCode;
+	//当前版本名
+	public static String versionName;
+	//2G、3G、4G下是否下载图片
+	public static boolean isLoadImg;
+	//当前网络类型
+	public static int network_type = 0x123;
 
 	// 图片缓存路径
 	public static final String IMG_CACHE_DIR_PATH = Environment
@@ -101,6 +109,7 @@ public class Constants {
 	 * :http://api.xiyoumobile.com/xiyoulibv2/news/getDetail/announce/html/200
 	 */
 	public static final String GET_NEWS_DETAIL = ROOT_URL + "news/getDetail/";
+	
 	
 
 }

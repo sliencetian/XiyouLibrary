@@ -19,5 +19,8 @@
     <color name="can_borrow">#73e07a</color>
     <color name="renew_book">#f59f56</color>
     <color name="exceed_book">#f55b56</color>
+    <!-- 主页 -->
+    <color name="home_listline">#e1e1e1</color>
+    <color name="home_title">#e3e3e3</color>
 
 </resources>

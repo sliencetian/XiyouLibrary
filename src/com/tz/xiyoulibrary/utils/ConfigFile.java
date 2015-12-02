@@ -15,6 +15,7 @@ public class ConfigFile {
 	private static final String UserName = "username";
 	private static final String PassWord = "password";
 	private static final String IsSavePassWord = "isSavePass";
+	private static final String IsAutoLogin = "isAutoLogin";
 
 	// 消息通知
 	private static final String SETTING_MESSAGE_NOTIC = "setting_message_notic";
@@ -49,6 +50,16 @@ public class ConfigFile {
 	public static boolean getIsSavePass(Context context) {
 		initSp(context);
 		return sp.getBoolean(IsSavePassWord, false);
+	}
+	
+	public static void saveIsAutoLogin(Context context, boolean isAutoLogin) {
+		initSp(context);
+		sp.edit().putBoolean(IsAutoLogin, isAutoLogin).commit();
+	}
+
+	public static boolean getIsAutoLogin(Context context) {
+		initSp(context);
+		return sp.getBoolean(IsAutoLogin, false);
 	}
 
 	public static boolean getMessageNotic(Context context) {

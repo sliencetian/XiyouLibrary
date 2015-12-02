@@ -6,15 +6,15 @@
     <RelativeLayout
         android:id="@+id/rl_head_fragment_my"
         android:layout_width="fill_parent"
-        android:layout_height="180dp" >
+        android:layout_height="@dimen/head_size" >
 
         <com.tz.xiyoulibrary.bubblesbackview.BubbleBackView
             xmlns:cv="http://schemas.android.com/apk/res/com.tz.xiyoulibrary"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             cv:backColor="@color/theme_color"
-            cv:circleRadio="60"
-            cv:circleSum="12" />
+            cv:circleRadio="15"
+            cv:circleSum="15" />
 
         <com.tz.xiyoulibrary.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"

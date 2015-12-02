@@ -44,12 +44,12 @@ public class BubbleBackView extends View {
 		super(context, attrs);
 		TypedArray ta = context.obtainStyledAttributes(attrs,
 				R.styleable.BubbleBackView);
-		circleSum = ta.getInteger(R.styleable.BubbleBackView_circleSum, 10);
+		circleSum = ta.getInteger(R.styleable.BubbleBackView_circleSum, 15);
 		circleColor = ta.getColor(R.styleable.BubbleBackView_circleColor,
 				Color.parseColor("#11ffffff"));
 		backColor = ta.getColor(R.styleable.BubbleBackView_backColor,
 				getResources().getColor(R.color.theme_color));
-		circleRadio = ta.getInteger(R.styleable.BubbleBackView_circleRadio, 30);
+		circleRadio = ta.getInteger(R.styleable.BubbleBackView_circleRadio, 15);
 		ta.recycle();
 		init();
 	}
@@ -103,8 +103,8 @@ public class BubbleBackView extends View {
 			int d = random.nextInt(direction.length);
 			int x = random.nextInt((int) width);
 			int y = random.nextInt((int) height);
-			int r = random.nextInt(circleRadio)+circleRadio;
-			circles[i] = new Circle(x, y, d,r);
+			int r = random.nextInt(circleRadio) + circleRadio;
+			circles[i] = new Circle(x, y, d, dpTopx(r));
 		}
 	}
 
@@ -136,7 +136,7 @@ public class BubbleBackView extends View {
 		@Override
 		public void run() {
 			while (running) {
-				for (int i = 0; i < circleSum; i++) {
+				for (int i = 0; i < circles.length; i++) {
 					Circle c = circles[i];
 					changeDirection(c);
 					if (c.getY() < 0) {// ³¬³öÉÏ±ß
@@ -185,7 +185,13 @@ public class BubbleBackView extends View {
 
 		private void changeDirection(Circle c) {
 			float dx = 0.3f;
-			switch (c.getDirection()) {
+			int d;
+			try {
+				d = c.getDirection();
+			} catch (Exception e) {
+				d = 0;
+			}
+			switch (d) {
 			case 0:// ÉÏ
 				c.setY(c.getY() - dx);
 				break;
@@ -238,18 +244,19 @@ public class BubbleBackView extends View {
 		private float x;
 		private float y;
 		private float r;
-		private int direction;
+		private int direction = 0;
 
 		public Circle(float x, float y, int d) {
 			this.x = x;
 			this.y = y;
 			this.direction = d;
 		}
-		public Circle(float x, float y, int d,int r) {
+
+		public Circle(float x, float y, int d, int r) {
 			this.x = x;
 			this.y = y;
-			this.direction = d;
 			this.r = r;
+			this.direction = d;
 		}
 
 		public float getX() {
@@ -285,4 +292,8 @@ public class BubbleBackView extends View {
 		}
 	}
 
+	private int dpTopx(int dp) {
+		float scale = getResources().getDisplayMetrics().density;
+		return (int) (dp * scale + 0.5f);
+	}
 }

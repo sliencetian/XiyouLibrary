@@ -57,6 +57,10 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 	RelativeLayout mRelativeLayoutLoadFaluire;
 	@ViewById(R.id.rl_load_no_data)
 	RelativeLayout mRelativeLayoutLoadNoData;
+	@ViewById(R.id.tv_load_no_data_tip)
+	TextView mTextViewNoDataTip;
+	@ViewById(R.id.tv_load_faluire_tip)
+	TextView mTextViewLoadFaluireTip;
 	private RequestQueue queue;
 	private ImageLoader imageLoader;
 
@@ -110,10 +114,11 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 		finish();
 	}
 
-	@Click(R.id.rl_load_no_data)
+	@Click(R.id.rl_load_faluire)
 	public void resetGetData() {
 		getBookDetial();
 	}
+	
 
 	@Override
 	public void showLoadingView() {
@@ -150,10 +155,15 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 		mPullToZoomListView.setAdapter(new ArrayAdapter<String>(
 				BookDetialActivity.this, android.R.layout.simple_list_item_1,
 				adapterData));
-		String imgUrl = bookDetial.get("medium").toString();
+		String imgUrl;
+		try {
+			imgUrl = bookDetial.get("medium").toString();
+		} catch (Exception e) {
+			imgUrl = "";
+		}
 		if (TextUtils.equals(imgUrl, "")) {
 			mPullToZoomListView.getHeaderView().setImageResource(
-					R.drawable.img_book);
+					R.drawable.img_book_no);
 		} else {
 			ImageListener listener = ImageLoader.getImageListener(
 					mPullToZoomListView.getHeaderView(),
@@ -164,6 +174,12 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 				ImageView.ScaleType.CENTER_CROP);
 	}
 
+	@Override
+	protected void onNewIntent(Intent intent) {
+		super.onNewIntent(intent);
+		
+	}
+	
 	/**
 	 * 添加相关推荐
 	 */
@@ -272,7 +288,7 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 		tv = (TextView) root.findViewById(R.id.tv_title_activity_book_detial);// 标题
 		tv.setText(bookDetial.get("Title") + "");
 		tv = (TextView) root.findViewById(R.id.tv_book_id_activity_book_detial);// 索书号
-		tv.setText(bookDetial.get("ID") + "");
+		tv.setText(bookDetial.get("Sort") + "");
 		tv = (TextView) root
 				.findViewById(R.id.tv_book_author_activity_book_detial);// 作者
 		tv.setText(bookDetial.get("Author") + "");
@@ -312,6 +328,7 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 	public void showLoadFaluireView() {
 		mTitanic.cancel();
 		mRelativeLayoutLoadFaluire.setVisibility(View.VISIBLE);
+		mTextViewNoDataTip.setText("亲！查询失败了~");
 		mRelativeLayoutLoading.setVisibility(View.GONE);
 		mRelativeLayoutLoadNoData.setVisibility(View.GONE);
 	}
@@ -320,6 +337,7 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 	public void showNoDataView() {
 		mTitanic.cancel();
 		mRelativeLayoutLoadNoData.setVisibility(View.VISIBLE);
+		mTextViewNoDataTip.setText("亲！没有该书籍相关信息~");
 		mRelativeLayoutLoadFaluire.setVisibility(View.GONE);
 		mRelativeLayoutLoading.setVisibility(View.GONE);
 	}
@@ -368,10 +386,10 @@ public class BookDetialActivity extends BaseActivity implements IBookDetialView 
 		// 在自动授权时可以禁用SSO方式
 		oks.disableSSOWhenAuthorize();
 		String imgUrl = bookDetial.get("medium").toString();
-		oks.setTitle("西邮图书馆---"+"《" + bookDetial.get("Title") + "》");
+		oks.setTitle("西邮图书馆---" + "《" + bookDetial.get("Title") + "》");
 		oks.setTitleUrl("http://lib.xiyoumobile.com/moreInfo.html?id="
 				+ bookDetial.get("ID").toString());
-		oks.setText(bookDetial.get("Summary")+"");
+		oks.setText(bookDetial.get("Summary") + "");
 		// oks.setImagePath("/sdcard/test-pic.jpg"); //分享sdcard目录下的图片
 		if (!TextUtils.equals(imgUrl, "")) {
 			oks.setImageUrl(imgUrl);

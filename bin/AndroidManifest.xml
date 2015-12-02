@@ -9,6 +9,20 @@
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- 分享 -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <!-- 记录logcat日志功能 所需的权限 -->
+    <uses-permission android:name="android.permission.READ_LOGS" />
 
     <application
         android:name="com.tz.xiyoulibrary.application.Application"
@@ -27,32 +41,134 @@
             android:name="com.tz.xiyoulibrary.activity.main.MainActivity_"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
-        </activity>
-        <!-- 我的借阅 -->
-        <activity
-            android:name="com.tz.xiyoulibrary.activity.mybroorw.MyBorrowActivity_"
-            android:screenOrientation="portrait" >
-        </activity>
-        <!-- 我的足迹 -->
-        <activity
-            android:name="com.tz.xiyoulibrary.activity.myfoot.MyFootActivity_"
-            android:screenOrientation="portrait" >
-        </activity>
-        <!-- 我的收藏 -->
-        <activity
-            android:name="com.tz.xiyoulibrary.activity.mycollection.activity.view.MyCollectionActivity"
-            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- 排行榜 -->
+        <!-- 我的借阅 -->
         <activity
-            android:name="com.tz.xiyoulibrary.activity.rank.RankActivity_"
+            android:name="com.tz.xiyoulibrary.activity.mybroorw.view.MyBorrowActivity_"
             android:screenOrientation="portrait" >
         </activity>
+        <!-- 我的足迹 -->
+        <activity
+            android:name="com.tz.xiyoulibrary.activity.myfoot.view.MyFootActivity_"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 我的收藏 -->
+        <activity
+            android:name="com.tz.xiyoulibrary.activity.mycollection.activity.view.MyCollectionActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 排行榜 -->
+        <activity
+            android:name="com.tz.xiyoulibrary.activity.rank.view.RankActivity_"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 图书详情 -->
+        <activity
+            android:name="com.tz.xiyoulibrary.activity.bookdetial.view.BookDetialActivity_"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask" >
+        </activity>
+        <!-- 常见问题 -->
+        <activity
+            android:name="com.tz.xiyoulibrary.activity.question.QuestionActivity_"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 问题反馈 -->
+        <activity
+            android:name="com.tz.xiyoulibrary.activity.advice.AdviceActivity_"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 关于我们 -->
+        <activity
+            android:name="com.tz.xiyoulibrary.activity.about.AboutActivity_"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 新闻公告详情 -->
+        <activity
+            android:name="com.tz.xiyoulibrary.activity.homedetail.view.HomeDetailActivity_"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 修改密码 -->
+        <activity
+            android:name="com.tz.xiyoulibrary.activity.modifypassword.ModifyPasswordActivity_"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 图书检索 -->
+        <activity
+            android:name="com.tz.xiyoulibrary.activity.search.view.SearchActivity_"
+            android:screenOrientation="portrait" >
+        </activity>
+        <!-- 分享 -->
+        <activity
+            android:name="cn.sharesdk.framework.ShareSDKUIShell"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+            <intent-filter>
+                <data android:scheme="tencent100371282" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" >
+            <intent-filter>
+                <data android:scheme="db-7janx53ilz11gbs" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <data android:scheme="tencent100371282" />
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="1104965656" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <service android:name="com.avos.avoscloud.PushService" />
+
+        <receiver android:name="com.avos.avoscloud.AVBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

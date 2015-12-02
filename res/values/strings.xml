@@ -2,10 +2,14 @@
 <resources>
 
     <string name="app_name">西邮图书馆</string>
+    <string name="tip_text">提  示</string>
+    <string name="confirm_text">确认</string>
+    <string name="cancle_text">取消</string>
     <!-- 登录 -->
     <string name="login_title">西邮图书馆登录</string>
     <string name="username">账 户</string>
     <string name="password">密 码</string>
+    <string name="auto_login">自动登录</string>
     <string name="save_password">记住密码</string>
     <string name="login_text">登  录</string>
     <!-- 用户 -->
@@ -25,10 +29,8 @@
     <!-- 设置 -->
     <string name="setting_message_notic_text">消息通知</string>
     <string name="setting_net_type_text">2G/3G/4G网络下显示图片</string>
-    <string name="setting_question_text">常见问题</string>
-    <string name="setting_back_advice_text">问题反馈</string>
     <string name="setting_about_text">关于我们</string>
-    <string name="setting_exit_text">退出当前账户</string>
+    <string name="setting_exit_text">退出</string>
     <!-- 加载 -->
     <string name="loading_text">loading</string>
     <string name="load_faluire_text">啊哦!加载失败了,点击重新加载</string>
@@ -71,8 +73,8 @@
     <string name="collection_rank_text">收藏排行</string>
     <string name="look_rank_text">查看排行</string>
     <!-- 我的节借阅 -->
-    <string name="bt_status_text">我要续借：</string>
-    <string name="tv_status_text">本馆续借：</string>
+    <string name="bt_status_text">我要续借</string>
+    <string name="tv_status_text">本馆续借</string>
     <string name="data_myborrow_text">到期时间：</string>
     <!-- 常见问题 -->
     <string name="question1_text">1.登录时的学号和密码都指的是什么？</string>
@@ -85,4 +87,25 @@
     <!-- 我的历史 -->
 	<string name="foot_type">操作类型:</string>
 	<string name="foot_date">操作日期:</string>
+	<!-- 首页 -->
+	<string name="notices">公告</string>
+	<string name="news">新闻</string>
+	<string name="point">·</string>
+	<string name="published">发布单位:</string>
+	<string name="publish_date">发布时间:</string>
+	<!-- 关于 -->
+	<string name="about_update">版本更新</string>
+    <string name="setting_question_text">常见问题</string>
+    <string name="setting_back_advice_text">问题反馈</string>
+    <string name="mobile_text">应用开发：西邮移动应用开发实验室</string>
+    <string name="content_text">联系：tianzhao@xiyoumobile.com</string>
+	<!-- 修改密码 -->
+    <string name="modify_pwd_text">确认修改</string>
+    <string name="modify_old_pwd_text">原密码</string>
+    <string name="modify_new_pwd_text">新密码</string>
+    <string name="modify_repass_pwd_text">确认新密码</string>
+    <!-- 搜索 -->
+    <string name="input_book_name">请输入书名</string>
+    <string name="btsearch">搜索</string>
+    <string name="no_data_text">空空如也~</string>
 </resources>

@@ -4,17 +4,15 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.ViewById;
-
 import com.tz.xiyoulibrary.R;
 import com.tz.xiyoulibrary.activity.about.AboutActivity_;
-import com.tz.xiyoulibrary.activity.advice.AdviceActivity_;
-import com.tz.xiyoulibrary.activity.login.view.LoginActivity_;
-import com.tz.xiyoulibrary.activity.question.QuestionActivity_;
+import com.tz.xiyoulibrary.application.Application;
+import com.tz.xiyoulibrary.customerviewpager.CustomerViewPage;
+import com.tz.xiyoulibrary.dialog.progressdialog.MyAlertDialog;
 import com.tz.xiyoulibrary.switchview.togglebutton.ToggleButton;
 import com.tz.xiyoulibrary.utils.ConfigFile;
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import com.tz.xiyoulibrary.utils.Constants;
+import com.tz.xiyoulibrary.utils.LogUtils;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -30,14 +28,17 @@ public class SettingFragment extends Fragment {
 	ToggleButton mToggleButtonMessageBotic;
 	@ViewById(R.id.tb_net_fragment_setting)
 	ToggleButton mToggleButtonNet;
-	@ViewById(R.id.rl_question_fragment_setting)
-	RelativeLayout mRelativeLayoutQuestion;
-	@ViewById(R.id.rl_back_advice_fragment_setting)
-	RelativeLayout mRelativeLayoutBackAdvice;
 	@ViewById(R.id.rl_about_fragment_setting)
 	RelativeLayout mRelativeLayoutAbout;
 	@ViewById(R.id.rl_exit_fragment_setting)
 	RelativeLayout mRelativeLayoutExit;
+	@ViewById(R.id.vp_fragment_setting)
+	CustomerViewPage viewPage;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,7 +47,7 @@ public class SettingFragment extends Fragment {
 	}
 
 	/**
-	 * 常见问题
+	 * 消息通知
 	 */
 	@Click(R.id.tb_message_notic_fragment_setting)
 	public void setMessageNotic() {
@@ -60,33 +61,19 @@ public class SettingFragment extends Fragment {
 	}
 
 	/**
-	 * 常见问题
+	 * 网络下载图片
 	 */
 	@Click(R.id.tb_net_fragment_setting)
 	public void pushNet() {
-		if (ConfigFile.getNet(getActivity())) {
+		if (Constants.isLoadImg) {
 			mToggleButtonNet.toggleOff();
 			ConfigFile.saveNet(getActivity(), false);
+			Constants.isLoadImg = false;
 		} else {
 			mToggleButtonNet.toggleOn();
 			ConfigFile.saveNet(getActivity(), true);
+			Constants.isLoadImg = true;
 		}
-	}
-
-	/**
-	 * 常见问题
-	 */
-	@Click(R.id.rl_question_fragment_setting)
-	public void pushQuestin() {
-		startActivity(new Intent(getActivity(), QuestionActivity_.class));
-	}
-
-	/**
-	 * 意见反馈
-	 */
-	@Click(R.id.rl_back_advice_fragment_setting)
-	public void pushBackAdvice() {
-		startActivity(new Intent(getActivity(), AdviceActivity_.class));
 	}
 
 	/**
@@ -102,26 +89,16 @@ public class SettingFragment extends Fragment {
 	 */
 	@Click(R.id.rl_exit_fragment_setting)
 	public void pushExit() {
-		new AlertDialog.Builder(getActivity()).setTitle("提示")
-				.setMessage("确认退出?")
-				.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+		new MyAlertDialog(getActivity(), "确认退出?",
+				new MyAlertDialog.MyAlertDialogListener() {
 
 					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-					}
-				})
-				.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
+					public void confirm() {
+						Application.user = null;
 						ConfigFile.savePassword(getActivity(), "");
-						startActivity(new Intent(getActivity(),
-								LoginActivity_.class));
 						getActivity().finish();
 					}
-				}).create().show();
+				}).show();
 	}
 
 	@AfterViews
@@ -136,5 +113,13 @@ public class SettingFragment extends Fragment {
 		} else {
 			mToggleButtonNet.toggleOff();
 		}
+		viewPage.setViewPageViews(Application.settingAdViews);
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		viewPage.stop();
+		LogUtils.d("SettingFragment : ", "onPause()");
 	}
 }

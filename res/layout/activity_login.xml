@@ -35,6 +35,7 @@
                 android:gravity="center_vertical"
                 android:hint="@string/username"
                 android:paddingLeft="13dp"
+                android:singleLine="true"
                 android:textSize="@dimen/text_size" />
 
             <ImageView
@@ -52,8 +53,18 @@
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 android:paddingLeft="13dp"
+                android:singleLine="true"
                 android:textSize="@dimen/text_size" />
         </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/cb_auto_activity_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_input_activity_login"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/auto_login" />
 
         <CheckBox
             android:id="@+id/cb_savepassword_activity_login"

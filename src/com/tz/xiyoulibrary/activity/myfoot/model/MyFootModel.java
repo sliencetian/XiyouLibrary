@@ -34,7 +34,8 @@ public class MyFootModel implements IMyFootModel {
 		status = LOADING;
 		callBack.getModel(this);
 		StringRequest request = new StringRequest(Method.POST,
-				Constants.GET_BOOK_HISTORY, new Response.Listener<String>() {
+				Constants.GET_BOOK_HISTORY,
+				new Response.Listener<String>() {
 
 					@Override
 					public void onResponse(String response) {

@@ -3,16 +3,16 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:contentDescription="@string/app_name" />
+    <com.tz.xiyoulibrary.customerviewpager.CustomerViewPage
+        android:id="@+id/vp_fragment_setting"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/head_size" />
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp" >
+        android:layout_below="@id/vp_fragment_setting"
+        android:layout_marginBottom="5dp" >
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -73,6 +73,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="0.5dp"
+                android:visibility="gone"
                 android:background="@drawable/my_rl_selector" >
 
                 <TextView
@@ -99,6 +100,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="0.5dp"
+                android:visibility="gone"
                 android:background="@drawable/my_rl_selector" >
 
                 <TextView

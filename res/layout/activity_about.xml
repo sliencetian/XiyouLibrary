@@ -10,12 +10,121 @@
         android:id="@+id/actionbar_activity_about"
         layout="@layout/actionbar" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/actionbar_activity_about"
-        android:background="@color/white"
-        android:orientation="vertical" >
-    </LinearLayout>
+        android:background="@color/Light_grey" >
+
+        <ImageView
+            android:id="@+id/iv_ic_about_activity"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/ic_launcher"
+            android:contentDescription="@string/app_name" />
+
+        <TextView
+            android:id="@+id/tv_app_name_about_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_ic_about_activity"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:text="@string/app_name"
+            android:textSize="@dimen/samle_text_size" />
+
+        <TextView
+            android:id="@+id/tv_version_about_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_app_name_about_activity"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
+            android:textSize="@dimen/samle_text_size" />
+
+        <LinearLayout
+            android:id="@+id/ll_about_activity"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_version_about_activity"
+            android:layout_marginTop="20dp"
+            android:background="@color/dark_grey"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_update_about_activity"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/rhythm_edge_size_for_shift"
+                android:layout_marginTop="0.5dp"
+                android:background="@drawable/my_rl_selector"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:text="@string/about_update"
+                android:textSize="@dimen/text_size" />
+
+            <TextView
+                android:id="@+id/tv_question_about_activity"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/rhythm_edge_size_for_shift"
+                android:layout_marginTop="0.5dp"
+                android:background="@drawable/my_rl_selector"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:text="@string/setting_question_text"
+                android:textSize="@dimen/text_size" />
+
+            <TextView
+                android:id="@+id/tv_back_advice_about_activity"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/rhythm_edge_size_for_shift"
+                android:layout_marginBottom="0.5dp"
+                android:layout_marginTop="0.5dp"
+                android:background="@drawable/my_rl_selector"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:text="@string/setting_back_advice_text"
+                android:textSize="@dimen/text_size" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_ic_mobile_about_activity"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/ll_about_activity"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/mobile"
+            android:contentDescription="@string/app_name" />
+
+        <TextView
+            android:id="@+id/tv_mobile_name_about_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_ic_mobile_about_activity"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:text="@string/mobile_text"
+            android:textSize="@dimen/samler_text_size" />
+        <TextView
+            android:id="@+id/tv_content_name_about_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_mobile_name_about_activity"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:text="@string/content_text"
+            android:textSize="@dimen/samler_text_size" />
+        <TextView
+            android:id="@+id/tv_our_web_about_activity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_content_name_about_activity"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:textColor="#56aaff"
+            android:textSize="@dimen/samler_text_size" />
+    </RelativeLayout>
 
 </RelativeLayout>

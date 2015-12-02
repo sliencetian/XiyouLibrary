@@ -5,10 +5,13 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="text_size">17dp</dimen>
     <dimen name="samle_text_size">15dp</dimen>
+    <dimen name="samler_text_size">12dp</dimen>
     <dimen name="radius_size">8dp</dimen>
+    <dimen name="progressbar_title_size">25dp</dimen>
+    <dimen name="head_size">160dp</dimen>
     <!-- 我的收藏 -->
     <dimen name="rhythm_icon_margin">2.0dip</dimen>
-    <dimen name="rhythm_layout_height">60.0dip</dimen>
+    <dimen name="rhythm_layout_height">60.0dp</dimen>
     <dimen name="rhythm_item_height">100.0dip</dimen>
     <dimen name="rhythm_edge_size_for_shift">50.0dip</dimen>
     <dimen name="mycollection_book_title">20.0dip</dimen>
@@ -30,6 +33,13 @@
     <!-- 图书详情 -->
     <dimen name="book_detial_title_size">20dp</dimen>
     <dimen name="book_info_title_size">15dp</dimen>
+    <!-- 首页 -->
+    <dimen name="home_point_size">40dp</dimen>
+    <!-- 搜索 -->
+    <dimen name="search_text_size">20dip</dimen>
+    <dimen name="search_hint_size">16dp</dimen>
+    <dimen name="search_title_size">16dip</dimen>
+    <dimen name="search_no_data_size">25dip</dimen>
     
 
 </resources>

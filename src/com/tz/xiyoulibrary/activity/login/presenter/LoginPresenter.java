@@ -41,10 +41,6 @@ public class LoginPresenter {
 				});
 	}
 	
-	public void getUserInfo(RequestQueue queue){
-		
-	}
-
 	public void setUsername(Context context) {
 		mLoginView.setUsername(mLoginModel.getUsername(context));
 	}
@@ -59,6 +55,13 @@ public class LoginPresenter {
 
 	public void saveIsSavePass(Context context) {
 		mLoginModel.setIsSavePass(context, mLoginView.getIsSavePass());
+	}
+	public void setIsAutoLogin(Context context) {
+		mLoginView.setIsAutoLogin(mLoginModel.getIsAutoLogin(context));
+	}
+
+	public void saveIsAutoLogin(Context context) {
+		mLoginModel.setIsAutoLogin(context, mLoginView.getIsAutoLogin());
 	}
 
 	public void saveUsernameAndPassword(Context context) {

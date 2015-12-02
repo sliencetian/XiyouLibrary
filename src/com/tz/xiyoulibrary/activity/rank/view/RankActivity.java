@@ -64,6 +64,7 @@ public class RankActivity extends BaseActivity implements IRankView {
 	private RankAdapter mRankAdapter;
 
 	private String type = "1";
+	private int currSize = 0;
 	private PopupMenu popupMenu;
 
 	@Override
@@ -87,13 +88,14 @@ public class RankActivity extends BaseActivity implements IRankView {
 				popupMenu.getMenu());
 
 		mTextViewTitle.setText("ΩË‘ƒ≈≈––");
-		
+
 		mRefreshListView
 				.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
 
 					@Override
 					public void onPullDownToRefresh(
 							PullToRefreshBase<ListView> refreshView) {
+						currSize = 0;
 						refreshRankData(IRankModel.DOWN_REFER_SUCCESS);
 					}
 
@@ -163,7 +165,7 @@ public class RankActivity extends BaseActivity implements IRankView {
 	 */
 	private void refreshRankData(int what) {
 		mImageViewRankType.setClickable(false);
-		mPresenter.refershData(queue, type, rankData.size(), what);
+		mPresenter.refershData(queue, type, currSize, what);
 	}
 
 	@Override
@@ -186,6 +188,7 @@ public class RankActivity extends BaseActivity implements IRankView {
 		mRelativeLayoutLoadNoData.setVisibility(View.GONE);
 		mRelativeLayoutLoadFaluire.setVisibility(View.GONE);
 		this.rankData = rankData;
+		currSize = this.rankData.size();
 
 		mRankAdapter = new RankAdapter(RankActivity.this, rankData,
 				R.layout.item_activity_rank);
@@ -203,6 +206,7 @@ public class RankActivity extends BaseActivity implements IRankView {
 		mImageViewRankType.setClickable(true);
 		mRefreshListView.onRefreshComplete();
 		this.rankData.addAll(rankData);
+		currSize = this.rankData.size();
 		mRankAdapter.setDatas(this.rankData);
 
 	}

@@ -2,7 +2,9 @@ package com.tz.xiyoulibrary.activity.mycollection.fragment;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import org.json.JSONObject;
+
 import com.android.volley.Request.Method;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
@@ -15,14 +17,12 @@ import com.tz.xiyoulibrary.R;
 import com.tz.xiyoulibrary.activity.bookdetial.view.BookDetialActivity_;
 import com.tz.xiyoulibrary.activity.mycollection.activity.view.MyCollectionActivity;
 import com.tz.xiyoulibrary.application.Application;
+import com.tz.xiyoulibrary.dialog.progressbar.MyProgressBar;
+import com.tz.xiyoulibrary.dialog.progressdialog.MyAlertDialog;
 import com.tz.xiyoulibrary.toastview.CustomToast;
 import com.tz.xiyoulibrary.utils.Constants;
 import com.tz.xiyoulibrary.utils.LogUtils;
-
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -94,9 +94,14 @@ public class MyBorrowFragment extends Fragment {
 		if (TextUtils.equals(imgUrl, "")) {
 			bookImg.setBackgroundResource(R.drawable.img_book_no);
 		} else {
-			ImageListener imageListener = ImageLoader.getImageListener(bookImg,
-					R.drawable.img_book, R.drawable.img_book_no);
-			imageLoader.get(imgUrl, imageListener, 240, 320);
+			try {
+				ImageListener imageListener = ImageLoader
+						.getImageListener(bookImg, R.drawable.img_book_no,
+								R.drawable.img_book_no);
+				imageLoader.get(imgUrl, imageListener, 240, 320);
+			} catch (Exception e) {
+				bookImg.setBackgroundResource(R.drawable.img_book_no);
+			}
 		}
 		rootView.setOnClickListener(new OnClickListener() {
 
@@ -124,44 +129,37 @@ public class MyBorrowFragment extends Fragment {
 	}
 
 	protected void showDialog(final String id, final String position) {
-		new AlertDialog.Builder(getActivity()).setTitle("提示")
-				.setMessage("删除该书藏?")
-				.setNegativeButton("确认", new DialogInterface.OnClickListener() {
+		new MyAlertDialog(getActivity(),
+				new MyAlertDialog.MyAlertDialogListener() {
 
 					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
+					public void confirm() {
 						deleteCollection(id, position);
 					}
-				})
-				.setPositiveButton("取消", new DialogInterface.OnClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-					}
-				}).create().show();
+				}).show();
 	}
 
 	protected void deleteCollection(final String id, final String position) {
-		final ProgressDialog p = new ProgressDialog(getActivity());
-		p.setTitle("提示");
-		p.setMessage("正在删除,请稍候...");
-		p.show();
+		final MyProgressBar mpb = new MyProgressBar(getActivity());
+		mpb.show();
+		// final ProgressDialog p = new ProgressDialog(getActivity());
+		// p.setTitle("提示");
+		// p.setMessage("正在删除,请稍候...");
+		// p.show();
 		StringRequest request = new StringRequest(Method.POST,
 				Constants.GET_BOOK_DELETE_FAVORITE, new Listener<String>() {
 
 					@Override
 					public void onResponse(String response) {
 						LogUtils.d("deleteCollection", response);
-						p.dismiss();
+						mpb.dismiss();
 						formatDeleteDataByJson(response, position);
 					}
 				}, new Response.ErrorListener() {
 
 					@Override
 					public void onErrorResponse(VolleyError error) {
-						p.dismiss();
+						mpb.dismiss();
 						CustomToast.showToast(getActivity(), "网络异常", 2000);
 					}
 				}) {

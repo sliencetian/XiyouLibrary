@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
 import android.text.TextUtils;
 import android.util.LruCache;
 
@@ -61,6 +62,14 @@ public class BitmapCache implements ImageCache {
 					mCache.put(url, bitmap);
 				}
 			}
+		}
+		/**
+		 * 是否下载图片
+		 */
+		if (Constants.network_type != ConnectivityManager.TYPE_WIFI
+				&& !Constants.isLoadImg) {
+			LogUtils.d("ImageLoad", "不下载图片");
+			return BitmapFactory.decodeStream(getClass().getResourceAsStream("/assets/img_book_no.png"));
 		}
 		return bitmap;
 	}

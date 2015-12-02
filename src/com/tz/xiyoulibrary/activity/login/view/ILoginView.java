@@ -8,10 +8,14 @@ public interface ILoginView {
 	String getPassword();
 
 	void setPassword(String password);
-	
+
 	boolean getIsSavePass();
-	
+
 	void setIsSavePass(boolean isSavePass);
+
+	boolean getIsAutoLogin();
+
+	void setIsAutoLogin(boolean isAutoLogin);
 
 	void showDialog();
 

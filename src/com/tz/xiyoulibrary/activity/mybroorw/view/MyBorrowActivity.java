@@ -160,7 +160,7 @@ public class MyBorrowActivity extends BaseActivity implements IMyborrowView {
 		mListViewBorrow.addHeaderView(head);
 
 		mMyBorrowAdapter = new MyBorrowAdapter(MyBorrowActivity.this,
-				this.borrowData, R.layout.item_activity_myborrow, imageLoader);
+				this.borrowData, R.layout.item_activity_myborrow, imageLoader,queue);
 		mListViewBorrow.setAdapter(mMyBorrowAdapter);
 	}
 
